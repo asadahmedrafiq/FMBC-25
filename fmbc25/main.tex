@@ -1,0 +1,308 @@
+
+\documentclass[a4paper,UKenglish,cleveref, autoref, thm-restate]{oasics-v2021}
+%This is a template for producing OASIcs articles. 
+%See oasics-v2021-authors-guidelines.pdf for further information.
+%for A4 paper format use option "a4paper", for US-letter use option "letterpaper"
+%for british hyphenation rules use option "UKenglish", for american hyphenation rules use option "USenglish"
+%for section-numbered lemmas etc., use "numberwithinsect"
+%for enabling cleveref support, use "cleveref"
+%for enabling autoref support, use "autoref"
+%for anonymousing the authors (e.g. for double-blind review), add "anonymous"
+%for enabling thm-restate support, use "thm-restate"
+%for enabling a two-column layout for the author/affilation part (only applicable for > 6 authors), use "authorcolumns"
+%for producing a PDF according the PDF/A standard, add "pdfa"
+
+%\pdfoutput=1 %uncomment to ensure pdflatex processing (mandatatory e.g. to submit to arXiv)
+%\hideOASIcs %uncomment to remove references to OASIcs series (logo, DOI, ...), e.g. when preparing a pre-final version to be uploaded to arXiv or another public repository
+
+%\graphicspath{{./graphics/}}%helpful if your graphic files are in another directory
+\usepackage{tikz}
+\bibliographystyle{plainurl}% the mandatory bibstyle
+
+\title{Isabelle/Solidity for Smart Contracts} %TODO Please add
+
+%\titlerunning{Dummy short title} %TODO optional, please use if title is longer than one line
+
+\author{Jane {Open Access}}{Dummy University Computing Laboratory, [optional: Address], Country \and My second affiliation, Country \and \url{http://www.myhomepage.edu} }{johnqpublic@dummyuni.org}{https://orcid.org/0000-0002-1825-0097}{(Optional) author-specific funding acknowledgements}%TODO mandatory, please use full name; only 1 author per \author macro; first two parameters are mandatory, other parameters can be empty. Please provide at least the name of the affiliation and the country. The full address is optional. Use additional curly braces to indicate the correct name splitting when the last name consists of multiple name parts.
+
+\author{Joan R. Public\footnote{Optional footnote, e.g. to mark corresponding author}}{Department of Informatics, Dummy College, [optional: Address], Country}{joanrpublic@dummycollege.org}{[orcid]}{[funding]}
+
+\authorrunning{J. Open Access and J.\,R. Public} %TODO mandatory. First: Use abbreviated first/middle names. Second (only in severe cases): Use first author plus 'et al.'
+
+\Copyright{Jane Open Access and Joan R. Public} %TODO mandatory, please use full first names. LIPIcs license is "CC-BY";  http://creativecommons.org/licenses/by/3.0/
+\ccsdesc[100]{\textcolor{red}{Replace ccsdesc macro with valid one}} %TODO mandatory: Please choose ACM 2012 classifications from https://dl.acm.org/ccs/ccs_flat.cfm 
+
+\keywords{Program Verification, Smart Contracts, Isabelle, Solidity} %TODO mandatory; please add comma-separated list of keywords
+
+\category{} %optional, e.g. invited paper
+
+\relatedversion{} %optional, e.g. full version hosted on arXiv, HAL, or other respository/website
+%\relatedversiondetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93]{Classification (e.g. Full Version, Extended Version, Previous Version}{URL to related version} %linktext and cite are optional
+
+%\supplement{}%optional, e.g. related research data, source code, ... hosted on a repository like zenodo, figshare, GitHub, ...
+%\supplementdetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93, subcategory={Description, Subcategory}, swhid={Software Heritage Identifier}]{General Classification (e.g. Software, Dataset, Model, ...)}{URL to related version} %linktext, cite, and subcategory are optional
+
+%\funding{(Optional) general funding statement \dots}%optional, to capture a funding statement, which applies to all authors. Please enter author specific funding statements as fifth argument of the \author macro.
+
+\acknowledgements{I want to thank \dots}%optional
+
+%\nolinenumbers %uncomment to disable line numbering
+
+%Editor-only macros:: begin (do not touch as author)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\EventEditors{John Q. Open and Joan R. Access}
+\EventNoEds{2}
+\EventLongTitle{42nd Conference on Very Important Topics (CVIT 2016)}
+\EventShortTitle{CVIT 2016}
+\EventAcronym{CVIT}
+\EventYear{2016}
+\EventDate{December 24--27, 2016}
+\EventLocation{Little Whinging, United Kingdom}
+\EventLogo{}
+\SeriesVolume{42}
+\ArticleNo{23}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+%TODO mandatory: add short abstract of the document
+\begin{abstract}
+
+\end{abstract}
+
+\section{Introduction}
+\label{sec-intro}
+
+\section{Overview}
+\begin{figure}[!h]
+\centering
+%\begin{tikzpicture}[show background grid]
+\begin{tikzpicture}[]
+%PICTURE SCOPE or REFERENCEs
+\node at (0, 0) (topleft) [circle] {};
+%\node at (11.75, 0) (topright) [circle, draw=red, fill=red] {};
+\node (topright) [circle, xshift = 10.5cm, right of = topleft] {};
+\node (bottomleft) [circle, yshift = -7.25cm, below of = topleft] {};
+\node (bottomright) [circle, xshift = 11.5cm, yshift = -7.25cm, below of = topleft] {};
+%\draw (0,-3) [draw=red, fill=red]  -- (5, -4); % CHECK once of the grid is affecting the placement of the objects
+%GRID
+
+ \draw (2, -0.45 ) [rounded corners = 4pt, draw=black, fill=blue!4]  -- ++(8.15cm, 0) node[below left] {\textcolor{blue}{\scriptsize{Isabelle/Soildity}}}  --++(0, -5.5cm) --++(-8.15, 0)--cycle;
+\draw (2, -0.35 ) [rounded corners = 4pt, draw=black, fill=red!4]  -- ++(8.18cm, 0)  --++(0, 1.3cm) --++(-8.15, 0)node[below right, xshift=2.8cm] {\textcolor{red}{\scriptsize Solidity (v 0.8.25)}}-- cycle;
+%\draw (2.5, -0.65) [rounded corners = 4pt, draw=black, fill=blue!4]  -- ++(5cm, 0) --++(0, -2.65cm)--++(-5, 0)--cycle;
+%\draw (2.65, -0.85) [rounded corners = 4pt, draw=black, fill=blue!4]  -- ++(3.1cm, 0) --++(0, -2.3cm)--++(-3.1, 0)--cycle;
+%INPUTS
+%\node (solidity) [thin, draw=black, fill=red!4,  rectangle, rounded corners= 2pt, xshift = 4.40cm, right of = topleft, inner sep = 4pt] {\scriptsize Solidity (v 0.8.25)};
+\node (model) [thin, draw=black, fill=red!4,  minimum height= 0.6cm, rectangle, rounded corners= 2pt, xshift = 1.65cm, yshift = 0.10cm, right of = topleft, inner sep = 4pt] {\scriptsize Model};
+\node (spec) [thin, draw=black, fill=red!4,  minimum height= 0.6cm, rectangle, rounded corners= 2pt, xshift = 3.40cm, yshift = 0.10cm, right of = topleft, inner sep = 4pt] {\scriptsize Specifications};
+\node (ver) [thin, draw=black, fill=red!4,  minimum height= 0.6cm, rectangle, rounded corners= 2pt, xshift = 6.850cm, yshift = 0.10cm, right of = topleft, inner sep = 4pt] {\scriptsize{ Verification Condition Generator}};
+\node (sm) [thin, draw=black, fill=blue!4,  rectangle, minimum width=2.3cm, rounded corners= 2pt, xshift = 2.85cm, yshift = -1.25cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize Isabelle/HOL};
+\node (sm1) [thin, draw=black, fill=blue!4,  rectangle, minimum width=2.3cm,  xshift = 2.85cm, yshift = -2.10cm, right of = topleft, inner sep = 2pt, align = center] {\scriptsize{ State.thy,} \\[0.15] \scriptsize{State\_monad.thy,} \\[0.15] \scriptsize{Solidity.thy}};
+%
+%MODEL TO SM
+%\draw  [draw=black, line width = 1.5pt, ->] (model.south)  to [out=270, in=90] (sm.north);; ;;
+\draw  [draw=black, line width = 1.5pt, ->] (model.south)  --++(0, -0.35cm) |- (3.25cm, -0.65cm) -| (sm.north);; ;;
+%%SM TO HOL CORE
+\draw  [draw=black, line width = 1.5pt, <->] (sm.east)  -- ++(3.35cm, 0);;;; ;;
+%
+\node (dtl) [thin, draw=black, fill=blue!4,  rectangle, minimum width=4.9cm, rounded corners= 2pt, xshift = 7.90cm, yshift = -3.35cm, right of = topleft, inner sep = 4pt, align = center, rotate=90] { {\scriptsize \textcolor{white}{Isabelle/HOL}}\\[0.15] {\scriptsize \textcolor{white}{ Definitions/Thoerems/Lemmas}}};
+\node (dtl) [thin, draw=black, fill=blue!4,  rectangle, minimum width=4.9cm, rounded corners= 2pt, xshift = 8cm, yshift = -3.45cm, right of = topleft, inner sep = 4pt, align = center, rotate=90] { {\scriptsize Isabelle/HOL}\\[0.15] {\scriptsize  Definitions/Thoerems/Lemmas}};
+\node (isac) [thin, draw=black, fill=blue!4,  rectangle, rounded corners= 2pt, minimum width= 5.5cm, xshift = 9.75cm,  yshift= -3.2cm, right of = topleft,  inner sep = 4pt,   align = center, rotate=90] { {\scriptsize Isabelle/HOL Core}};
+\draw  [draw=black, line width = 1.5pt, <->] (9.52, -3) -- ++(0.95cm, 0) ;;
+%%THEORIES-step02
+
+\node (isasol) [thin, draw=black, fill=blue!4,  rectangle, minimum width=2.3cm, rounded corners= 2pt, xshift = 4.550cm, yshift = -3.55cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize Isabelle/ML};
+\node (isasol1) [thin, draw=black, fill=blue!4,  rectangle, minimum width=2.3cm,  xshift = 4.550cm, yshift = -4.05cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize{ Contract.thy}};
+%SPECIFICATION TO CONTRACT
+\draw  [draw=black, line width = 1.5pt, ->] (spec.south)  --++(0, -0.35cm) |- (5.25cm, -0.65cm) -| (isasol.north);; ;;
+%%Contract to Modeling
+\draw  [draw=black, line width = 1.5pt, <->]  (sm1.south east) --++ (0, -0.5);;
+\draw  [draw=black, line width = 1.5pt, ->] (isasol.east) -- ++(1.65cm, 0);;
+%
+%
+%
+\node (sc) [thin, draw=black, fill=red!4,  rectangle, rounded corners= 2pt, xshift= -0.75cm, yshift = -3.55cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize Smart Contract  \&\\[0.05pt] \scriptsize Property Specification };
+\draw  [draw=black, line width = 1.5pt, ->] (sc.east) to [ out=360, in=180] (isasol.west);;
+\node (vsc) [thin, draw=black, fill=green!10,  rectangle, rounded corners= 2pt, minimum width= 5.5cm, xshift = 10.75cm,  yshift= -3.2cm, right of = topleft,  inner sep = 4pt,   align = center, rotate=90] { {\scriptsize Verified Smart Contract}};
+\draw  [draw=black, line width = 1.5pt, ->] (11.01, -3) -- ++(0.5cm, 0) ;;
+\node (vcg) [thin, draw=black, fill=blue!4,  rectangle, minimum width=2.3cm, rounded corners= 2pt, xshift = 5.90cm, yshift = -5.10cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize \scriptsize Isabelle/HOL};
+
+\node (vcg1) [thin, draw=black, fill=blue!4,  rectangle, minimum width=2.3cm, xshift = 5.90cm, yshift = -5.60cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize{ WP.thy}};
+
+
+%%CONNECTIONS
+%
+
+\node (scp) [thin, draw=black, fill=red!4,  rectangle, rounded corners= 2pt, xshift = -0.80cm, yshift = -5.50cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize Automatic  Verification};
+%
+%scp to verification generator
+\draw  [draw=black, line width = 1.5pt, <-]  (vcg1.west) --++ (-4.0cm, 0);;
+%vcg to modeling
+\draw  [draw=black, line width = 1.5pt, <->]  (vcg.west) --++(-1.8cm, 0) -| (sm1.south);;
+%Contract to verification generator
+\draw  [draw=black, line width = 1.5pt, <->]  (vcg.north west) --++ (0, 0.5);;
+%
+%%INTERCONECTIONS
+%\draw  [draw=black, line width = 1.5pt, ->] (solidity.south) --  ++(0, -0.60cm) ;;
+%\draw  [draw=black, line width = 1.5pt, <->] (sm1.south)  to [out=270, in=90] (isasol.north);; ;;
+%\draw  [draw=black, line width = 1.5pt, <->] (isasol1.south)  to [out=270, in=90] ++(0, -1.10);; ;;
+%%SM1 TO DTL
+%\draw  [draw=black, line width = 1.5pt, ->] (5.75, -2.35) -- ++(2.72cm, 0) ;;
+%\draw  [draw=black, line width = 1.5pt, -] (5.75, -2) -- ++(0, -0.38cm) ;;
+
+
+
+%DTL TO CORE
+%
+%%
+%
+%%
+%\draw  [draw=black, line width = 1.5pt, ->] (vcg.north west) to [out=90, in=-90]   ++(0, 0.38cm)|- (sm.west) ;;
+
+
+%WP to VCG
+\draw  [draw=black, line width = 1.5pt, <-] (vcg.north)  --++(0, 4.63cm) ;; ;;
+
+\end{tikzpicture}
+
+\end{figure}
+\label{sec-ov}
+
+\section{Case Study}
+\section{Specification}
+
+
+\section{Related Work}
+\section{Conclusion}
+%%
+%% Bibliography
+%%
+
+%% Please use bibtex, 
+
+\bibliography{oasics-v2021-sample-article}
+
+%\appendix
+%
+%\section{Styles of lists, enumerations, and descriptions}\label{sec:itemStyles}
+%
+%List of different predefined enumeration styles:
+%
+%\begin{itemize}
+%\item \verb|\begin{itemize}...\end{itemize}|
+%\item \dots
+%\item \dots
+%%\item \dots
+%\end{itemize}
+%
+%\begin{enumerate}
+%\item \verb|\begin{enumerate}...\end{enumerate}|
+%\item \dots
+%\item \dots
+%%\item \dots
+%\end{enumerate}
+%
+%\begin{alphaenumerate}
+%\item \verb|\begin{alphaenumerate}...\end{alphaenumerate}|
+%\item \dots
+%\item \dots
+%%\item \dots
+%\end{alphaenumerate}
+%
+%\begin{romanenumerate}
+%\item \verb|\begin{romanenumerate}...\end{romanenumerate}|
+%\item \dots
+%\item \dots
+%%\item \dots
+%\end{romanenumerate}
+%
+%\begin{bracketenumerate}
+%\item \verb|\begin{bracketenumerate}...\end{bracketenumerate}|
+%\item \dots
+%\item \dots
+%%\item \dots
+%\end{bracketenumerate}
+%
+%\begin{description}
+%\item[Description 1] \verb|\begin{description} \item[Description 1]  ...\end{description}|
+%\item[Description 2] Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\item[Description 3]  \dots
+%%\item \dots
+%\end{description}
+%
+%\cref{testenv-proposition} and \autoref{testenv-proposition} ...
+%
+%\section{Theorem-like environments}\label{sec:theorem-environments}
+%
+%List of different predefined enumeration styles:
+%
+%\begin{theorem}\label{testenv-theorem}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{theorem}
+%
+%\begin{lemma}\label{testenv-lemma}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{lemma}
+%
+%\begin{corollary}\label{testenv-corollary}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{corollary}
+%
+%\begin{proposition}\label{testenv-proposition}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{proposition}
+%
+%\begin{conjecture}\label{testenv-conjecture}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{conjecture}
+%
+%\begin{observation}\label{testenv-observation}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{observation}
+%
+%\begin{exercise}\label{testenv-exercise}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{exercise}
+%
+%\begin{definition}\label{testenv-definition}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{definition}
+%
+%\begin{example}\label{testenv-example}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{example}
+%
+%\begin{note}\label{testenv-note}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{note}
+%
+%\begin{note*}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{note*}
+%
+%\begin{remark}\label{testenv-remark}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{remark}
+%
+%\begin{remark*}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{remark*}
+%
+%\begin{claim}\label{testenv-claim}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{claim}
+%
+%\begin{claim*}\label{testenv-claim2}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{claim*}
+%
+%\begin{proof}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{proof}
+%
+%\begin{claimproof}
+%Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
+%\end{claimproof}
+
+\end{document}
