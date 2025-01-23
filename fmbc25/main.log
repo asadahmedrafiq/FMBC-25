@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.1.21)  21 JAN 2025 11:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.1.23)  23 JAN 2025 13:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -694,6 +694,147 @@ Package: aliascnt 2018/09/07 v1.5 Alias counters (HO)
 )
 \c@theorem=\count322
 )
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen192
+\lightrulewidth=\dimen193
+\cmidrulewidth=\dimen194
+\belowrulesep=\dimen195
+\belowbottomsep=\dimen196
+\aboverulesep=\dimen197
+\abovetopsep=\dimen198
+\cmidrulesep=\dimen199
+\cmidrulekern=\dimen256
+\defaultaddspace=\dimen257
+\@cmidla=\count323
+\@cmidlb=\count324
+\@aboverulesep=\dimen258
+\@belowrulesep=\dimen259
+\@thisruleclass=\count325
+\@lastruleclass=\count326
+\@thisrulewidth=\dimen260
+)
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/wrapstuff\wrapstuff.st
+y
+Package: wrapstuff 2022/08/05 v0.3 Wrapping text around stuff
+\g__wstf_hang_ht_dim=\dimen261
+\g__wstf_total_ht_dim=\dimen262
+\g__wstf_stuff_ht_dim=\dimen263
+\g__wstf_stuff_wd_dim=\dimen264
+\g__wstf_first_dp_dim=\dimen265
+\g__wstf_first_sep_dim=\dimen266
+\g__wstf_prevdepth_dim=\dimen267
+\g__wstf_column_ht_dim=\dimen268
+\g__wstf_window_ht_dim=\dimen269
+\g__wstf_remaining_dim=\dimen270
+\g__wstf_column_room_dim=\dimen271
+\g__wstf_parshape_indent_dim=\dimen272
+\g__wstf_parshape_length_dim=\dimen273
+\g__wstf_top_int=\count327
+\g__wstf_column_int=\count328
+\g__wstf_window_int=\count329
+\g__wstf_stauts_box=\box62
+\g__wstf_status_int=\count330
+\c__wstf_none_node=\count331
+\g__wstf_stuff_box=\box63
+\l__wstf_shift_dim=\dimen274
+\l__wstf_width_dim=\dimen275
+\l__wstf_height_dim=\dimen276
+\c@wrapstuff=\count332
+\l__wstf_body_box=\box64
+\l__wstf_window_box=\box65
+\l__wstf_window_int=\count333
+\g__wstf_line_int=\count334
+\l__wstf_window_line_int=\count335
+\l__wstf_l_dim=\dimen277
+\l__wstf_r_dim=\dimen278
+\l__wstf_min_dim=\dimen279
+\l__wstf_line_dim=\dimen280
+\l__wstf_window_dim=\dimen281
+\l__wstf_display_dim=\dimen282
+\l__wstf_voffset_dim=\dimen283
+\l__wstf_leftsep_dim=\dimen284
+\l__wstf_rightsep_dim=\dimen285
+\l__wstf_main_width_dim=\dimen286
+\g__wstf_parshape_int=\count336
+\g__wstf_hangafter_int=\count337
+\g__wstf_hangindent_dim=\dimen287
+\g__wstf_left_skip=\skip66
+\g__wstf_right_skip=\skip67
+\g__wstf_parfill_skip=\skip68
+\g__wstf_baseline_skip=\skip69
+\g__wstf_main_left_skip=\skip70
+\l__wstf_bottom_box=\box66
+\g__wstf_eqbody_box=\box67
+\g__wstf_eqnum_box=\box68
+\g__wstf_equation_box=\box69
+\g__wstf_pos_int=\count338
+\g__wstf_pos_skip=\skip71
+\l__wstf_save_body_box=\box70
+\c__wstf_break_int=\count339
+\g__wstf_ht_dim=\dimen288
+\l__wstf_l_box=\box71
+\l__wstf_r_box=\box72
+\l__wstf_last_l_box=\box73
+\l__wstf_last_r_box=\box74
+\g__wstf_window_box=\box75
+\l__wstf_window_ht_dim=\dimen289
+\l__wstf_par_skip=\skip72
+\g__wstf_pre_skip=\skip73
+\c__wstf_ignore_depth_dim=\dimen290
+\g__wstf_last_box=\box76
+\g__wstf_display_box=\box77
+\g__wstf_display_pre_dim=\dimen291
+\l__wstf_add_box=\box78
+\g__wstf_pos_box=\box79
+\l__wstf_last_skip=\skip74
+\g__wstf_last_skip=\skip75
+\l__wstf_last_int=\count340
+\l__wstf_last_box=\box80
+\g__wstf_display_pre_int=\count341
+\g__wstf_display_pre_skip=\skip76
+\l__wstf_top_int=\count342
+)
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/numprint\numprint.sty
+Package: numprint 2012/08/20 v1.39 Print numbers (HH)
+\c@nprt@mantissa@digitsbefore=\count343
+\c@nprt@mantissa@digitsafter=\count344
+\c@nprt@exponent@digitsbefore=\count345
+\c@nprt@exponent@digitsafter=\count346
+\nprt@digitwidth=\skip77
+\nprt@sepwidth=\skip78
+\nprt@decimalwidth=\skip79
+\nprt@blockwidth=\skip80
+\nprt@digittoks=\toks49
+\nprt@pretoks=\toks50
+\nprt@posttoks=\toks51
+\nprt@thisdigit=\count347
+\nprt@curpos=\count348
+\nprt@rndpos=\count349
+\c@nprt@digitsfirstblock=\count350
+\c@nprt@blockcnt=\count351
+\c@nprt@cntprint=\count352
+
+No configuration file `numprint.cfg' found.)
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/wrapfig\wrapfig.sty
+\wrapoverhang=\dimen292
+\WF@size=\dimen293
+\c@WF@wrappedlines=\count353
+\WF@box=\box81
+\WF@everypar=\toks52
+Package: wrapfig 2003/01/31  v 3.6
+)
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/mathpartir\mathpartir.
+sty
+Package: mathpartir 2016/02/24 version 1.3.2 Math Paragraph for Typesetting Inf
+erence Rules
+\mpr@andskip=\skip81
+\mpr@lista=\toks53
+\mpr@listb=\toks54
+\mpr@hlist=\box82
+\mpr@vlist=\box83
+\mpr@right=\box84
+)
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tikz
 .sty
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty
@@ -702,13 +843,13 @@ Package: aliascnt 2018/09/07 v1.5 Alias counters (HO)
 ty
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfuti
 l-common.tex
-\pgfutil@everybye=\toks49
-\pgfutil@tempdima=\dimen192
-\pgfutil@tempdimb=\dimen193
+\pgfutil@everybye=\toks55
+\pgfutil@tempdima=\dimen294
+\pgfutil@tempdimb=\dimen295
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfuti
 l-latex.def
-\pgfutil@abb=\box62
+\pgfutil@abb=\box85
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs
 .code.tex
@@ -728,33 +869,33 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkey
 s.code.tex
-\pgfkeys@pathtoks=\toks50
-\pgfkeys@temptoks=\toks51
+\pgfkeys@pathtoks=\toks56
+\pgfkeys@temptoks=\toks57
 
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkey
 slibraryfiltered.code.tex
-\pgfkeys@tmptoks=\toks52
+\pgfkeys@tmptoks=\toks58
 ))
-\pgf@x=\dimen194
-\pgf@y=\dimen195
-\pgf@xa=\dimen196
-\pgf@ya=\dimen197
-\pgf@xb=\dimen198
-\pgf@yb=\dimen199
-\pgf@xc=\dimen256
-\pgf@yc=\dimen257
-\pgf@xd=\dimen258
-\pgf@yd=\dimen259
+\pgf@x=\dimen296
+\pgf@y=\dimen297
+\pgf@xa=\dimen298
+\pgf@ya=\dimen299
+\pgf@xb=\dimen300
+\pgf@yb=\dimen301
+\pgf@xc=\dimen302
+\pgf@yc=\dimen303
+\pgf@xd=\dimen304
+\pgf@yd=\dimen305
 \w@pgf@writea=\write5
 \r@pgf@reada=\read3
-\c@pgf@counta=\count323
-\c@pgf@countb=\count324
-\c@pgf@countc=\count325
-\c@pgf@countd=\count326
-\t@pgf@toka=\toks53
-\t@pgf@tokb=\toks54
-\t@pgf@tokc=\toks55
-\pgf@sys@id@count=\count327
+\c@pgf@counta=\count354
+\c@pgf@countb=\count355
+\c@pgf@countc=\count356
+\c@pgf@countd=\count357
+\t@pgf@toka=\toks59
+\t@pgf@tokb=\toks60
+\t@pgf@tokc=\toks61
+\pgf@sys@id@count=\count358
 
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.
 cfg
@@ -773,8 +914,8 @@ File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfs
 yssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count328
-\pgfsyssoftpath@bigbuffer@items=\count329
+\pgfsyssoftpath@smallbuffer@items=\count359
+\pgfsyssoftpath@bigbuffer@items=\count360
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfs
 ysprotocol.code.tex
@@ -811,12 +952,12 @@ e.tex
 .code.tex)
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathpars
 er.code.tex
-\pgfmath@dimen=\dimen260
-\pgfmath@count=\count330
-\pgfmath@box=\box63
-\pgfmath@toks=\toks56
-\pgfmath@stack@operand=\toks57
-\pgfmath@stack@operation=\toks58
+\pgfmath@dimen=\dimen306
+\pgfmath@count=\count361
+\pgfmath@box=\box86
+\pgfmath@toks=\toks62
+\pgfmath@stack@operand=\toks63
+\pgfmath@stack@operation=\toks64
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunc
 tions.code.tex)
@@ -840,59 +981,59 @@ tions.integerarithmetics.code.tex)
 .code.tex)
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloa
 t.code.tex
-\c@pgfmathroundto@lastzeros=\count331
+\c@pgfmathroundto@lastzeros=\count362
 ))
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code
 .tex)
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfco
 repoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@picminx=\dimen261
-\pgf@picmaxx=\dimen262
-\pgf@picminy=\dimen263
-\pgf@picmaxy=\dimen264
-\pgf@pathminx=\dimen265
-\pgf@pathmaxx=\dimen266
-\pgf@pathminy=\dimen267
-\pgf@pathmaxy=\dimen268
-\pgf@xx=\dimen269
-\pgf@xy=\dimen270
-\pgf@yx=\dimen271
-\pgf@yy=\dimen272
-\pgf@zx=\dimen273
-\pgf@zy=\dimen274
+\pgf@picminx=\dimen307
+\pgf@picmaxx=\dimen308
+\pgf@picminy=\dimen309
+\pgf@picmaxy=\dimen310
+\pgf@pathminx=\dimen311
+\pgf@pathmaxx=\dimen312
+\pgf@pathminy=\dimen313
+\pgf@pathmaxy=\dimen314
+\pgf@xx=\dimen315
+\pgf@xy=\dimen316
+\pgf@yx=\dimen317
+\pgf@yy=\dimen318
+\pgf@zx=\dimen319
+\pgf@zy=\dimen320
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfco
 repathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@path@lastx=\dimen275
-\pgf@path@lasty=\dimen276
+\pgf@path@lastx=\dimen321
+\pgf@path@lasty=\dimen322
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfco
 repathusage.code.tex
 File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@shorten@end@additional=\dimen277
-\pgf@shorten@start@additional=\dimen278
+\pgf@shorten@end@additional=\dimen323
+\pgf@shorten@start@additional=\dimen324
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfco
 rescopes.code.tex
 File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfpic=\box64
-\pgf@hbox=\box65
-\pgf@layerbox@main=\box66
-\pgf@picture@serial@count=\count332
+\pgfpic=\box87
+\pgf@hbox=\box88
+\pgf@layerbox@main=\box89
+\pgf@picture@serial@count=\count363
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfco
 regraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgflinewidth=\dimen279
+\pgflinewidth=\dimen325
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfco
 retransformations.code.tex
 File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@pt@x=\dimen280
-\pgf@pt@y=\dimen281
-\pgf@pt@temp=\dimen282
+\pgf@pt@x=\dimen326
+\pgf@pt@y=\dimen327
+\pgf@pt@temp=\dimen328
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfco
 requick.code.tex
@@ -909,14 +1050,14 @@ File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfco
 rearrows.code.tex
 File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowsep=\dimen283
+\pgfarrowsep=\dimen329
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfco
 reshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@max=\dimen284
-\pgf@sys@shading@range@num=\count333
-\pgf@shadingcount=\count334
+\pgf@max=\dimen330
+\pgf@sys@shading@range@num=\count364
+\pgf@shadingcount=\count365
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfco
 reimage.code.tex
@@ -925,7 +1066,7 @@ File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfco
 reexternal.code.tex
 File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfexternal@startupbox=\box67
+\pgfexternal@startupbox=\box90
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfco
 relayers.code.tex
@@ -946,7 +1087,7 @@ File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodul
 eshapes.code.tex
 File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodeparttextbox=\box68
+\pgfnodeparttextbox=\box91
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodul
 eplot.code.tex
@@ -955,8 +1096,8 @@ File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfc
 omp-version-0-65.sty
 Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
-\pgf@nodesepstart=\dimen285
-\pgf@nodesepend=\dimen286
+\pgf@nodesepstart=\dimen331
+\pgf@nodesepend=\dimen332
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfc
 omp-version-1-18.sty
@@ -974,10 +1115,10 @@ e.tex))
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffor
 .code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
-\pgffor@iter=\dimen287
-\pgffor@skip=\dimen288
-\pgffor@stack=\toks59
-\pgffor@toks=\toks60
+\pgffor@iter=\dimen333
+\pgffor@skip=\dimen334
+\pgffor@stack=\toks65
+\pgffor@toks=\toks66
 ))
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/ti
 kz\tikz.code.tex
@@ -986,73 +1127,204 @@ Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflib
 raryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count335
-\pgfplotmarksize=\dimen289
+\pgf@plot@mark@count=\count366
+\pgfplotmarksize=\dimen335
 )
-\tikz@lastx=\dimen290
-\tikz@lasty=\dimen291
-\tikz@lastxsaved=\dimen292
-\tikz@lastysaved=\dimen293
-\tikz@lastmovetox=\dimen294
-\tikz@lastmovetoy=\dimen295
-\tikzleveldistance=\dimen296
-\tikzsiblingdistance=\dimen297
-\tikz@figbox=\box69
-\tikz@figbox@bg=\box70
-\tikz@tempbox=\box71
-\tikz@tempbox@bg=\box72
-\tikztreelevel=\count336
-\tikznumberofchildren=\count337
-\tikznumberofcurrentchild=\count338
-\tikz@fig@count=\count339
+\tikz@lastx=\dimen336
+\tikz@lasty=\dimen337
+\tikz@lastxsaved=\dimen338
+\tikz@lastysaved=\dimen339
+\tikz@lastmovetox=\dimen340
+\tikz@lastmovetoy=\dimen341
+\tikzleveldistance=\dimen342
+\tikzsiblingdistance=\dimen343
+\tikz@figbox=\box92
+\tikz@figbox@bg=\box93
+\tikz@tempbox=\box94
+\tikz@tempbox@bg=\box95
+\tikztreelevel=\count367
+\tikznumberofchildren=\count368
+\tikznumberofcurrentchild=\count369
+\tikz@fig@count=\count370
 
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodul
 ematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count340
-\pgfmatrixcurrentcolumn=\count341
-\pgf@matrix@numberofcolumns=\count342
+\pgfmatrixcurrentrow=\count371
+\pgfmatrixcurrentcolumn=\count372
+\pgf@matrix@numberofcolumns=\count373
 )
-\tikz@expandcount=\count343
+\tikz@expandcount=\count374
 
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/ti
 kz/libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))) (main.aux)
+))) (mystyle.sty
+Package: mystyle 
+
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcolorbox.st
+y
+Package: tcolorbox 2024/01/10 version 6.2.0 text color boxes
+ (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
+Package: verbatim 2023-11-06 v1.5v LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks67
+\verbatim@line=\toks68
+\verbatim@in@stream=\read4
+)
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/environ\environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces\trimspaces.
+sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+))
+\tcb@titlebox=\box96
+\tcb@upperbox=\box97
+\tcb@lowerbox=\box98
+\tcb@phantombox=\box99
+\c@tcbbreakpart=\count375
+\c@tcblayer=\count376
+\c@tcolorbox@number=\count377
+\l__tcobox_tmpa_box=\box100
+\l__tcobox_tmpa_dim=\dimen344
+\tcb@temp=\box101
+\tcb@temp=\box102
+\tcb@temp=\box103
+\tcb@temp=\box104
+
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbraster.co
+de.tex
+Library (tcolorbox): 'tcbraster.code.tex' version '6.2.0'
+\c@tcbrastercolumn=\count378
+\c@tcbrasterrow=\count379
+\c@tcbrasternum=\count380
+\c@tcbraster=\count381
+)
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbskins.cod
+e.tex
+Library (tcolorbox): 'tcbskins.code.tex' version '6.2.0'
+
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tikzfill\tikzfill.imag
+e.sty
+Package: tikzfill.image 2023/08/08 v1.0.1 Image filling library for TikZ
+
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tikzfill\tikzfill-comm
+on.sty
+Package: tikzfill-common 2023/08/08 v1.0.1 Auxiliary code for tikzfill
+)
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tikzfill\tikzlibraryfi
+ll.image.code.tex
+File: tikzlibraryfill.image.code.tex 2023/08/08 v1.0.1 Image filling library
+\l__tikzfill_img_box=\box105
+))
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbskinsjigs
+aw.code.tex
+Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.2.0'
+))
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbbreakable
+.code.tex
+Library (tcolorbox): 'tcbbreakable.code.tex' version '6.2.0'
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/pdfcol\pdfcol.sty
+Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
+)
+Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
+\tcb@testbox=\box106
+\tcb@totalupperbox=\box107
+\tcb@totallowerbox=\box108
+)
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbhooks.cod
+e.tex
+Library (tcolorbox): 'tcbhooks.code.tex' version '6.2.0'
+)
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbtheorems.
+code.tex
+Library (tcolorbox): 'tcbtheorems.code.tex' version '6.2.0'
+)
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbfitting.c
+ode.tex
+Library (tcolorbox): 'tcbfitting.code.tex' version '6.2.0'
+\tcbfitdim=\dimen345
+\tcb@lowerfitdim=\dimen346
+\tcb@upperfitdim=\dimen347
+\tcb@cur@hbadness=\count382
+))
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcblistings.
+code.tex
+Library (tcolorbox): 'tcblistings.code.tex' version '6.2.0'
+
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcblistingsc
+ore.code.tex
+Library (tcolorbox): 'tcblistingscore.code.tex' version '6.2.0'
+
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcbprocessin
+g.code.tex
+Library (tcolorbox): 'tcbprocessing.code.tex' version '6.2.0'
+)
+\c@tcblisting=\count383
+)) (solidity_lang.tex)
+\c@tcb@cnt@solidity=\count384
+\c@tcb@cnt@Example=\count385
+\c@tcb@cnt@Lemma=\count386
+
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/fixme\fixme.sty
+Package: fixme 2019/01/03 v4.5 Collaborative annotations for LaTeX2e
+
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
+\XKV@toks=\toks69
+\XKV@tempa@toks=\toks70
+)
+\XKV@depth=\count387
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+\lox@file=\read5
+\c@fixmecount=\count388
+\c@fxnotecount=\count389
+\c@fxwarningcount=\count390
+\c@fxerrorcount=\count391
+\c@fxfatalcount=\count392
+)
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/tools\delarray.sty
+Package: delarray 2014/10/28 v1.01 array delimiter package (DPC)
+))
+(solidity_lang.tex) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Info: Redefining \microtypecontext on input line 65.
-Package microtype Info: Applying patch `item' on input line 65.
-Package microtype Info: Applying patch `toc' on input line 65.
-Package microtype Info: Applying patch `eqnum' on input line 65.
-Package microtype Info: Applying patch `footnote' on input line 65.
-Package microtype Info: Applying patch `verbatim' on input line 65.
-LaTeX Info: Redefining \microtypesetup on input line 65.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Info: Redefining \microtypecontext on input line 75.
+Package microtype Info: Applying patch `item' on input line 75.
+Package microtype Info: Applying patch `toc' on input line 75.
+Package microtype Info: Applying patch `eqnum' on input line 75.
+Package microtype Info: Applying patch `footnote' on input line 75.
+Package microtype Info: Applying patch `verbatim' on input line 75.
+LaTeX Info: Redefining \microtypesetup on input line 75.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 65.
+LaTeX Info: Redefining \showhyphens on input line 75.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1064,17 +1336,17 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.m
 kii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count344
-\scratchdimen=\dimen298
-\scratchbox=\box73
-\nofMPsegments=\count345
-\nofMParguments=\count346
-\everyMPshowfont=\toks61
-\MPscratchCnt=\count347
-\MPscratchDim=\dimen299
-\MPnumerator=\count348
-\makeMPintoPDFobject=\count349
-\everyMPtoPDFconversion=\toks62
+\scratchcounter=\count393
+\scratchdimen=\dimen348
+\scratchbox=\box109
+\nofMPsegments=\count394
+\nofMParguments=\count395
+\everyMPshowfont=\toks71
+\MPscratchCnt=\count396
+\MPscratchDim=\dimen349
+\MPnumerator=\count397
+\makeMPintoPDFobject=\count398
+\everyMPtoPDFconversion=\toks72
 )
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-
 base.sty
@@ -1086,16 +1358,17 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count350
-Package hyperref Info: Link coloring OFF on input line 65.
+\c@lstlisting=\count399
+Package hyperref Info: Link coloring OFF on input line 75.
  (main.out) (main.out)
 \@outlinefile=\write6
 \openout6 = `main.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: rotating package is loaded.
+Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 6
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 7
 8.
 
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss.fd
@@ -1105,37 +1378,37 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 6
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 7
 8.
 
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 6
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 7
 8.
 
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-68.
+78.
 
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-68.
+78.
 
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 68.
+(Font)              <10> on input line 78.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 68.
+(Font)              <7> on input line 78.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 68.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 68.
+(Font)              <5> on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
 
 
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -1144,7 +1417,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 68.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
 
 
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1154,31 +1427,31 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on i
-nput line 68.
+nput line 78.
 
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/fontawesome5\ufontawes
 omefree1.fd)
-<orcid.pdf, id=9, 256.96pt x 256.96pt>
+<orcid.pdf, id=33, 256.96pt x 256.96pt>
 File: orcid.pdf Graphic file (type pdf)
 <use orcid.pdf>
-Package pdftex.def Info: orcid.pdf  used on input line 68.
+Package pdftex.def Info: orcid.pdf  used on input line 78.
 (pdftex.def)             Requested size: 8.99843pt x 9.0pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 68.
+(Font)              <12> on input line 78.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 68.
+(Font)              <8> on input line 78.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 68.
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 68.
+(Font)              <6> on input line 78.
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 78.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8.5> on input line 68.
+(Font)              <8.5> on input line 78.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.94997> on input line 68.
+(Font)              <5.94997> on input line 78.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <4.25> on input line 68.
+(Font)              <4.25> on input line 78.
 File: orcid.pdf Graphic file (type pdf)
 <use orcid.pdf>
-Package pdftex.def Info: orcid.pdf  used on input line 68.
+Package pdftex.def Info: orcid.pdf  used on input line 78.
 (pdftex.def)             Requested size: 8.99843pt x 9.0pt.
 \openout3 = `main.vtc'.
 
@@ -1205,23 +1478,41 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-<cc-by.pdf, id=13, 88.33pt x 31.11626pt>
+\g__tcobox_out_iow=\write7
+\openout7 = `main.listing'.
+
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 2
+06.
+(C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+(main.listing
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <9> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1.
+)
+<cc-by.pdf, id=37, 88.33pt x 31.11626pt>
 File: cc-by.pdf Graphic file (type pdf)
 <use cc-by.pdf>
-Package pdftex.def Info: cc-by.pdf  used on input line 173.
+Package pdftex.def Info: cc-by.pdf  used on input line 206.
 (pdftex.def)             Requested size: 39.74274pt x 14.0pt.
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-73.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
+06.
+
 (C:\Users\aa1558\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
 pdfTeX warning: miktex-pdftex.exe (file ./oasics-logo-bw.pdf): PDF inclusion: f
 ound PDF version <1.6>, but at most version <1.5> allowed
-<oasics-logo-bw.pdf, id=16, 599.8691pt x 144.42657pt>
+<oasics-logo-bw.pdf, id=40, 599.8691pt x 144.42657pt>
 File: oasics-logo-bw.pdf Graphic file (type pdf)
 <use oasics-logo-bw.pdf>
-Package pdftex.def Info: oasics-logo-bw.pdf  used on input line 173.
+Package pdftex.def Info: oasics-logo-bw.pdf  used on input line 206.
 (pdftex.def)             Requested size: 64.91487pt x 14.0pt.
 [1.1
 
@@ -1229,46 +1520,52 @@ Package pdftex.def Info: oasics-logo-bw.pdf  used on input line 173.
 558/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/aa1558
 /AppData/Local/Programs/MiKTeX/fonts/enc/dvips/fontawesome5/fa5free1.enc}{C:/Us
 ers/aa1558/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc} <./orci
-d.pdf> <./oasics-logo-bw.pdf> <./cc-by.pdf>] (main.bbl) [2.2] (main.aux)
+d.pdf> <./oasics-logo-bw.pdf> <./cc-by.pdf>]
+Underfull \vbox (badness 1009) has occurred while \output is active []
+
+ [2.2]
+(main.bbl)
+
+FiXme Summary: Number of notes: 0,
+(FiXme)        Number of warnings: 0,
+(FiXme)        Number of errors: 0,
+(FiXme)        Number of fatal errors: 0,
+(FiXme)        Total: 0.
+
+[3.3] (main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-01-04>
+L3 programming layer <2022/08/05>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  F391AE2D0FD48DA8E2E65FEF423B8079;667.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: F391AE2D0FD48DA8E2E65FEF423B8079;667.
  ) 
 Here is how much of TeX's memory you used:
- 33992 strings out of 474486
- 647986 string characters out of 5743283
- 1952542 words of memory out of 5000000
- 55552 multiletter control sequences out of 15000+600000
- 669530 words of font info for 175 fonts, out of 8000000 for 9000
+ 41411 strings out of 474486
+ 823660 string characters out of 5743283
+ 2046542 words of memory out of 5000000
+ 62806 multiletter control sequences out of 15000+600000
+ 673788 words of font info for 185 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,11n,93p,1003b,836s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,11n,100p,1043b,2163s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/aa1558/AppData/Local/Programs/MiKTeX/fonts/type1/public/fontawesome
 5/FontAwesome5Free-Regular.pfb><C:/Users/aa1558/AppData/Local/Programs/MiKTeX/f
 onts/type1/public/fontawesome5/FontAwesome5Free-Solid.pfb><C:/Users/aa1558/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/aa1558/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/aa1558/App
 Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/aa1558/AppD
 ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/aa1558/AppDa
 ta/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/aa1558/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/aa1558/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/lm/lmri9.pfb><C:/Users/aa1558/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/lm/lmss8.pfb><C:/Users/aa1558/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb>
-Output written on main.pdf (2 pages, 320434 bytes).
+/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Users/aa1558/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/aa1558/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/aa1558/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt9.pfb>
+Output written on main.pdf (3 pages, 445780 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
- 10 named destinations out of 1000 (max. 500000)
- 67618 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 208 PDF objects out of 1000 (max. 8388607)
+ 51 named destinations out of 1000 (max. 500000)
+ 71250 words of extra memory for PDF output out of 74296 (max. 10000000)
 

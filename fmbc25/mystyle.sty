@@ -1,0 +1,282 @@
+\ProvidesPackage{mystyle}
+
+\usepackage[many]{tcolorbox} \tcbuselibrary{listings} \tcbuselibrary{skins} 
+\newcommand{\lstnumberautorefname}{line}
+\newcommand{\isalink}[1]{\raisebox{-.5ex}{\includegraphics[width=.4cm]{isalogo.png}}~\texttt{#1}}
+
+\newcommand{\isaref}[3]{%
+\href%
+{https://github.com/dmarmsoler/isabelle-solidity-shallow/blob/10f8f964767edb12c7d3ac784e4e5074afdd7b85/#1.thy\##2}
+{\raisebox{-0.5ex}{\includegraphics[width=.4cm]{isalogo.png}}~\texttt{#3}}}
+
+\newcommand{\fileref}[1]{%
+\href%
+{https://github.com/dmarmsoler/isabelle-solidity-shallow/blob/10f8f964767edb12c7d3ac784e4e5074afdd7b85/#1.thy}
+{\texttt{#1.thy}}}
+
+\input{solidity_lang}
+\lstdefinestyle{solidity}{
+  language=Solidity,
+  extendedchars=true,
+  basicstyle=\small\ttfamily,
+  showstringspaces=false,
+  showspaces=false,
+  numbers=left,
+  numberstyle=\scriptsize,
+  numbersep=5pt,
+  xleftmargin=2.4ex,  
+  tabsize=2,
+  breaklines=true,
+  showtabs=false,
+  captionpos=b,
+  escapechar=$
+}
+
+\newtcblisting[auto counter]{solidity}[3][]{%
+      listing only%
+	 ,toptitle=2pt
+	 ,bottomtitle=2pt
+     ,boxrule=0pt
+     ,boxsep=0pt
+     ,colback=verylightgray
+     ,enhanced jigsaw
+     ,borderline west={2pt}{0pt}{verylightgray!60!black}
+     ,sharp corners
+     ,before skip=5pt
+     ,after=0pt
+	 ,after skip=5pt
+     ,top=0mm
+	 ,bottom=0mm
+	 ,title=Listing \thetcbcounter: #3
+     ,enhanced
+        ,listing options={
+           breakatwhitespace=true
+          ,columns=flexible%
+          ,mathescape,
+          ,style=solidity
+		  ,aboveskip=0.0em 
+		  ,belowskip=0.0em
+          ,#1
+      },
+      #2
+  }%
+\definecolor{isacom}{RGB}{0,102,153}
+\definecolor{isakey}{RGB}{31,159,102}
+\definecolor{mytheorembg}{HTML}{F2F2F9}
+\definecolor{mytheoremfr}{HTML}{00007B}
+\definecolor{myexamplebg}{HTML}{F2FBF8}
+\definecolor{myexamplefr}{HTML}{88D6D1}
+\definecolor{myexampleti}{HTML}{2A7F7F}
+\definecolor{mydefinitbg}{HTML}{E5E5FF}
+\definecolor{mydefinitfr}{HTML}{3F3FA3}
+\tcbuselibrary{theorems,skins,hooks}
+\newtcbtheorem[number within=section]{Example}{Example}
+{%
+	enhanced
+	,colback = mytheorembg
+	,frame hidden
+	,boxrule = 0sp
+	,borderline west = {2pt}{0pt}{mytheoremfr}
+	,sharp corners
+%	,before upper = \tcbtitle\par\smallskip
+	,coltitle = mytheoremfr
+	,fonttitle = \itshape
+	,left = 2pt
+	,right = 0pt
+	,top = 0pt
+	,bottom = 0pt
+	,before skip=5pt
+	,after skip=5pt
+	%,description font = \mdseries
+	,theorem style=plain
+	,breakable
+	,terminator sign={.}
+}
+{ex}
+
+\newtcbtheorem[number within=section]{Lemma}{Lemma}
+{%
+	enhanced
+	,colback = mytheorembg
+	,frame hidden
+	,boxrule = 0sp
+	,borderline west = {2pt}{0pt}{mytheoremfr}
+	,sharp corners
+%	,before upper = \tcbtitle\par\smallskip
+	,coltitle = mytheoremfr
+	,fonttitle = \itshape
+	,left = 2pt
+	,right = 0pt
+	,top = 0pt
+	,bottom = 0pt
+	,before skip=5pt
+	,after skip=5pt
+	%,description font = \mdseries
+	,theorem style=plain
+	,breakable
+}
+{lem}
+
+\DeclareMathOperator{\defeq}{~\overset{\text{\tiny def}}{=}~}
+\DeclareMathOperator{\map}{map}
+\newcommand{\fromString}[1]{\ensuremath{\left\lceil#1\right\rceil}}
+\newcommand{\toString}[1]{\ensuremath{\left\lfloor#1\right\rfloor}}
+\newcommand{\update}[3]{
+	\ensuremath{#1[#2\mapsto #3]}
+}
+\newcommand{\fupdate}[3]{
+	\ensuremath{#1[#2\mapsto #3]}
+}
+\newcommand{\option}[1]{
+	\ensuremath{#1}_\bot
+}
+\DeclareMathOperator{\ffold}{ffold}
+\DeclareMathOperator{\sck}{sck}
+\DeclareMathOperator{\mem}{mem}
+\DeclareMathOperator{\sto}{sto}
+\DeclareMathOperator{\acc}{acc}
+\DeclareMathOperator{\gas}{gas}
+\DeclareMathOperator{\upSck}{upSck}
+\DeclareMathOperator{\upMem}{upMem}
+\DeclareMathOperator{\upSto}{upSto}
+\DeclareMathOperator{\upAcc}{upAcc}
+\DeclareMathOperator{\upGas}{upGas}
+\newcommand{\astack}[1]{\ensuremath{\sck(#1)}}
+\newcommand{\amemory}[1]{\ensuremath{\mem(#1)}}
+\newcommand{\astorage}[1]{\ensuremath{\sto(#1)}}
+\newcommand{\aaccount}[1]{\ensuremath{\acc(#1)}}
+\newcommand{\agas}[1]{\ensuremath{\gas(#1)}}
+\newcommand{\ustack}[2]{\ensuremath{\upSck(#1,#2)}}
+\newcommand{\umemory}[2]{\ensuremath{\upMem(#1,#2)}}
+\newcommand{\ustorage}[2]{\ensuremath{\upSto(#1,#2)}}
+\newcommand{\uaccount}[2]{\ensuremath{\upAcc(#1,#2)}}
+\newcommand{\ugas}[2]{\ensuremath{\upGas(#1,#2)}}
+\DeclareMathOperator{\mymod}{mod}
+\newcommand{\Mod}[2]{#1~\mymod~#2}
+
+\newcommand{\proj}[2]{\left(#2\right)_{#1}}
+
+\usepackage{fixme}
+\DeclareMathOperator{\domain}{dom}
+\DeclareMathOperator{\fmempty}{\emptyset}
+\newcommand{\fmlookup}[2]{#1(#2)}
+\newcommand{\fmupd}[3]{#3[#1\mapsto#2]}
+\newcommand{\STR}[1]{\text{``$\mathit{#1}$''}}
+\newcommand*\myboxed[1]{\tikz[baseline=(char.base)]{
+            \node[draw,fill=verylightgray, inner sep=2pt] (char) {#1};}}
+%\newcommand{\myref}[1]{(#1)}
+\newcommand{\myref}[1]{\myboxed{#1}}
+\newcommand{\abst}[2]{\ensuremath{\lambda #1.~#2}}
+\DeclareMathOperator{\Max}{max}
+\DeclareMathOperator{\None}{\bot}
+\newcommand{\Some}[1]{#1_{\bot}}
+
+\newcommand{\DTUnit}{\mathbf{unit}}
+\newcommand{\DTNat}{\mathbf{nat}}
+\newcommand{\DTInt}{\mathbf{int}}
+\newcommand{\DTBool}{\mathbf{bool}}
+\newcommand{\DTString}{\mathbf{string}}
+\newcommand{\DTWord}{\mathbf{256~word}}
+\DeclareMathOperator{\True}{True}
+\DeclareMathOperator{\False}{False}
+
+%Monads
+\newcommand{\DTStateMonad}{\mathbf{state\_monad}}
+\DeclareMathOperator{\Err}{Err}
+\newcommand{\DTEx}{\mathbf{ex}}
+\DeclareMathOperator{\Normal}{Normal}
+\DeclareMathOperator{\Exception}{Exception}
+\DeclareMathOperator{\NT}{NT}
+
+\usepackage{delarray}
+%\newenvironment{monad}{\mathbf{do}\left[\begin{aligned}[t]}{\end{aligned}\right.}
+\newenvironment{monad} 
+  {\mathbf{do}\,\begin{array}[t][{@{\;}c@{\;}}.\begin{aligned}[t]}
+  {\end{aligned}\end{array}}%
+\newenvironment{err} 
+  {\mathbf{Err}\,\begin{array}[t][{@{\;}l@{\;}}.}
+  {\end{array}}%
+
+\DeclareMathOperator{\applyf}{apply}
+\DeclareMathOperator{\throw}{throw}
+\DeclareMathOperator{\return}{return}
+\DeclareMathOperator{\mget}{get}
+\DeclareMathOperator{\mput}{put}
+\DeclareMathOperator{\modify}{modify}
+\DeclareMathOperator{\moption}{option}
+\DeclareMathOperator{\condition}{condition}
+\DeclareMathOperator{\massert}{assert}
+\DeclareMathOperator{\mbind}{>\!\!\!>\mkern-6.7mu=}
+
+\newcommand{\mcassert}[3]
+{\massert~#1\,\begin{array}[t][{@{\;}c@{\;}}.\begin{aligned}[t]
+	&#2\\
+	&#3
+\end{aligned}\end{array}}	
+
+\newcommand{\mcoption}[3]
+{\moption~#1\,\begin{array}[t][{@{\;}c@{\;}}.\begin{aligned}[t]
+	&#2\\
+	&#3
+\end{aligned}\end{array}}	
+
+\FXRegisterAuthor{dm}{adm}{DM}
+\FXRegisterAuthor{ab}{adb}{AB}
+\newcommand{\anycmd}{\llcorner\kern-0.25em\raisebox{.7ex}{\_}\kern-0.25em\lrcorner}
+\DeclareMathOperator{\size}{size}
+
+\newcommand{\DTList}{\mathbf{list}}
+\newcommand{\DTIdentifier}{\mathbf{identifier}}
+\newcommand{\DTLocation}{\mathbf{location}}
+\newcommand{\DTAddress}{\mathbf{address}}
+\newcommand{\DTBytes}{\mathbf{bytes}}
+\newcommand{\DTValtype}{\mathbf{valtype}}
+
+%Value types
+\DeclareMathOperator{\Bool}{Bool}
+\DeclareMathOperator{\Sint}{Sint}
+\DeclareMathOperator{\Address}{Address}
+\DeclareMathOperator{\Bytes}{Bytes}
+
+%Storage
+\newcommand{\DTSdata}{\mathbf{sdata}}
+\DeclareMathOperator{\SValue}{Value}
+\DeclareMathOperator{\SArray}{Array}
+\DeclareMathOperator{\SMap}{Map}
+
+%Memory
+\newcommand{\DTMdata}{\mathbf{mdata}}
+\DeclareMathOperator{\MValue}{Value}
+\DeclareMathOperator{\MArray}{Array}
+
+%Calldata
+\newcommand{\DTCdata}{\mathbf{cdata}}
+\DeclareMathOperator{\CValue}{Value}
+\DeclareMathOperator{\CArray}{Array}
+
+%Stack
+\newcommand{\DTKdata}{\mathbf{kdata}}
+\DeclareMathOperator{\KValue}{Value}
+\DeclareMathOperator{\KStorage}{Storage}
+\DeclareMathOperator{\KMemory}{Memory}
+\DeclareMathOperator{\KCalldata}{Calldata}
+
+%State
+\newcommand{\DTMemory}{\mathbf{memory}}
+\DeclareMathOperator{\SMemory}{Memory}
+\newcommand{\DTStorage}{\mathbf{storage}}
+\DeclareMathOperator{\SStorage}{Storage}
+\newcommand{\DTCalldata}{\mathbf{calldata}}
+\DeclareMathOperator{\SCalldata}{Calldata}
+\newcommand{\DTStack}{\mathbf{stack}}
+\DeclareMathOperator{\SStack}{Stack}
+\newcommand{\DTBalances}{\mathbf{balances}}
+\DeclareMathOperator{\SBalances}{Balances}
+\newcommand{\DTState}{\mathbf{state}}
+
+\newcommand{\DTRvalue}{\mathbf{rvalue}}
+\DeclareMathOperator{\RStorage}{Storage}
+\DeclareMathOperator{\RMemory}{Memory}
+\DeclareMathOperator{\RCalldata}{Calldata}
+\DeclareMathOperator{\RValue}{Value}
+\DeclareMathOperator{\REmpty}{Empty}
