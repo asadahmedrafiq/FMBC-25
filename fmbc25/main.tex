@@ -194,10 +194,10 @@
 		public byOperator, inState(BET_PLACED) { 
 			require (hashedNumber == keccak256(secretNumber)); 
 			Coin secret = (secretNumber % 2 == 0)? HEADS : TAILS;
-			if (secret == guess) { pot = pot - bet;  player.transfer(bet*2);  bet = 0;
-		} else {
+			if (secret == guess) { pot = pot - bet;  player.transfer(bet*2);  bet = 0;} 
+			else {
 			pot = pot + bet; bet = 0;
-		}
+				}
 		state = IDLE;}
 		function addToPot() public payable byOperator { pot = pot + msg.value;}
 
@@ -207,25 +207,61 @@
 Listing \ref{fig:casino} is a Solidity source code for Casino smart contract from verifyThis competition. 
 %
 The contract has three explicit states: \texttt{IDLE}, \texttt{GAME\_AVAILABLE}, \texttt{BET\_PLACED} (Line 3).
+An operator may creat a new game by calling \texttt{creatGame} function in \texttt{IDLE} state. 
 %
-The \texttt{creatGame} function allows only operator, enusred by \texttt{byOperator} modifier, to creat a game  given that the contract is in \texttt{IDLE} state, which is eforced by inState(s) modifier.
+The \texttt{creatGame} function uses two modifiers (\texttt{byOperator} and \texttt{inState(s)}) to ensure that only operator can creat the game in \texttt{IDLE} state.
 %
-The \texttt{creatGame} function assigns a value to \texttt{hasNumber} and changes the state of the contract to \texttt{GMAE\_AVAILABLE}. 
+Moreover, operator also needs to provide \texttt{hashNum} value which is later used as a unique reference in deciding the  outcome of the created game (Line 28)  in \texttt{decideBet} function. 
 %
-The \texttt{hasNumber} value provided by the operator when creating game is later used to ensure the bet was placed by the operator in the begining of game.
+%
+Finally, in \texttt{IDLE} state, an operator may add or remove any amount of money  by invoking \texttt{addToPot} or \texttt{removeFromPot} function.
+%
+
+%
+Once the game has \texttt{GAME\_AVAILABLE} state,  a player may place a bet by calling \texttt{placeBet} function. 
+%
+A player can pass his bet on \texttt{HEAD} or \texttt{TAIL}, as a \texttt{\_guess}, in \texttt{placeBet} function. 
+%
+The function provides safegurad using \texttt{require} from operator placing the bet and amount of bet exceeding pot balance.
+%
+The function changes the state to \texttt{BET\_PLACED}. 
+%
+In \texttt{GAME\_AVAILABLE} state, too,  an operator may add or remove any amount of money  by invoking \texttt{addToPot} or \texttt{removeFromPot} function.. 
+%
+
+%
+In \texttt{BET\_PLACED} state, the operator may decide the bet using \texttt{decideBet} function. 
+%
+The function uses \texttt{secreteNumber} to verify the \texttt{hashNumber} generated when game was created.
+%A player places a bet as a \texttt{\_guess} (\texttt{HEAD} or \texttt{TAIL}) in \texttt{placeBet} function.
+%
+The function, then compares the player's bet and transfers the double the amount of bet in case of right guess otherwise draws the amount from the pot to operator account. 
+%The \texttt{creatGame} function allows only operator, enusred by \texttt{byOperator} modifier, to creat a game  given that the contract is in \texttt{IDLE} state, which is eforced by inState(s) modifier.
+%
+%The \texttt{creatGame} function assigns a value to \texttt{hasNumber} and changes the state of the contract to \texttt{GMAE\_AVAILABLE}. 
+%
+%The \texttt{hasNumber} value provided by the operator when creating game is later used to ensure the bet was placed by the operator in the begining of game.
 %
 %
 %
 
 
-A player may place a bet by calling \texttt{placeBet} function in \texttt{GMAE\_AVAILABLE} state. 
+%A player may place a bet by calling \texttt{placeBet} function in \texttt{GMAE\_AVAILABLE} state. 
 %
-The \texttt{placeBet} function accepts a guess, \texttt{\_guess}, and changes the sate to \texttt{BET\_PLACED}. 
+%The \texttt{placeBet} function accepts a guess, \texttt{\_guess}, and changes the sate to \texttt{BET\_PLACED}. 
 %
-Moreovoer, \texttt{require} is used to exclude operator from the bet and also place maximum limit on the bet money.
+%Moreovoer, \texttt{require} is used to exclude operator from the bet and also place maximum limit on the bet money.
 %
 
-In \texttt{}
+%In \texttt{BET\_PLACED} state, only operator has liberty to add money by invoking \texttt{addToPor} in the pot (due to \texttt{byOperator} modifier). 
+%
+%However, operator cannot remove money from the pot by calling \texttt{removeFromPot} function due \texttt{noActiveBet} modifier.
+%
+%It ensures the fairness of the betting process.
+%
+
+%
+
 \section{Specification}
 
 

@@ -27,10 +27,10 @@
 		public byOperator, inState(BET_PLACED) {
 			require (hashedNumber == keccak256(secretNumber));
 			Coin secret = (secretNumber % 2 == 0)? HEADS : TAILS;
-			if (secret == guess) { pot = pot - bet;  player.transfer(bet*2);  bet = 0;
-		} else {
+			if (secret == guess) { pot = pot - bet;  player.transfer(bet*2);  bet = 0;}
+			else {
 			pot = pot + bet; bet = 0;
-		}
+				}
 		state = IDLE;}
 		function addToPot() public payable byOperator { pot = pot + msg.value;}
 
