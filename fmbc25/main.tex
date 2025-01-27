@@ -27,6 +27,7 @@
 \usepackage{tikz}
 \usepackage{mystyle}
 \input{solidity_lang}
+\input{isabelle}
 \bibliographystyle{plainurl}% the mandatory bibstyle
 
 \title{Isabelle/Solidity for Smart Contracts} %TODO Please add
@@ -279,18 +280,51 @@ However, in \texttt{BET\_PLACED} state, an operator is allowed to only remove th
 
 
 \section{Specification}
-In this section, we present a Solidity equivalent specification of Casino smart contract in Isabelle/Solidity. 
+In this section, we present a Solidity equivalent specification of Casino smart contract in Isabelle/Solidity tool. 
 %
 \paragraph*{Storage Variables}
 %
-
-
+Our tool facilitates the specification of a contract using Isabelle command \texttt{\color{isacom}contract} followed by \emph{name} and list of storage variables.
+%
+The tool allows data-type annotations to specify solidity data types.
+\begin{isabelle}{label={fig:casino}}{Solidity source code for the Casino}
+	construct
+\end{siabelle}
+%
+%To support a user with the specification of a contract, our package implements a new Isabelle command \texttt{\color{isacom}contract}.
+%This command requires a user to provide a \emph{name} for the contract, followed by a list of declarations of storage variables.
+%Then, the user can specify a constructor using keyword \texttt{\color{isakey}constructor}, followed by an implementation of the constructor in terms of an expression monad.
+%Finally, the user can specify a list of methods using the keyword \texttt{\color{isakey}cmethod}.
+%Each method can have an optional list of formal parameters followed by an implementation in terms of an expression monad.
+%\begin{center}
+%		\fbox{\includegraphics[width=.5\textwidth]{sc-dt.png}}
+%	\end{center}
+\begin{Example}{}{Storage Variables}
+	
+	\begin{center}\vspace{-2mm}
+		\fbox{\includegraphics[width=.45\textwidth]{sc-dt.png}}
+	\end{center}\vspace{-2mm}
+	\end{Example}
+\paragraph*{Methods}
+%
+\begin{Example}{}{Methods}
+	
+	\begin{center}\vspace{-2mm}
+		\fbox{\includegraphics[width=.95\textwidth]{scdb.png}}
+	\end{center}\vspace{-2mm}
+	\end{Example}
+%
+\section{Verification}
+%
 \section{Related Work}
+%
 \section{Conclusion}
 %%
 %% Bibliography
 %%
+%
 
+%
 %% Please use bibtex, 
 
 \bibliography{oasics-v2021-sample-article}
