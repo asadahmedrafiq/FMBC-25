@@ -116,7 +116,7 @@
 %%SM TO HOL CORE
 \draw  [draw=black, line width = 1.5pt, <->] (sm.east)  -- ++(3.35cm, 0);;;; ;;
 %
-\node (dtl) [thin, draw=black, fill=blue!4,  rectangle, minimum width=4.9cm, rounded corners= 2pt, xshift = 7.90cm, yshift = -3.35cm, right of = topleft, inner sep = 4pt, align = center, rotate=90] { {\scriptsize \textcolor{white}{Isabelle/HOL}}\\[0.15] {\scriptsize \textcolor{white}{ Definitions/Thoerems/Lemmas}}};
+\node (dtl) [thin, draw=black, fill=blue!4,  rectangle, minimum width=4.9cm, rounded corners= 2pt, xshift = 7.90cm, yshift = -3.35cm, right of = topleft, inner sep = 4pt, align = center, rotate=90] { {\scriptsize \textcolor{white}{Isabelle/HOL}}\\[0.15] {\scriptsize \textcolor{white}{ Definitions/Theorems/Lemmas}}};
 \node (dtl) [thin, draw=black, fill=blue!4,  rectangle, minimum width=4.9cm, rounded corners= 2pt, xshift = 8cm, yshift = -3.45cm, right of = topleft, inner sep = 4pt, align = center, rotate=90] { {\scriptsize Isabelle/HOL}\\[0.15] {\scriptsize  Definitions/Thoerems/Lemmas}};
 \node (isac) [thin, draw=black, fill=blue!4,  rectangle, rounded corners= 2pt, minimum width= 5.5cm, xshift = 9.75cm,  yshift= -3.2cm, right of = topleft,  inner sep = 4pt,   align = center, rotate=90] { {\scriptsize Isabelle/HOL Core}};
 \draw  [draw=black, line width = 1.5pt, <->] (9.52, -3) -- ++(0.95cm, 0) ;;
@@ -204,65 +204,85 @@
 		function removeFromPot(uint amount) public byOperator, noActiveBet { operator.transfer(amount);  pot = pot - amount;}
 		}
 \end{solidity}
-Listing \ref{fig:casino} is a Solidity source code for Casino smart contract from verifyThis competition. 
+%% ADD LINE NUMBERS;
+%% ADD LOGIC OF CODE WHERE NECESSARY
+Casino (Listing \ref{fig:casino}) implements a bet game based on the flip-coin (Line 2) using Solidity syntex. 
 %
-The contract has three explicit states: \texttt{IDLE}, \texttt{GAME\_AVAILABLE}, \texttt{BET\_PLACED} (Line 3).
-An operator may creat a new game by calling \texttt{creatGame} function in \texttt{IDLE} state. 
+This game has three explicit state: \texttt{IDLE}, \texttt{GAME\_AVAILABLE}, \texttt{BET\_PLACED} (Line 3).
 %
-The \texttt{creatGame} function uses two modifiers (\texttt{byOperator} and \texttt{inState(s)}) to ensure that only operator can creat the game in \texttt{IDLE} state.
+An operator may create a new game by calling \texttt{creatGame} function (Line 11-15).
 %
-Moreover, operator also needs to provide \texttt{hashNum} value which is later used as a unique reference in deciding the  outcome of the created game (Line 28)  in \texttt{decideBet} function. 
+The operator provides a \texttt{hashNum} (Line 11) to ensure unbiased and verifiable bet (Line 26-30).
 %
+The function,  \texttt{creatGame}, uses two modifiers (\texttt{byOperator} and \texttt{inState(s)}) to implement only operator access and state-flow control, i.e., new game can only be created in \texttt{IDLE} state.
 %
-Finally, in \texttt{IDLE} state, an operator may add or remove any amount of money  by invoking \texttt{addToPot} or \texttt{removeFromPot} function.
+The \texttt{creatGame} function  changes the state to \texttt{BET\_PLACED} which allows players to place bet on \texttt{HEADS} or \texttt{TAILS}, as \texttt{\_guess}, by calling \texttt{betPlaced} function.
 %
-
-%
-Once the game has \texttt{GAME\_AVAILABLE} state,  a player may place a bet by calling \texttt{placeBet} function. 
-%
-A player can pass his bet on \texttt{HEAD} or \texttt{TAIL}, as a \texttt{\_guess}, in \texttt{placeBet} function. 
-%
-The function provides safegurad using \texttt{require} from operator placing the bet and amount of bet exceeding pot balance.
-%
-The function changes the state to \texttt{BET\_PLACED}. 
-%
-In \texttt{GAME\_AVAILABLE} state, too,  an operator may add or remove any amount of money  by invoking \texttt{addToPot} or \texttt{removeFromPot} function.. 
+The \texttt{betPlaced} function uses \texttt{require} to safe guard possible manipulation from operator by restricting its access (Line 18) and payout safety by capping the maximum bet amount with pot balance (Line 19) in the game.
 %
 
 %
-In \texttt{BET\_PLACED} state, the operator may decide the bet using \texttt{decideBet} function. 
+Once the game is in \texttt{BET\_PLACED}, the operator may decide the bet (\texttt{decideBet}) by passing \texttt{secretNumber} (Line 26). The secret number is used to verify the bet against \texttt{hashNumber} (Line 28) to ensure fairness. 
 %
-The function uses \texttt{secreteNumber} to verify the \texttt{hashNumber} generated when game was created.
-%A player places a bet as a \texttt{\_guess} (\texttt{HEAD} or \texttt{TAIL}) in \texttt{placeBet} function.
+Then, secret number is used to reveal \texttt{HEADS} (even) or \texttt{TAILS} (odd) (Line 29) which is further utilized to resolve the bet (Line 30-33).
 %
-The function, then compares the player's bet and transfers the double the amount of bet in case of right guess otherwise draws the amount from the pot to operator account. 
-%The \texttt{creatGame} function allows only operator, enusred by \texttt{byOperator} modifier, to creat a game  given that the contract is in \texttt{IDLE} state, which is eforced by inState(s) modifier.
-%
-%The \texttt{creatGame} function assigns a value to \texttt{hasNumber} and changes the state of the contract to \texttt{GMAE\_AVAILABLE}. 
-%
-%The \texttt{hasNumber} value provided by the operator when creating game is later used to ensure the bet was placed by the operator in the begining of game.
-%
-%
-%
-
-
-%A player may place a bet by calling \texttt{placeBet} function in \texttt{GMAE\_AVAILABLE} state. 
-%
-%The \texttt{placeBet} function accepts a guess, \texttt{\_guess}, and changes the sate to \texttt{BET\_PLACED}. 
-%
-%Moreovoer, \texttt{require} is used to exclude operator from the bet and also place maximum limit on the bet money.
-%
-
-%In \texttt{BET\_PLACED} state, only operator has liberty to add money by invoking \texttt{addToPor} in the pot (due to \texttt{byOperator} modifier). 
-%
-%However, operator cannot remove money from the pot by calling \texttt{removeFromPot} function due \texttt{noActiveBet} modifier.
-%
-%It ensures the fairness of the betting process.
+In case, player wins,  then double amount of the original bet is transferred to the player's account (Line 30), otherwise, amount equivalent to original bet is added to the pot (Line 32). 
 %
 
 %
+Finally, in \texttt{IDLE} and \texttt{GAME\_AVAILABLE} states, an operator may add or remove any amount of money from pot  by invoking \texttt{addToPot} or \texttt{removeFromPot} function.
+%%
+However, in \texttt{BET\_PLACED} state, an operator is allowed to only remove the money which is ensured by the modifier \texttt{noActiveBet}.
+%
+%
+
+%Listing \ref{fig:casino} is a Solidity source code for Casino smart contract from verifyThis competition. 
+%%
+%The contract has three explicit states: \texttt{IDLE}, \texttt{GAME\_AVAILABLE}, \texttt{BET\_PLACED} (Line 3).
+%An operator may creat a new game by calling \texttt{creatGame} function in \texttt{IDLE} state. 
+%%
+%The \texttt{creatGame} function uses two modifiers (\texttt{byOperator} and \texttt{inState(s)}) to ensure that only operator can creat the game in \texttt{IDLE} state.
+%%
+%Moreover, operator also needs to provide \texttt{hashNum} value which is later used as a unique reference in deciding the  outcome of the created game (Line 28)  in \texttt{decideBet} function. 
+%%
+%%
+%
+%
+%%
+%Once the game has \texttt{GAME\_AVAILABLE} state,  a player may place a bet by calling \texttt{placeBet} function. 
+%%
+%A player can pass his bet on \texttt{HEAD} or \texttt{TAIL}, as a \texttt{\_guess}, in \texttt{placeBet} function. 
+%%
+%The function provides safegurad using \texttt{require} from operator placing the bet and amount of bet exceeding pot balance.
+%%
+%The function changes the state to \texttt{BET\_PLACED}. 
+%%
+%In \texttt{GAME\_AVAILABLE} state, too,  an operator may add or remove any amount of money  by invoking \texttt{addToPot} or \texttt{removeFromPot} function.. 
+%%
+%
+%%
+%In \texttt{BET\_PLACED} state, the operator may decide the bet using \texttt{decideBet} function. 
+%%
+%The function uses \texttt{secreteNumber} to verify the \texttt{hashNumber} generated when game was created.
+%%A player places a bet as a \texttt{\_guess} (\texttt{HEAD} or \texttt{TAIL}) in \texttt{placeBet} function.
+%%
+%The function, then compares the player's bet and transfers the double the amount of bet in case of right guess otherwise draws the amount from the pot to operator account. 
+%%
+%The function also changes the state to \texttt{IDLE}.
+%%
+%
+%%
+%Finally, in \texttt{IDLE} and \texttt{GAME\_AVAILABLE} state, an operator may add or remove any amount of money from pot  by invoking \texttt{addToPot} or \texttt{removeFromPot} function.
+%%
+%However, in \texttt{BRT\_PLACED} state, an operator is allowed to only remove the money which is ensured by the modifier \texttt{noActiveBet}.
+%
+
 
 \section{Specification}
+In this section, we present a Solidity equivalent specification of Casino smart contract in Isabelle/Solidity. 
+%
+\paragraph*{Storage Variables}
+%
 
 
 \section{Related Work}
