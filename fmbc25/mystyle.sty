@@ -31,9 +31,9 @@
   captionpos=b,
   escapechar=$
 }
-\input{isabelle}
+\input{isabelle\_lang}
 \lstdefinestyle{isabelle}{
-    language=isabelle,
+    language=Isabelle,
     escapeinside={&}{&},
     columns=[c]fullflexible,
     keepspaces=true,
@@ -63,71 +63,6 @@
         {\\<union>}{$\cup$}{1}
         {\\<not>}{$\neg$}{1}
 }%
-\newtcblisting[auto counter]{isabelle}[3][]{%
-      listing only%
-	 ,toptitle=2pt
-	 ,bottomtitle=2pt
-     ,boxrule=0pt
-     ,boxsep=0pt
-     ,colback=verylightgray
-     ,enhanced jigsaw
-     ,borderline west={2pt}{0pt}{verylightgray!60!black}
-     ,sharp corners
-     ,before skip=5pt
-     ,after=0pt
-	 ,after skip=5pt
-     ,top=0mm
-	 ,bottom=0mm
-	 ,title=Listing \thetcbcounter: #3
-     ,enhanced
-        ,listing options={
-           breakatwhitespace=true
-          ,columns=flexible%
-          ,mathescape,
-          ,style=isabelle
-		  ,aboveskip=0.0em 
-		  ,belowskip=0.0em
-          ,#1
-      },
-      #2
-  }%
-
-\input{isabelle_lang}
-\lstdefinestyle{isabelle}{%
-    language=Isabelle,
-    escapeinside={&}{&},
-	tabsize=2,
-	columns=[c]fullflexible,
-    keepspaces=true,
-    extendedchars,
-    basewidth={0.5em,0.45em},
-    basicstyle=\ttfamily,
-    mathescape,
-    numbers=left,
-	numberstyle=\scriptsize,
-	numbersep=5pt,
-	literate =
-        {\\<Longrightarrow>}{$\Longrightarrow{}$}{1}
-        {\\<longrightarrow>}{$\longrightarrow{}$}{1}
-        {\\<Rightarrow>}{$\Rightarrow{}$}{1}
-        {\\<circ>}{$\circ$}{1}
-        {\\<lambda>}{$\lambda$}{1}
-        {\\<and>}{$\wedge$}{1}
-        {\\<And>}{$\bigwedge$}{1}
-        {\\<or>}{$\vee$}{1}
-        {\\<forall>}{$\forall$}{1}
-        {\\<exists>}{$\exists$}{1}
-        {\\<le>}{$\leq$}{1}
-        {\\<ge>}{$\geq$}{1}
-        {\\<in>}{$\in$}{1}
-        {\\<rparr>}{$\rrparenthesis$}{1}
-        {\\<lparr>}{$\llparenthesis$}{1}
-        {\\<rbrakk>}{$\rrbracket$}{1}
-        {\\<lbrakk>}{$\llbracket$}{1}
-        {\\<union>}{$\cup$}{1}
-        {\\<not>}{$\neg$}{1}
-}
-
 \newtcblisting[auto counter]{solidity}[3][]{%
       listing only%
 	 ,toptitle=2pt
