@@ -1,0 +1,3 @@
+abbreviation byOperator::"(unit, ex, 'a state) state_monad" where
+ "byOperator $\equiv$ assert Err ($\lambda$s. sdata.Value (valtype.Address msg_sender)
+			 = state.Storage s this (STR ''operator''))"

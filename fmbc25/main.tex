@@ -25,6 +25,7 @@
 \usepackage{mathpartir}
 \usepackage{tikz}
 \usepackage{mystyle}
+\usepackage{upquote}
 \bibliographystyle{plainurl}% the mandatory bibstyle
 
 \title{Isabelle/Solidity for Smart Contracts} %TODO Please add
@@ -161,11 +162,6 @@
 \label{sec-ov}
 
 \section{Case Study}
-
-\begin{isabelle}{label={fig:casino}}{Solidity source code for the Casino}
-	a
-\end{isabelle}
-
 \begin{solidity}{label={fig:casino}}{Solidity source code for the Casino}
 	contract Casino {
 		enum Coin { HEADS, TAILS } ;
@@ -196,14 +192,18 @@
 		public byOperator, inState(BET_PLACED) { 
 			require (hashedNumber == keccak256(secretNumber)); 
 			Coin secret = (secretNumber \% 2 == 0)? HEADS : TAILS;
-			if (secret == guess) { pot = pot - bet;  player.transfer(bet*2);  bet = 0;} 
+			if (secret == guess) {
+				pot = pot - bet;  
+				player.transfer(bet*2);  bet = 0;} 
 			else {
-			pot = pot + bet; bet = 0;
+				pot = pot + bet; bet = 0;
 				}
-		state = IDLE;}
+			state = IDLE;}
 		function addToPot() public payable byOperator { pot = pot + msg.value;}
 
-		function removeFromPot(uint amount) public byOperator, noActiveBet { operator.transfer(amount);  pot = pot - amount;}
+		function removeFromPot(uint amount) public byOperator, noActiveBet { 
+			operator.transfer(amount);  
+			pot = pot - amount;}
 		}
 \end{solidity}
 %% ADD LINE NUMBERS;
@@ -237,86 +237,139 @@ Finally, in \texttt{IDLE} and \texttt{GAME\_AVAILABLE} states, an operator may a
 However, in \texttt{BET\_PLACED} state, an operator is allowed to only remove the money which is ensured by the modifier \texttt{noActiveBet}.
 %
 %
-
-%Listing \ref{fig:casino} is a Solidity source code for Casino smart contract from verifyThis competition. 
-%%
-%The contract has three explicit states: \texttt{IDLE}, \texttt{GAME\_AVAILABLE}, \texttt{BET\_PLACED} (Line 3).
-%An operator may creat a new game by calling \texttt{creatGame} function in \texttt{IDLE} state. 
-%%
-%The \texttt{creatGame} function uses two modifiers (\texttt{byOperator} and \texttt{inState(s)}) to ensure that only operator can creat the game in \texttt{IDLE} state.
-%%
-%Moreover, operator also needs to provide \texttt{hashNum} value which is later used as a unique reference in deciding the  outcome of the created game (Line 28)  in \texttt{decideBet} function. 
-%%
-%%
-%
-%
-%%
-%Once the game has \texttt{GAME\_AVAILABLE} state,  a player may place a bet by calling \texttt{placeBet} function. 
-%%
-%A player can pass his bet on \texttt{HEAD} or \texttt{TAIL}, as a \texttt{\_guess}, in \texttt{placeBet} function. 
-%%
-%The function provides safegurad using \texttt{require} from operator placing the bet and amount of bet exceeding pot balance.
-%%
-%The function changes the state to \texttt{BET\_PLACED}. 
-%%
-%In \texttt{GAME\_AVAILABLE} state, too,  an operator may add or remove any amount of money  by invoking \texttt{addToPot} or \texttt{removeFromPot} function.. 
-%%
-%
-%%
-%In \texttt{BET\_PLACED} state, the operator may decide the bet using \texttt{decideBet} function. 
-%%
-%The function uses \texttt{secreteNumber} to verify the \texttt{hashNumber} generated when game was created.
-%%A player places a bet as a \texttt{\_guess} (\texttt{HEAD} or \texttt{TAIL}) in \texttt{placeBet} function.
-%%
-%The function, then compares the player's bet and transfers the double the amount of bet in case of right guess otherwise draws the amount from the pot to operator account. 
-%%
-%The function also changes the state to \texttt{IDLE}.
-%%
-%
-%%
-%Finally, in \texttt{IDLE} and \texttt{GAME\_AVAILABLE} state, an operator may add or remove any amount of money from pot  by invoking \texttt{addToPot} or \texttt{removeFromPot} function.
-%%
-%However, in \texttt{BRT\_PLACED} state, an operator is allowed to only remove the money which is ensured by the modifier \texttt{noActiveBet}.
-%
-
-
+%\vspace{-0.25cm}
 \section{Specification}
-In this section, we present a Solidity equivalent specification of Casino smart contract in Isabelle/Solidity tool. 
+In this section, we present a Solidity equivalent specification of smart contracts in Isabelle/Solidity. 
 %
+We primarly focused on specifications of state or local variables, data types, functions, modifiers, precondition specifiers and statments in Isabelle/Solidity.
+%\vspace{-1cm}
 \paragraph*{Storage Variables}
 %
-Our tool facilitates the specification of a contract using Isabelle command \texttt{\color{isacom}contract} followed by \emph{name} and list of storage variables.
+%Our tool facilitates the specification of a contract using Isabelle/Solidity command \texttt{\color{isacom}contract} followed by \emph{name} and list of storage variables.
 %
-The tool allows data-type annotations to specify solidity data types.
-\begin{isabelle}{label={fig:casino}}{Solidity source code for the Casino}
-	construct
+%The tool allows data-type annotations to specify \texttt{Casino} stroage variables  (Listing \ref{fig:isadt}).
+In Listing \ref{fig:isadt}, Casino smart contract is defined using Isabelle/Solidity command \texttt{\color{isacom}contract} followed by \emph{name} and list of storage variables.
+%
+The tool, also,  allows data-type annotations to specify the types of variables (Listing \ref{fig:isadt}).
+\begin{isabelle}{label={fig:isadt}}{Isabelle/Solidity data types for Casino}
+contract Casino
+  	for "STR state": TSint
+  	and "STR operator": TAddress
+ 	and "STR player": TAddress
+  	and "STR pot": TSint
+  	and "STR hashedNumber": TBytes
+  	and "STR bet": TSint
+  	and "STR guess": TSint
 \end{isabelle}
 %
-%To support a user with the specification of a contract, our package implements a new Isabelle command \texttt{\color{isacom}contract}.
-%This command requires a user to provide a \emph{name} for the contract, followed by a list of declarations of storage variables.
-%Then, the user can specify a constructor using keyword \texttt{\color{isakey}constructor}, followed by an implementation of the constructor in terms of an expression monad.
-%Finally, the user can specify a list of methods using the keyword \texttt{\color{isakey}cmethod}.
-%Each method can have an optional list of formal parameters followed by an implementation in terms of an expression monad.
 %\begin{center}
 %		\fbox{\includegraphics[width=.5\textwidth]{sc-dt.png}}
 %	\end{center}
-\begin{Example}{}{Storage Variables}
-	
-	\begin{center}\vspace{-2mm}
-		\fbox{\includegraphics[width=.45\textwidth]{sc-dt.png}}
-	\end{center}\vspace{-2mm}
-	\end{Example}
+%\begin{Example}{}{Storage Variables}
+%	
+%	\begin{center}\vspace{-2mm}
+%		\fbox{\includegraphics[width=.45\textwidth]{sc-dt.png}}
+%	\end{center}\vspace{-2mm}
+%	\end{Example}
+%
 \paragraph*{Methods}
+%For Solidity functions, Isabelle/Solidity uses keyword \texttt{\color{isargreen}emethod} followed by \emph{name} and modifier \texttt{\color{isargreen}payable}.
 %
-\begin{Example}{}{Methods}
-	
-	\begin{center}\vspace{-2mm}
-		\fbox{\includegraphics[width=.95\textwidth]{scdb.png}}
-	\end{center}\vspace{-2mm}
-	\end{Example}
+%Isabelle/Solidity allows declaring memory variables for functions using keyword \texttt{\color{isargreen}param}.
 %
+%The body of the funciton is formally specified using  \texttt{\color{isargreen}where} \texttt{"do \{\dots\}",} structure.
+%
+%
+%The keyword \texttt{\color{isargreen}param} specifies a memory (local) variable, \texttt{amount}, of type integer.
+%
+ %
+%
+%
+%The k
+A function, \texttt{removeFromPot}, in Listing \ref{fig:isamethod} showcases Isabelle/Solidity features to specify Solidity functions.
+%
+The keyword \texttt{\color{isargreen}emethod} defines \texttt{removeFromPot} which has a \texttt{\color{isargreen}payable}  modifier. 
+%
+A memory (local) variable, \texttt{amount}, of  integer type for the function is declared using keyword  \texttt{\color{isargreen}param}.
+%
+Isabelle/Solidity allows to specify the body of the function using \texttt{\color{isargreen}where} \texttt{"do \{\dots\}",} structure.
+%
+%
+\begin{isabelle}{label={fig:isamethod}}{Isabelle/Solidity method for Casino}
+emethod removeFromPot payable
+  param "STR amount": TSint
+where
+  "do {
+    byOperator;
+    noActiveBet;
+    assign_storage_monad (STR ''pot'') [] 
+	(minus_monad_safe (storeLookup (STR ''pot'') []) 
+		(stackLookup (STR ''amount'') []));
+    transfer_monad (storeLookup (STR ''operator'') []) 
+	(stackLookup (STR ''amount'') [])
+  }"
+\end{isabelle}
+%
+
+%
+Preconditions on access control, \texttt{byOperator}, and state-flow, \texttt{noActiveBet}, are specified as constants which are based on a higher-order logic funciton, i.e., \texttt{assert}, given in Listing \ref{def:assert}. 
+%
+The function \texttt{assert} returns normal exection if \texttt{msg.sender} is the operator else it throws an exception.
+%
+In this way, Isabelle/Solidity ensures the preconditions which ensures intended behavior of the method.
+%
+\begin{isabelle}{label={def:assert}}{Preocndition in Isabelle/Solidity}
+abbreviation byOperator::"(unit, ex, 'a state) state_monad" where
+ "byOperator $\equiv$ assert Err ($\lambda$s. sdata.Value (valtype.Address msg_sender)
+			 = state.Storage s this (STR ''operator''))"
+\end{isabelle}
+
+Isabelle/Solidity also supports Solidity statements such as control structures and assignment operators. 
+%
+From Line 7-9, an \texttt{amount} is subtracted from the \texttt{pot} using \texttt{assign\_storage} \texttt{\_monad} which besides identifiers also need store location depending on the variable type.
+%
+
+%
+Next, 
+%
+in Line 10 (of Listing \ref{fig:isamethod}), \texttt{transfer\_monad} transfers (special function) an amount  equal to the bet is transferred to the operator account.
 \section{Verification}
 %
+%
+%
+Isabelle/Solidity facilitates invariance specification using \texttt{\color{isarblue}invariant} command over the contract balance and storage.
+%
+This command requires a user to provide the name of the invariant, followed by the invariant as predicates formulated over the contracts. The command then generates introduction and elimination rules which can be invoked for automated verification of the invariants.
+%
+\begin{Example}{Invariant}{invariant}
+	Assume that we want to verify that when game is in  \texttt{BET\_PLACED} state, contract internal balance satisfies:
+	\begin{equation}
+		(s(\STR{balances})) \ge pot + bet  \wedge bet \leq pot
+	\end{equation}\label{eq:inv}
+	and if not in \texttt{BET\_PLACED}, then 
+\begin{equation}
+		(s(\STR{balances})) \ge pot 
+	\end{equation}\label{eq:inv1}
+Above invariant enusres payout safety for players. 
+%
+
+%
+The corresponding specification in Isabelle/Solidity is given in Listing \ref{def:inv}:
+\begin{isabelle}{label={def:inv}}{Invariant in Isabelle/Solidity}
+invariant pot_balance sb where
+    "(fst sb STR ''state'' = sdata.Value (Sint 2)
+      $\longrightarrow$ snd sb $\geq$ unat (valtype.sint (sdata.vt (fst sb STR ''pot''))) 
+		+ unat (valtype.sint (sdata.vt (fst sb STR ''bet'')))
+        $\wedge$ valtype.sint (sdata.vt (fst sb STR ''bet'')) $\leq$ 
+		valtype.sint (sdata.vt (fst sb STR ''pot''))) $\wedge$
+    (fst sb STR ''state'' $\neq$ sdata.Value (Sint 2)
+    $\longrightarrow$  snd sb $\geq$ unat (valtype.sint (sdata.vt (fst sb STR ''pot''))))"
+  for "casino"
+\end{isabelle}
+\end{Example}
+%
+
+
 \section{Related Work}
 %
 \section{Conclusion}
