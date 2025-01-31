@@ -162,7 +162,7 @@
 \label{sec-ov}
 
 \section{Case Study}
-\begin{solidity}{label={fig:casino}}{Solidity source code for the Casino}
+\begin{code}{label={fig:casino}}{solidity}{Solidity source code for the Casino}
 	contract Casino {
 		enum Coin { HEADS, TAILS } ;
 		enum State { IDLE, GAME_AVAILABLE,  BET_PLACED }
@@ -205,7 +205,7 @@
 			operator.transfer(amount);  
 			pot = pot - amount;}
 		}
-\end{solidity}
+\end{code}
 %% ADD LINE NUMBERS;
 %% ADD LOGIC OF CODE WHERE NECESSARY
 Casino (Listing \ref{fig:casino}) implements a bet game based on the flip-coin (Line 2) using Solidity syntex. 
@@ -251,7 +251,7 @@ We primarly focused on specifications of state or local variables, data types, f
 In Listing \ref{fig:isadt}, Casino smart contract is defined using Isabelle/Solidity command \texttt{\color{isacom}contract} followed by \emph{name} and list of storage variables.
 %
 The tool, also,  allows data-type annotations to specify the types of variables (Listing \ref{fig:isadt}).
-\begin{isabelle}{label={fig:isadt}}{Isabelle/Solidity data types for Casino}
+\begin{code}{label={fig:isadt}}{isabelle}{Isabelle/Solidity data types for Casino}
 contract Casino
   	for "STR state": TSint
   	and "STR operator": TAddress
@@ -260,7 +260,7 @@ contract Casino
   	and "STR hashedNumber": TBytes
   	and "STR bet": TSint
   	and "STR guess": TSint
-\end{isabelle}
+\end{code}
 %
 %\begin{center}
 %		\fbox{\includegraphics[width=.5\textwidth]{sc-dt.png}}
@@ -295,20 +295,20 @@ A memory (local) variable, \texttt{amount}, of  integer type for the function is
 Isabelle/Solidity allows to specify the body of the function using \texttt{\color{isargreen}where} \texttt{"do \{\dots\}",} structure.
 %
 %
-\begin{isabelle}{label={fig:isamethod}}{Isabelle/Solidity method for Casino}
+\begin{code}{label={fig:isamethod}}{isabelle}{Isabelle/Solidity method for Casino}
 emethod removeFromPot payable
   param "STR amount": TSint
 where
   "do {
     byOperator;
     noActiveBet;
-    assign_storage_monad (STR ''pot'') [] 
+    (STR ''pot'') ::=\<storage> [] 
 	(minus_monad_safe (storeLookup (STR ''pot'') []) 
 		(stackLookup (STR ''amount'') []));
     transfer_monad (storeLookup (STR ''operator'') []) 
 	(stackLookup (STR ''amount'') [])
   }"
-\end{isabelle}
+\end{code}
 %
 
 %
@@ -318,11 +318,11 @@ The function \texttt{assert} returns normal exection if \texttt{msg.sender} is t
 %
 In this way, Isabelle/Solidity ensures the preconditions which ensures intended behavior of the method.
 %
-\begin{isabelle}{label={def:assert}}{Preocndition in Isabelle/Solidity}
+\begin{code}{label={def:assert}}{isabelle}{Preocndition in Isabelle/Solidity}
 abbreviation byOperator::"(unit, ex, 'a state) state_monad" where
  "byOperator $\equiv$ assert Err ($\lambda$s. sdata.Value (valtype.Address msg_sender)
 			 = state.Storage s this (STR ''operator''))"
-\end{isabelle}
+\end{code}
 
 Isabelle/Solidity also supports Solidity statements such as control structures and assignment operators. 
 %
@@ -355,7 +355,7 @@ Above invariant enusres payout safety for players.
 
 %
 The corresponding specification in Isabelle/Solidity is given in Listing \ref{def:inv}:
-\begin{isabelle}{label={def:inv}}{Invariant in Isabelle/Solidity}
+\begin{code}{label={def:inv}}{isabelle}{Invariant in Isabelle/Solidity}
 invariant pot_balance sb where
     "(fst sb STR ''state'' = sdata.Value (Sint 2)
       $\longrightarrow$ snd sb $\geq$ unat (valtype.sint (sdata.vt (fst sb STR ''pot''))) 
@@ -365,7 +365,7 @@ invariant pot_balance sb where
     (fst sb STR ''state'' $\neq$ sdata.Value (Sint 2)
     $\longrightarrow$  snd sb $\geq$ unat (valtype.sint (sdata.vt (fst sb STR ''pot''))))"
   for "casino"
-\end{isabelle}
+\end{code}
 \end{Example}
 %
 

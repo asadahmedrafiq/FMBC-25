@@ -1,18 +1,27 @@
-\definecolor{isarblue}{HTML}{006699}
-\definecolor{isarlight}{HTML}{0099ff}
-\definecolor{isargreen}{HTML}{009966}
-\definecolor{isarred}{HTML}{e34013}
+\definecolor{isarblue}{RGB}{0, 102, 153}
+\definecolor{isarlight}{RGB}{0, 153, 255}
+\definecolor{isargreen}{RGB}{7, 152, 101}
+\definecolor{isarverylight}{RGB}{44, 146, 204}
+\definecolor{isarred}{RGB}{203, 0, 67}
+\definecolor{isastring}{RGB}{244, 14, 198}
+\definecolor{isarfree}{RGB}{14, 14, 244}
+\definecolor{isarbound}{RGB}{14, 129, 14}
+
 \lstdefinelanguage{Isabelle}{%
-    keywords=[1]{type_synonym,datatype,primrec,fun,abbreviation,definition,proof,lemma,theorem,corollary,value,using,by,proposition, record, locale, inductive_set, unfolding, from, moreover,ultimately,consider, qed, next, then, have, STR, contract, invariant},
+    keywords=[1]{type_synonym,datatype,primrec,fun,abbreviation,definition,proof,lemma,invariant,verification,theorem,corollary,STR, by,proposition, record, locale, inductive_set, unfolding, from, moreover,ultimately,consider, qed, next, have, contract},
     keywordstyle=[1]\bfseries\color{isarblue},
-    keywords=[2]{fixes,where,assumes,shows,and,obtains,for, emethod, payable, param},
+    keywords=[2]{fixes,where,assumes,shows,and,obtains,for, constructor, emethod, payable},
     keywordstyle=[2]\bfseries\color{isargreen},
     keywords=[3]{fix, assume, case, define, show},
-    keywordstyle=[3]\color{isarlight},
-    commentstyle=\color{isarred},
+    keywordstyle=[3]\ttfamily\color{isarlight},
+    keywords=[4]{if, then, sender, value, transfer, sint,do,using, skip},
+    keywordstyle=[4]\ttfamily\color{isarverylight},
+    commentstyle=\ttfamily\color{isarred},
     morecomment=[s]{(*}{*)},
     moredelim=[is][\color{isarblue}]{|-}{-|}, % use this for then and case (inner syntax)
     alsoletter={?},
     frame=none,
-	backgroundcolor = \color{verylightgray}
+	backgroundcolor = \color{verylightgray},
+    morestring=[d]{''},
+    stringstyle=\color{isastring},
 }
