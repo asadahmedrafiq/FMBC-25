@@ -350,7 +350,7 @@ This command requires a user to provide the name of the invariant, followed by t
 \begin{equation}
 		(s(\STR{balances})) \ge pot 
 	\end{equation}\label{eq:inv1}
-Above invariant enusres payout safety for players. 
+Above invariant enusres payout safety for players by explicitly placing upper bound on the contract balance w.r.t the amount of bet and pot  in  \texttt{BET\_PLACED} state and otherwise.
 %
 
 %
@@ -369,6 +369,24 @@ invariant pot_balance sb where
 \end{Example}
 %
 
+%
+To formally verify the invariant, Isabelle/Solidity allows to specify the verification of invariants using \texttt{verificaiton} command. 
+%
+It accepts the name of the invariant, postcondition on constructor and methods to generate proof obligations. 
+%
+In order to automate the verification task, the tool has weakest precondition calculus based verification condition generator to discharge the proof obligations.
+
+\begin{code}{label={def:ver}}{isabelle}{Verification in Isabelle/Solidity}
+verification pot_balance:
+   pot_balance
+  "K (K (K True))"
+  "createGame" "createGame_post" and
+  "placeBet" "placeBet_post" and
+  "decideBet" "decideBet_post" and
+  "addToPot" "K (K (K True))" and
+  "removeFromPot" "K (K (K (K True)))"
+  for "casino"
+\end{code}
 
 \section{Related Work}
 %
