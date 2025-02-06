@@ -28,7 +28,7 @@
 \usepackage{upquote}
 \bibliographystyle{plainurl}% the mandatory bibstyle
 
-\title{Isabelle/Solidity for Smart Contracts} %TODO Please add
+\title{Isabelle/Solidity: A Tool  for the Verification of Solidity Smart Contracts} %TODO Please add
 
 %\titlerunning{Dummy short title} %TODO optional, please use if title is longer than one line
 
@@ -160,88 +160,79 @@
 
 \end{figure}
 \label{sec-ov}
-
+%
 \section{Case Study}
-\begin{code}{label={fig:casino}}{solidity}{Solidity source code for the Casino}
-	contract Casino {
-		enum Coin { HEADS, TAILS } ;
-		enum State { IDLE, GAME_AVAILABLE,  BET_PLACED }
-		State private state; 
-		address public operator, player;
-		uint public pot;
-		bytes32 public hashedNumber;
-		uint public bet;
-		Coin guess;
+We use  a case study, Casino, from VerifyThis long-term challenge. 
+%
+Casino is a betting game based on guessing the outcome of coin-tossing and is implemented using Solidity syntax (see Appendix \ref{sec:app1}).
+%
+Anytime, the game is characterized by three states, i.e., \texttt{IDLE}, \texttt{GAME\_AVAILABLE} and \texttt{BET\_PLACED}.
+%
+Initially, game is in \texttt{IDLE} state.
+%
+The game has been implemented using following functions in Solidity:
+%
+\begin{itemize}
+\item Only operator can creat a game by calling \texttt{creatGame} function which changes the state to \texttt{GAME\_AVAILABLE},  and also requires a secret number from the player to ensure unbaised and verifiable bet.
+%
+\item Once in \texttt{GAME\_AVAILABLE} state, a player can place a bet by invoking \texttt{placeBet} fucntion. 
+%
+This function saves the bet (\texttt{HEAD} or \texttt{TAIL}), amount of the bet and changes the state to \texttt{BET\_PLACED}.
+\item Now, operator can decide the bet anytime by calling \texttt{decideBet} funciton by providing secret number generated when game was created.
+%
+It allows the function to verify the bet and also decide the outcome of the coin tossing (\texttt{HEAD} or \texttt{TAIL}).
+%
+If player wins then double the amount of the bet is trasferred to the player else amount equal to the bet is trasferred to the operator.
+%
+It also changes the state of the game to \texttt{IDLE} state.
+\item Operator may add money to the bet, at anytime,  using \texttt{addToPot} but can only remove if game is in not in \texttt{BET\_PLACED} state by calling \texttt{decideBet}.
+\end{itemize}
+%
+%%THIS CAN MOVE UP IN THE INTRODUCTION
+The Casino smart contract is selected for two accounts: One, it has been implemented using sophisticated and advanced features of Solidity syntax including data types, global and local variables, functions, modifiers and precondition specifiers. 
+%
+Thus, requires to develop powerful equivalent syntax support in the proposed tool to embed the program logic. Two, from verification aspect, Casino has been employed as a case study in literature and hence allows to compare and report the result to gauge the performance of the proposed tool, comparatively.
 
-		function createGame(bytes32 hashNum) 
-			public byOperator, inState(IDLE) { 
-			hashedNumber = hashNum; 
-			state = GAME_AVAILABLE;
-		}
+%
+%
+%
 
-		function placeBet(Coin _guess) public payable inState(GAME_AVAILABLE) {
-			require (msg.sender != operator);
-			require (msg.value <= pot);
-			state = BET_PLACED; 
-			player = msg.sender; 
-			bet = msg.value; 
-			guess = _guess; 
-		}
-
- 		function decideBet(uint secretNumber) 
-		public byOperator, inState(BET_PLACED) { 
-			require (hashedNumber == keccak256(secretNumber)); 
-			Coin secret = (secretNumber \% 2 == 0)? HEADS : TAILS;
-			if (secret == guess) {
-				pot = pot - bet;  
-				player.transfer(bet*2);  bet = 0;} 
-			else {
-				pot = pot + bet; bet = 0;
-				}
-			state = IDLE;}
-		function addToPot() public payable byOperator { pot = pot + msg.value;}
-
-		function removeFromPot(uint amount) public byOperator, noActiveBet { 
-			operator.transfer(amount);  
-			pot = pot - amount;}
-		}
-\end{code}
 %% ADD LINE NUMBERS;
 %% ADD LOGIC OF CODE WHERE NECESSARY
-Casino (Listing \ref{fig:casino}) implements a bet game based on the flip-coin (Line 2) using Solidity syntex. 
-%
-This game has three explicit state: \texttt{IDLE}, \texttt{GAME\_AVAILABLE}, \texttt{BET\_PLACED} (Line 3).
-%
-An operator may create a new game by calling \texttt{creatGame} function (Line 11-15).
-%
-The operator provides a \texttt{hashNum} (Line 11) to ensure unbiased and verifiable bet (Line 26-30).
-%
-The function,  \texttt{creatGame}, uses two modifiers (\texttt{byOperator} and \texttt{inState(s)}) to implement only operator access and state-flow control, i.e., new game can only be created in \texttt{IDLE} state.
-%
-The \texttt{creatGame} function  changes the state to \texttt{BET\_PLACED} which allows players to place bet on \texttt{HEADS} or \texttt{TAILS}, as \texttt{\_guess}, by calling \texttt{betPlaced} function.
-%
-The \texttt{betPlaced} function uses \texttt{require} to safe guard possible manipulation from operator by restricting its access (Line 18) and payout safety by capping the maximum bet amount with pot balance (Line 19) in the game.
-%
-
-%
-Once the game is in \texttt{BET\_PLACED}, the operator may decide the bet (\texttt{decideBet}) by passing \texttt{secretNumber} (Line 26). The secret number is used to verify the bet against \texttt{hashNumber} (Line 28) to ensure fairness. 
-%
-Then, secret number is used to reveal \texttt{HEADS} (even) or \texttt{TAILS} (odd) (Line 29) which is further utilized to resolve the bet (Line 30-33).
-%
-In case, player wins,  then double amount of the original bet is transferred to the player's account (Line 30), otherwise, amount equivalent to original bet is added to the pot (Line 32). 
-%
-
-%
-Finally, in \texttt{IDLE} and \texttt{GAME\_AVAILABLE} states, an operator may add or remove any amount of money from pot  by invoking \texttt{addToPot} or \texttt{removeFromPot} function.
+%Casino (Listing \ref{fig:casino}) implements a bet game based on the flip-coin (Line 2) using Solidity syntex. 
 %%
-However, in \texttt{BET\_PLACED} state, an operator is allowed to only remove the money which is ensured by the modifier \texttt{noActiveBet}.
+%This game has three explicit state: \texttt{IDLE}, \texttt{GAME\_AVAILABLE}, \texttt{BET\_PLACED} (Line 3).
+%%
+%An operator may create a new game by calling \texttt{creatGame} function (Line 11-15).
+%%
+%The operator provides a \texttt{hashNum} (Line 11) to ensure unbiased and verifiable bet (Line 26-30).
+%%
+%The function,  \texttt{creatGame}, uses two modifiers (\texttt{byOperator} and \texttt{inState(s)}) to implement only operator access and state-flow control, i.e., new game can only be created in \texttt{IDLE} state.
+%%
+%The \texttt{creatGame} function  changes the state to \texttt{BET\_PLACED} which allows players to place bet on \texttt{HEADS} or \texttt{TAILS}, as \texttt{\_guess}, by calling \texttt{betPlaced} function.
+%%
+%The \texttt{betPlaced} function uses \texttt{require} to safe guard possible manipulation from operator by restricting its access (Line 18) and payout safety by capping the maximum bet amount with pot balance (Line 19) in the game.
+%%
 %
+%%
+%Once the game is in \texttt{BET\_PLACED}, the operator may decide the bet (\texttt{decideBet}) by passing \texttt{secretNumber} (Line 26). The secret number is used to verify the bet against \texttt{hashNumber} (Line 28) to ensure fairness. 
+%%
+%Then, secret number is used to reveal \texttt{HEADS} (even) or \texttt{TAILS} (odd) (Line 29) which is further utilized to resolve the bet (Line 30-33).
+%%
+%In case, player wins,  then double amount of the original bet is transferred to the player's account (Line 30), otherwise, amount equivalent to original bet is added to the pot (Line 32). 
+%%
+%
+%%
+%Finally, in \texttt{IDLE} and \texttt{GAME\_AVAILABLE} states, an operator may add or remove any amount of money from pot  by invoking \texttt{addToPot} or \texttt{removeFromPot} function.
+%%%
+%However, in \texttt{BET\_PLACED} state, an operator is allowed to only remove the money which is ensured by the modifier \texttt{noActiveBet}.
+%%
 %
 %\vspace{-0.25cm}
 \section{Specification}
 In this section, we present a Solidity equivalent specification of smart contracts in Isabelle/Solidity. 
 %
-We primarly focused on specifications of state or local variables, data types, functions, modifiers, precondition specifiers and statments in Isabelle/Solidity.
+We primarily focused on specifications of state or local variables, data types, functions, modifiers, precondition specifiers and statements in Isabelle/Solidity.
 %\vspace{-1cm}
 \paragraph*{Storage Variables}
 %
@@ -253,13 +244,17 @@ In Listing \ref{fig:isadt}, Casino smart contract is defined using Isabelle/Soli
 The tool, also,  allows data-type annotations to specify the types of variables (Listing \ref{fig:isadt}).
 \begin{code}{label={fig:isadt}}{isabelle}{Isabelle/Solidity data types for Casino}
 contract Casino
-  	for "STR state": TSint
-  	and "STR operator": TAddress
- 	and "STR player": TAddress
-  	and "STR pot": TSint
-  	and "STR hashedNumber": TBytes
-  	and "STR bet": TSint
-  	and "STR guess": TSint
+  for state: "SType.TValue TSint"
+  and operator: "SType.TValue TAddress"
+  and player: "SType.TValue TAddress"
+  and pot: "SType.TValue TSint"
+  and hashedNumber: "SType.TValue TBytes"
+  and bet: "SType.TValue TSint"
+  and guess: "SType.TValue TSint"
+
+constructor payable
+where
+  "skip"
 \end{code}
 %
 %\begin{center}
@@ -286,37 +281,69 @@ contract Casino
 %
 %
 %The k
-A function, \texttt{removeFromPot}, in Listing \ref{fig:isamethod} showcases Isabelle/Solidity features to specify Solidity functions.
+A function, \texttt{decideBet}, in Listing \ref{fig:isamethod} showcases Isabelle/Solidity features to specify Solidity functions.
 %
-The keyword \texttt{\color{isargreen}emethod} defines \texttt{removeFromPot} which has a \texttt{\color{isargreen}payable}  modifier. 
+The keyword \texttt{\color{isargreen}emethod} defines \texttt{decideBet} which has a \texttt{\color{isargreen}payable}  modifier. 
 %
-A memory (local) variable, \texttt{amount}, of  integer type for the function is declared using keyword  \texttt{\color{isargreen}param}.
+A memory (local) variable, \texttt{secretNumber}, of  integer type is declared using keyword  \texttt{\color{isargreen}param}.
 %
 Isabelle/Solidity allows to specify the body of the function using \texttt{\color{isargreen}where} \texttt{"do \{\dots\}",} structure.
 %
 %
 \begin{code}{label={fig:isamethod}}{isabelle}{Isabelle/Solidity method for Casino}
-emethod removeFromPot payable
-  param "STR amount": TSint
+emethod decideBet payable
+  param secretNumber: "SType.TValue TSint"
 where
   "do {
     byOperator;
-    noActiveBet;
-    (STR ''pot'') ::=\<storage> [] 
-	(minus_monad_safe (storeLookup (STR ''pot'') []) 
-		(stackLookup (STR ''amount'') []));
-    transfer_monad (storeLookup (STR ''operator'') []) 
-	(stackLookup (STR ''amount'') [])
-  }"
+    inState (valtype.Sint 2);
+    $\langle$assert$\rangle$ ((hashedNumber $\sim\textsubscript{s}$ []) $\langle$=$\rangle$ ($\langle$keccak256$\rangle$ (secretNumber $\sim$ [])));
+    decl TSint secret;
+    secret [] ::= IF ((secretNumber $\sim$ []) $\langle\%\rangle$ $\langle$sint$\rangle$ 2) $\langle$=$\rangle$( $\langle$sint$\rangle$ 0) 
+    					THEN $\langle$sint$\rangle$ 0 ELSE $\langle$sint$\rangle$ 1;
+    IF (secret $\sim$ []) $\langle$=$\rangle$(guess $\sim\textsubscript{s}$ []) THEN
+      do {
+        decl TSint bet_old;
+        bet_old [] ::= bet $\sim\textsubscript{s}$ [];
+        bet [] ::=$\textsubscript{s}$ ⟨sint⟩ 0;
+        pot [] ::=$\textsubscript{s}$ ((pot $\sim\textsubscript{s}$ []) ⟨-⟩ (bet_old $\sim$ []));
+        ⟨transfer⟩ (player $\sim\textsubscript{s}$ []) ((bet $\sim\textsubscript{s}$ []) $\langle$*$\rangle$ ($\langle$sint$\rangle$ 2))
+      }
+     ELSE
+      do {
+        pot [] ::=$\textsubscript{s}$ pot $\sim\textsubscript{s}$ [] $\langle$+$\rangle$ bet $\sim\textsubscript{s}$ [];
+        bet [] ::=$\textsubscript{s}$ $\langle$sint$\rangle$ 0
+      };
+     state [] ::=$\textsubscript{s}$ $\langle$sint$\rangle$ 0
+  }",
 \end{code}
+%Then, Isabelle/Solidity provides a on-to-one mapping of Solidity statements, expressions and preconditions.
 %
-
+%
+%\begin{code}{label={fig:isamethod}}{isabelle}{Isabelle/Solidity method for Casino}
+%emethod removeFromPot payable
+%  param "STR amount": TSint
+%where
+%  "do {
+%    byOperator;
+%    noActiveBet;
+%    (STR ''pot'') ::=\<storage> [] 
+%	(minus_monad_safe (storeLookup (STR ''pot'') []) 
+%		(stackLookup (STR ''amount'') []));
+%    transfer_monad (storeLookup (STR ''operator'') []) 
+%	(stackLookup (STR ''amount'') [])
+%  }"
+%\end{code}
+%
+%
 %
 Preconditions on access control, \texttt{byOperator}, and state-flow, \texttt{noActiveBet}, are specified as constants which are based on a higher-order logic funciton, i.e., \texttt{assert}, given in Listing \ref{def:assert}. 
 %
-The function \texttt{assert} returns normal exection if \texttt{msg.sender} is the operator else it throws an exception.
+The function \texttt{assert} returns normal execution if \texttt{msg.sender} is the operator else it throws an exception.
 %
-In this way, Isabelle/Solidity ensures the preconditions which ensures intended behavior of the method.
+The function models the Solidity command \texttt{\color{blue}require} behaviour in Solidity.
+%
+
 %
 \begin{code}{label={def:assert}}{isabelle}{Preocndition in Isabelle/Solidity}
 abbreviation byOperator::"(unit, ex, 'a state) state_monad" where
@@ -370,9 +397,11 @@ invariant pot_balance sb where
 %
 
 %
-To formally verify the invariant, Isabelle/Solidity allows to specify the verification of invariants using \texttt{verificaiton} command. 
+To formally verify the invariant, Isabelle/Solidity allows to specify the verification of invariants using \texttt{\color{isarblue}verificaiton} command. 
 %
-It accepts the name of the invariant, postcondition on constructor and methods to generate proof obligations. 
+It accepts the name of the invariant, invariant and postconditions on the constructor and methods to generate proof obligations. 
+%
+For example, in Listing \ref{def:ver}, \texttt{creatGame\_post} is a postcondition that ensures that state of the game will be \texttt{creatGame} after the execution of \texttt{creatGame} fucntion.
 %
 In order to automate the verification task, the tool has weakest precondition calculus based verification condition generator to discharge the proof obligations.
 
@@ -387,6 +416,11 @@ verification pot_balance:
   "removeFromPot" "K (K (K (K True)))"
   for "casino"
 \end{code}
+\paragraph*{Discussions}
+In verifying the Casino smart contract using Isabelle/Solidity resulted in the exploration of two major vulnerabilities, i.e., Reenetrancy and  Liveness.
+%
+While verifying the invariant in Example \autoref{ex:invariant},  it was not possible to verify unless changing the order of the Line 33 and 34 which enabled the completion of the verification task.
+%
 
 \section{Related Work}
 %
@@ -401,54 +435,59 @@ verification pot_balance:
 \nocite{*}
 \bibliography{oasics-v2021-sample-article}
 
-%\appendix
-%
-%\section{Styles of lists, enumerations, and descriptions}\label{sec:itemStyles}
-%
-%List of different predefined enumeration styles:
-%
-%\begin{itemize}
-%\item \verb|\begin{itemize}...\end{itemize}|
-%\item \dots
-%\item \dots
-%%\item \dots
-%\end{itemize}
-%
-%\begin{enumerate}
-%\item \verb|\begin{enumerate}...\end{enumerate}|
-%\item \dots
-%\item \dots
-%%\item \dots
-%\end{enumerate}
-%
-%\begin{alphaenumerate}
-%\item \verb|\begin{alphaenumerate}...\end{alphaenumerate}|
-%\item \dots
-%\item \dots
-%%\item \dots
-%\end{alphaenumerate}
-%
-%\begin{romanenumerate}
-%\item \verb|\begin{romanenumerate}...\end{romanenumerate}|
-%\item \dots
-%\item \dots
-%%\item \dots
-%\end{romanenumerate}
-%
-%\begin{bracketenumerate}
-%\item \verb|\begin{bracketenumerate}...\end{bracketenumerate}|
-%\item \dots
-%\item \dots
-%%\item \dots
-%\end{bracketenumerate}
-%
-%\begin{description}
-%\item[Description 1] \verb|\begin{description} \item[Description 1]  ...\end{description}|
-%\item[Description 2] Fusce eu leo nisi. Cras eget orci neque, eleifend dapibus felis. Duis et leo dui. Nam vulputate, velit et laoreet porttitor, quam arcu facilisis dui, sed malesuada risus massa sit amet neque.
-%\item[Description 3]  \dots
-%%\item \dots
-%\end{description}
-%
+\appendix
+
+\section{Casino: Solidity Smart Contract}\label{sec:app1}
+
+
+\begin{code}{label={fig:casino}}{solidity}{Solidity source code for the Casino}
+	contract Casino {
+		enum Coin { HEADS, TAILS } ;
+		enum State { IDLE, GAME_AVAILABLE,  BET_PLACED }
+		State private state; 
+		address public operator, player;
+		uint public pot;
+		bytes32 public hashedNumber;
+		uint public bet;
+		Coin guess;
+
+		function createGame(bytes32 hashNum) 
+			public byOperator, inState(IDLE) { 
+			hashedNumber = hashNum; 
+			state = GAME_AVAILABLE;
+		}
+
+		function placeBet(Coin _guess) public payable inState(GAME_AVAILABLE) {
+			require (msg.sender != operator);
+			require (msg.value <= pot);
+			state = BET_PLACED; 
+			player = msg.sender; 
+			bet = msg.value; 
+			guess = _guess; 
+		}
+
+ 		function decideBet(uint secretNumber) 
+		public byOperator, inState(BET_PLACED) { 
+			require (hashedNumber == keccak256(secretNumber)); 
+			Coin secret = (secretNumber \% 2 == 0)? HEADS : TAILS;
+			if (secret == guess) {
+				pot = pot - bet;  
+				player.transfer(bet*2);  
+				bet = 0;} 
+			else {
+				pot = pot + bet; 
+				bet = 0;
+				}
+			state = IDLE;}
+		function addToPot() public payable byOperator { pot = pot + msg.value;}
+
+		function removeFromPot(uint amount) public byOperator, noActiveBet { 
+			operator.transfer(amount);  
+			pot = pot - amount;}
+		}
+\end{code}
+
+
 %\cref{testenv-proposition} and \autoref{testenv-proposition} ...
 %
 %\section{Theorem-like environments}\label{sec:theorem-environments}
