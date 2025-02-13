@@ -4,3 +4,13 @@
 /output
 *.log
 .gitattributes
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.gz
+*.vtc
+*.out
+*.listing
+*.fls
+fmbc25/main.pdf
