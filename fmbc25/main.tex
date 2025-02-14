@@ -50,7 +50,19 @@
 \authorrunning{J. Open Access and J.\,R. Public} %TODO mandatory. First: Use abbreviated first/middle names. Second (only in severe cases): Use first author plus 'et al.'
 
 \Copyright{Jane Open Access and Joan R. Public} %TODO mandatory, please use full first names. LIPIcs license is "CC-BY";  http://creativecommons.org/licenses/by/3.0/
-\ccsdesc[100]{\textcolor{red}{Replace ccsdesc macro with valid one}} %TODO mandatory: Please choose ACM 2012 classifications from https://dl.acm.org/ccs/ccs_flat.cfm 
+%\ccsdesc[100]{\textcolor{red}{Replace ccsdesc macro with valid one}} %TODO mandatory: Please choose ACM 2012 classifications from https://dl.acm.org/ccs/ccs_flat.cfm 
+
+\begin{CCSXML}
+	<ccs2012>
+	   <concept>
+		   <concept_id>10002978.10002986.10002990</concept_id>
+		   <concept_desc>Security and privacy~Logic and verification</concept_desc>
+		   <concept_significance>500</concept_significance>
+		   </concept>
+	 </ccs2012>
+\end{CCSXML}
+
+\ccsdesc{Security and privacy~Logic and verification}
 
 \keywords{Program Verification, Smart Contracts, Isabelle, Solidity} %TODO mandatory; please add comma-separated list of keywords
 
@@ -63,6 +75,7 @@
 %\supplementdetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93, subcategory={Description, Subcategory}, swhid={Software Heritage Identifier}]{General Classification (e.g. Software, Dataset, Model, ...)}{URL to related version} %linktext, cite, and subcategory are optional
 
 %\funding{(Optional) general funding statement \dots}%optional, to capture a funding statement, which applies to all authors. Please enter author specific funding statements as fifth argument of the \author macro.
+\funding{This work was supported by the Engineering and Physical Sciences Research Council [grant number EP/X027619/1]}
 
 \acknowledgements{I want to thank \dots}%optional
 
@@ -98,6 +111,30 @@
 
 \section{Introduction}
 \label{sec-intro}
+One important innovation which comes with blockchain are so-called \emph{smart contracts}.
+These are digital contracts which are automatically executed once certain conditions are met and which are used to automate transactions on the blockchain.
+For instance, a payment for an item might be released instantly once the buyer and seller have met all specified parameters for a deal.
+Every day, hundreds of thousands of new contracts are deployed~\cite{etherscan:contracts} managing millions of dollars' worth of transactions~\cite{ycharts:transactions}.\looseness-1
+%Smart contracts are often used to automate financial transactions and thus they play a central role in the development of \emph{FinTech}, a technological revolution of the financial services sector.
+%Therefore, they are of particular importance to the UK, where financial services are one of the largest industries contributing up to 9\% of the total economic output~\cite{Hutton2021}.
+Technically, a smart contract is code which is deployed to a blockchain and which can be executed by sending special transactions to it.
+Thus, as for every computer program, smart contracts may contain bugs which can be exploited.
+However, since smart contracts are often used to automate financial transactions, such exploits may result in huge economic losses.
+%For example, in 2016 a vulnerability in an Ethereum smart contract was exploited resulting in a loss of approximately \$60M~\cite{Bahrynovska2017}.
+%More recently, hackers had exploited a vulnerability in the DeFi-platform Poly Network to steal \$600M~\cite{BBC2021}.
+%As another example, an incorrectly initialised contract was the root cause of the Parity Wallet bug that froze \$280M~\cite{perez.ea:smart:2021}.
+In general, it is estimated that since 2019, more than \$5B was stolen due to vulnerabilities in smart contracts~\cite{CipherTrace2021}.
+%In the healthcare sector, the impact of such vulnerabilities may be even worse since it may threaten the patients lifes.
+The high impact of vulnerabilities in smart contracts together with the fact that once deployed to the blockchain, they cannot be updated or removed easily, makes it important to ``get them right'' before they are deployed.
+%Thus, companies have specialised to provide dedicated auditing services in which experts analyse smart contracts for vulnerabilities.
+%Unfortunately, however, \highlight{even rigorous security audits cannot guarantee correctness of smart contracts} as shown in a more recent attack in which \$31M was stolen from a smart contract which had received already three security audits throughout the year~\cite{Goodin2021}.
+To address this problem we developed Isabelle/Solidity, a framework for the verification of Solidity smart contracts.
+The main aim of this paper is to introduce the Isabelle/Solidity tool for the verification of Solidity Smart Contracts.
+To this end its contribution is two-fold:
+\begin{itemize}
+	\item We describe the architecture of Isabelle/Solidity
+	\item We demonstrate it by verifying the Casino Contract from the long term verification challenge.
+\end{itemize}
 
 One important innovation which comes with blockchain are so-called \emph{smart contracts}.
 These are digital contracts which are automatically executed once certain conditions are met and which are used to automate transactions on the blockchain.
@@ -129,8 +166,8 @@ To this end its contribution is two-fold:
 \section{Overview}
 \label{sec-overview}
 
-\autoref{fig:approach} depicts an overview of our approach to verify Solidity smart contracts.
-\begin{figure}
+\autoref{fig:approach} depicts an overview of our approach to verify Solidity smart contract.
+\begin{figure}[!h]
     \centering
     \begin{tikzpicture}[%
         thick,scale=0.75, every node/.style={scale=0.75},
@@ -385,7 +422,7 @@ It is due to possibility of calling the function \texttt{decideBet} without sett
 %
 Considering the mission-critical nature of the smart contracts in blockchain technology, formal methods techniques, e.g., Model Checking \cite{antonino2020formalising}, theorem proving \cite{bhargavan2016formal}, have been employed to formally specify and verify Solidity smart contracts. Model checking \cite{clarke1997model}is a push-button automatic formal methods technique, however, has limited expressiveness due to finite-state machine modelling and is prone to state-space explosion. On the other hand, theorem proving is highly-expressive and has also been utilized for the verification of Solidity smart contracts. 
 
-In theorem proving literature, deep and shallow embedding are two common approaches for the verification of Solidity language. A deep embedding of operational semantic of Solidity in SolidiKeY \cite{ahrendt2020functional} allows to formally specify and verify smart contracts using KeY theorem prover. Similarly,Jakab \cite{zakrzewski2018towards} formalizes a Coq interpreter, utilizing deep embedding of operational semantic of Solidity, for the smart contract verification. However, aforementioned works rely on the axiomatic verification approach therefore may lead to miss corner cases in verifying smart contracts. In this direction, Diego et al. \cite{marmsoler2022isabelle}  developed a deep embedding framework for denotational semantic of Solidity in Isabelle/HOL which support correct-by-construction approach for the formal verification of smart contracts. On the other hand, there are two notable efforts for shallow embedding of Solidity in Isabelle theorem prover. Ribeiro et al. \cite{ribeiro2020formal} utilize mix of deep and shallow embedding to develop an intermediary low-level specification language, \texttt{SOLI}, for the specification and verification of Solidity smart contracts in Isabelle/HOL. Whereas \cite{marmsoler2024secure} provides a shallow embedding of operational semantic of Solidity in Isabelle/HOL. The framework is equipped with complex data types, such as mappings and arrays and verification of invariants as compared to SOLI.
+In theorem proving literature, deep and shallow embedding are two common approaches for the verification of Solidity language. A deep embedding of operational semantic of Solidity in SolidiKeY \cite{ahrendt2020functional} allows to formally specify and verify smart contracts using KeY theorem prover. Similarly, Jakab \cite{zakrzewski2018towards} formalizes a Coq interpreter, utilizing deep embedding of operational semantic of Solidity, for the smart contract verification. However, aforementioned works rely on the axiomatic verification approach therefore may lead to miss corner cases in verifying smart contracts. In this direction, Diego et al. \cite{marmsoler2022isabelle}  developed a deep embedding framework for denotational semantic of Solidity in Isabelle/HOL which support correct-by-construction approach for the formal verification of smart contracts. On the other hand, there are two notable efforts for shallow embedding of Solidity in Isabelle theorem prover. Ribeiro et al. \cite{ribeiro2020formal} utilize mix of deep and shallow embedding to develop an intermediary low-level specification language, \texttt{SOLI}, for the specification and verification of Solidity smart contracts in Isabelle/HOL. Whereas \cite{marmsoler2024secure} provides a shallow embedding of operational semantic of Solidity in Isabelle/HOL. The framework is equipped with complex data types, such as mappings and arrays and verification of invariants as compared to SOLI.
 
 Isabelle/Solidity tool, proposed in this paper, is based on the shallow embedding approach \cite{marmsoler2024secure}. 
 This is mainly due to the scope of the proposed tool.
