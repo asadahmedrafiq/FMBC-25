@@ -67,18 +67,18 @@
     style = solidity,
     language=Isabelle,
     literate =
-        {\\<Longrightarrow>}{$\Longrightarrow{}$}{1}
-        {\\<longrightarrow>}{$\longrightarrow{}$}{1}
+        {\\<Longrightarrow>}{$\Longrightarrow$}{2}
+        {\\<longrightarrow>}{$\longrightarrow$}{3}
         {\\<Rightarrow>}{$\Rightarrow{}$}{1}
         {\\<circ>}{$\circ$}{1}
         {\\<lambda>}{$\lambda$}{1}
-        {\\<and>}{$\wedge$}{1}
+        {\\<and>}{$\wedge$}{2}
         {\\<And>}{$\bigwedge$}{1}
         {\\<or>}{$\vee$}{1}
-        {\\<forall>}{$\forall$}{1}
-        {\\<exists>}{$\exists$}{1}
+        {\\<forall>}{$\forall$}{2}
+        {\\<exists>}{$\exists$}{2}
         {\\<le>}{$\leq$}{1}
-        {\\<ge>}{$\geq~$}{1}
+        {\\<ge>}{$\geq$}{3}
         {\\<in>}{$\in$}{1}
         {\\<rparr>}{$\rrparenthesis$}{1}
         {\\<lparr>}{$\llparenthesis$}{1}
@@ -86,11 +86,18 @@
         {\\<lbrakk>}{$\llbracket$}{1}
         {\\<union>}{$\cup$}{1}
         {\\<not>}{$\neg$}{1}
-        {\\<storage>}{$_{\texttt{s}}$}{1}
-        {\\<stilde>}{$\sim_\texttt{s}{}$}{1}
-        {\\<tilde>}{$\sim{}$}{1}
-        {\\<Sum>}{$\sum$}{1}
-        {\\<equiv>}{$\equiv$}{1}
+        {\\<Sum>}{$\sum$}{3}
+        {\\<equiv>}{$\equiv$}{2}
+        {\\<mpluss>}{{\color{isarverylight}$\langle + \rangle$}}{4}
+        {\\<msender>}{{\color{isarverylight}$\langle \texttt{sender} \rangle$}}{9}
+        {\\<mvalue>}{{\color{isarverylight}$\langle \texttt{value} \rangle$}}{8}
+        {\\<msint>}{{\color{isarverylight}$\langle \texttt{sint} \rangle$}}{7}
+        {\\<mskip>}{{\color{isarverylight}$\langle \texttt{skip} \rangle$}}{7}
+        {\\<mtransfer>}{{\color{isarverylight}$\langle \texttt{transfer} \rangle$}}{11}
+        {\\<mslookup>}{{\color{isarverylight}$\sim_\texttt{s}$}}{3}
+        {\\<mlookup>}{{\color{isarverylight}$\sim{}$}}{2}
+        {\\<massign>}{{\color{isarverylight}::=}}{4}
+        {\\<msassign>}{{\color{isarverylight}{$\texttt{::=}_\texttt{s}$}}}{5}
 }%
 
 \definecolor{isacom}{RGB}{0,102,153}
