@@ -42,10 +42,10 @@
 
 %\titlerunning{Dummy short title} %TODO optional, please use if title is longer than one line
 
-\author{Asad {Ahmed}}{University of Exeter, Exeter EX4 4PY, UK \and \url{https://sites.google.com/view/asad-ahmed/home} }{a.ahmed6@exeter.ac.uk}{https://orcid.org/0000-0001-8276-0975}{(Optional) author-specific funding acknowledgements}%TODO mandatory, please use full name; only 1 author per \author macro; first two parameters are mandatory, other parameters can be empty. Please provide at least the name of the affiliation and the country. The full address is optional. Use additional curly braces to indicate the correct name splitting when the last name consists of multiple name parts.
+\author{Asad {Ahmed}}{University of Exeter, Exeter EX4 4PY, UK \and \url{https://sites.google.com/view/asad-ahmed/home} }{a.ahmed6@exeter.ac.uk}{https://orcid.org/0000-0001-8276-0975}{}%TODO mandatory, please use full name; only 1 author per \author macro; first two parameters are mandatory, other parameters can be empty. Please provide at least the name of the affiliation and the country. The full address is optional. Use additional curly braces to indicate the correct name splitting when the last name consists of multiple name parts.
 
 %\author{Joan R. Public\footnote{Optional footnote, e.g. to mark corresponding author}}{Department of Informatics, Dummy College, [optional: Address], Country}{joanrpublic@dummycollege.org}{[orcid]}{[funding]}
-\author{Diego Marmsoler}{University of Exeter, Exeter EX4 4PY, UK}{d.marmsoler@exeter.ac.uk}{[https://orcid.org/0000−0003−2859−7673]}{[funding]}
+\author{Diego Marmsoler}{University of Exeter, Exeter EX4 4PY, UK}{d.marmsoler@exeter.ac.uk}{[https://orcid.org/0000-0003-2859-7673]}{}
 
 \authorrunning{J. Open Access and J.\,R. Public} %TODO mandatory. First: Use abbreviated first/middle names. Second (only in severe cases): Use first author plus 'et al.'
 
@@ -111,31 +111,6 @@
 
 \section{Introduction}
 \label{sec-intro}
-One important innovation which comes with blockchain are so-called \emph{smart contracts}.
-These are digital contracts which are automatically executed once certain conditions are met and which are used to automate transactions on the blockchain.
-For instance, a payment for an item might be released instantly once the buyer and seller have met all specified parameters for a deal.
-Every day, hundreds of thousands of new contracts are deployed~\cite{etherscan:contracts} managing millions of dollars' worth of transactions~\cite{ycharts:transactions}.\looseness-1
-%Smart contracts are often used to automate financial transactions and thus they play a central role in the development of \emph{FinTech}, a technological revolution of the financial services sector.
-%Therefore, they are of particular importance to the UK, where financial services are one of the largest industries contributing up to 9\% of the total economic output~\cite{Hutton2021}.
-Technically, a smart contract is code which is deployed to a blockchain and which can be executed by sending special transactions to it.
-Thus, as for every computer program, smart contracts may contain bugs which can be exploited.
-However, since smart contracts are often used to automate financial transactions, such exploits may result in huge economic losses.
-%For example, in 2016 a vulnerability in an Ethereum smart contract was exploited resulting in a loss of approximately \$60M~\cite{Bahrynovska2017}.
-%More recently, hackers had exploited a vulnerability in the DeFi-platform Poly Network to steal \$600M~\cite{BBC2021}.
-%As another example, an incorrectly initialised contract was the root cause of the Parity Wallet bug that froze \$280M~\cite{perez.ea:smart:2021}.
-In general, it is estimated that since 2019, more than \$5B was stolen due to vulnerabilities in smart contracts~\cite{CipherTrace2021}.
-%In the healthcare sector, the impact of such vulnerabilities may be even worse since it may threaten the patients lifes.
-The high impact of vulnerabilities in smart contracts together with the fact that once deployed to the blockchain, they cannot be updated or removed easily, makes it important to ``get them right'' before they are deployed.
-%Thus, companies have specialised to provide dedicated auditing services in which experts analyse smart contracts for vulnerabilities.
-%Unfortunately, however, \highlight{even rigorous security audits cannot guarantee correctness of smart contracts} as shown in a more recent attack in which \$31M was stolen from a smart contract which had received already three security audits throughout the year~\cite{Goodin2021}.
-To address this problem we developed Isabelle/Solidity, a framework for the verification of Solidity smart contracts.
-The main aim of this paper is to introduce the Isabelle/Solidity tool for the verification of Solidity Smart Contracts.
-To this end its contribution is two-fold:
-\begin{itemize}
-	\item We describe the architecture of Isabelle/Solidity
-	\item We demonstrate it by verifying the Casino Contract from the long term verification challenge.
-\end{itemize}
-
 One important innovation which comes with blockchain are so-called \emph{smart contracts}.
 These are digital contracts which are automatically executed once certain conditions are met and which are used to automate transactions on the blockchain.
 For instance, a payment for an item might be released instantly once the buyer and seller have met all specified parameters for a deal.
