@@ -42,25 +42,15 @@
 
 %\titlerunning{Dummy short title} %TODO optional, please use if title is longer than one line
 
-\author{Asad {Ahmed}}{University of Exeter, Exeter EX4 4PY, UK \and \url{https://sites.google.com/view/asad-ahmed/home} }{a.ahmed6@exeter.ac.uk}{https://orcid.org/0000-0001-8276-0975}{}%TODO mandatory, please use full name; only 1 author per \author macro; first two parameters are mandatory, other parameters can be empty. Please provide at least the name of the affiliation and the country. The full address is optional. Use additional curly braces to indicate the correct name splitting when the last name consists of multiple name parts.
+\author{Asad {Ahmed}}{University of Exeter, Exeter EX4 4PY, UK \and \url{https://sites.google.com/view/asad-ahmed/home} }{a.ahmed6@exeter.ac.uk}{https://orcid.org/0000-0001-8276-0975}{(Optional) author-specific funding acknowledgements}%TODO mandatory, please use full name; only 1 author per \author macro; first two parameters are mandatory, other parameters can be empty. Please provide at least the name of the affiliation and the country. The full address is optional. Use additional curly braces to indicate the correct name splitting when the last name consists of multiple name parts.
 
 %\author{Joan R. Public\footnote{Optional footnote, e.g. to mark corresponding author}}{Department of Informatics, Dummy College, [optional: Address], Country}{joanrpublic@dummycollege.org}{[orcid]}{[funding]}
-\author{Diego Marmsoler}{University of Exeter, Exeter EX4 4PY, UK}{d.marmsoler@exeter.ac.uk}{https://orcid.org/0000-0003-2859-7673}{}
+\author{Diego Marmsoler}{University of Exeter, Exeter EX4 4PY, UK}{d.marmsoler@exeter.ac.uk}{[https://orcid.org/0000−0003−2859−7673]}{[funding]}
 
 \authorrunning{J. Open Access and J.\,R. Public} %TODO mandatory. First: Use abbreviated first/middle names. Second (only in severe cases): Use first author plus 'et al.'
 
 \Copyright{Jane Open Access and Joan R. Public} %TODO mandatory, please use full first names. LIPIcs license is "CC-BY";  http://creativecommons.org/licenses/by/3.0/
-\begin{CCSXML}
-	<ccs2012>
-	   <concept>
-		   <concept_id>10002978.10002986.10002990</concept_id>
-		   <concept_desc>Security and privacy~Logic and verification</concept_desc>
-		   <concept_significance>500</concept_significance>
-		   </concept>
-	 </ccs2012>
-\end{CCSXML}
-
-\ccsdesc{Security and privacy~Logic and verification}
+\ccsdesc[100]{\textcolor{red}{Replace ccsdesc macro with valid one}} %TODO mandatory: Please choose ACM 2012 classifications from https://dl.acm.org/ccs/ccs_flat.cfm 
 
 \keywords{Program Verification, Smart Contracts, Isabelle, Solidity} %TODO mandatory; please add comma-separated list of keywords
 
@@ -72,7 +62,7 @@
 %\supplement{}%optional, e.g. related research data, source code, ... hosted on a repository like zenodo, figshare, GitHub, ...
 %\supplementdetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93, subcategory={Description, Subcategory}, swhid={Software Heritage Identifier}]{General Classification (e.g. Software, Dataset, Model, ...)}{URL to related version} %linktext, cite, and subcategory are optional
 
-\funding{This work was supported by the Engineering and Physical Sciences Research Council [grant number EP/X027619/1]}
+%\funding{(Optional) general funding statement \dots}%optional, to capture a funding statement, which applies to all authors. Please enter author specific funding statements as fifth argument of the \author macro.
 
 \acknowledgements{I want to thank \dots}%optional
 
@@ -393,46 +383,55 @@ It is due to possibility of calling the function \texttt{decideBet} without sett
 
 \section{Related Work}
 %
-Considering the mission-critical nature of the smart contracts in blockchain technology, various formal methods techniques, such as Model Checking, theorem proving and SMT solvers, have been employed to formally specify and verify Solidity smart contracts. 
-%
-Solidifier \cite{antonino2020formalising}, VeriSol\footnote{\url{https://github.com/Microsoft/verisol}} and solc-verify \cite{hajdu2020solc} translates a given smart contract into equivalent Boogie script, an intermediate verification language, which is then employed for formal verification using bounded model checking and SMT solvers.
-%
-Model checking is a push-button automatic  formal methods technique, however, has limited expressiveness due to finite-state machine modelling and is prone to state-space explosion.
-%
+Considering the mission-critical nature of the smart contracts in blockchain technology, formal methods techniques, e.g., Model Checking \cite{antonino2020formalising}, theorem proving \cite{bhargavan2016formal}, have been employed to formally specify and verify Solidity smart contracts. Model checking \cite{clarke1997model}is a push-button automatic formal methods technique, however, has limited expressiveness due to finite-state machine modelling and is prone to state-space explosion. On the other hand, theorem proving is highly-expressive and has also been utilized for the verification of Solidity smart contracts. 
 
-%
-Theorem proving is highly-expressive formal methods technique and has also been employed to formally specify and verify Solidity smart contracts. 
-%
-SolidiKeY \cite{ahrendt2020functional} accomplishes the task of verification using KeY theorem prover for a given smart contract specified as a dynamic logic (DL) formula. 
-%
-An intermediary low-level specification language, \texttt{SOLI} \cite{ribeiro2020formal}, allows to formally specify and verify smart contracts in Isabelle/HOL (\textcolor{red}{I doubt if it is axiomatic approach for Solidity smart contracts, need your comments}). 
-%Jackob  has proposed an interpreter in Coq theorem prover for Solidity using big-step semantic approach. 
-%
-%These efforts allow to formally specify and verify the Solidity smart contracts deductively using native proof theories in corresponding theorem provers. 
-%
-The above-mentioned research work  is based on axiomatic approach, thus, limits  verification capabilities of Solidity smart contracts. 
-%
-To overcome this issue, correct by construction approach has also been employed to formally specify and verify smart contracts.
-%
-Particularly, deep \cite{marmsoler2022isabelle} and shallow embedding \cite{marmsoler2024secure} of Solidity in Isabelle/HOL facilitate formal specification and verification of Solidity smart contracts.
-%
-Also we follow a definitional approach meaning that we generate lower level definitions from higher level domain constructs which ensures consistency by construction.
- %Particularly, deep embedding of Solidity statements as a datatype in Isabelle/HOL \cite{marmsoler2022isabelle} facilitates deductive reasoning about the language itself which in turn allows to formally specify and verify complex properties of Solidity smart contracts. 
-%
-%
-%
-%On the other hand, Isabelle/Solidity \cite{marmsoler2024secure} leverages upon the shallow embedding of Solidity in Isabelle/HOL in order to reduce the signification effort for verifying smart contracts with deep embedding approach.
-%
+In theorem proving literature, deep and shallow embedding are two common approaches for the verification of Solidity language. A deep embedding of operational semantic of Solidity in SolidiKeY \cite{ahrendt2020functional} allows to formally specify and verify smart contracts using KeY theorem prover. Similarly,Jakab \cite{zakrzewski2018towards} formalizes a Coq interpreter, utilizing deep embedding of operational semantic of Solidity, for the smart contract verification. However, aforementioned works rely on the axiomatic verification approach therefore may lead to miss corner cases in verifying smart contracts. In this direction, Diego et al. \cite{marmsoler2022isabelle}  developed a deep embedding framework for denotational semantic of Solidity in Isabelle/HOL which support correct-by-construction approach for the formal verification of smart contracts. On the other hand, there are two notable efforts for shallow embedding of Solidity in Isabelle theorem prover. Ribeiro et al. \cite{ribeiro2020formal} utilize mix of deep and shallow embedding to develop an intermediary low-level specification language, \texttt{SOLI}, for the specification and verification of Solidity smart contracts in Isabelle/HOL. Whereas \cite{marmsoler2024secure} provides a shallow embedding of operational semantic of Solidity in Isabelle/HOL. The framework is equipped with complex data types, such as mappings and arrays and verification of invariants as compared to SOLI.
 
-%
- Isabelle/Solidity tool, proposed in this paper, is based on the shallow embedding approach \cite{marmsoler2024secure}. 
+Isabelle/Solidity tool, proposed in this paper, is based on the shallow embedding approach \cite{marmsoler2024secure}. 
+This is mainly due to the scope of the proposed tool.
 % 
- Although, deep embedding furnishes deductive reasoning about the Solidity language itself but results in a significant effort to develop full support for the purpose.  
+ %
+The objective of the proposed tool is to formally specify and verify the correctness of the Solidity smart contracts which is best served, in terms of effort and time, by shallow embedding as compare to deep embedding. This has been empirically shown in \cite{marmsoler2024secure}.
+%Considering the mission-critical nature of the smart contracts in blockchain technology, various formal methods techniques, such as Model Checking, theorem proving and SMT solvers, have been employed to formally specify and verify Solidity smart contracts. 
+%%
+%Solidifier \cite{antonino2020formalising}, VeriSol\footnote{\url{https://github.com/Microsoft/verisol}} and solc-verify \cite{hajdu2020solc} translates a given smart contract into equivalent Boogie script, an intermediate verification language, which is then employed for formal verification using bounded model checking and SMT solvers.
+%%
+%Model checking is a push-button automatic  formal methods technique, however, has limited expressiveness due to finite-state machine modelling and is prone to state-space explosion.
+%%
 %
-On the other hand, shallow embedding approach  offers  
-%
+%%
+%Theorem proving is highly-expressive formal methods technique and has also been employed to formally specify and verify Solidity smart contracts. 
+%%
+%SolidiKeY \cite{ahrendt2020functional} accomplishes the task of verification using KeY theorem prover for a given smart contract specified as a dynamic logic (DL) formula. 
+%%
+%An intermediary low-level specification language, \texttt{SOLI} \cite{ribeiro2020formal}, allows to formally specify and verify smart contracts in Isabelle/HOL (\textcolor{red}{I doubt if it is axiomatic approach for Solidity smart contracts, need your comments}). 
+%%Jackob  has proposed an interpreter in Coq theorem prover for Solidity using big-step semantic approach. 
+%%
+%%These efforts allow to formally specify and verify the Solidity smart contracts deductively using native proof theories in corresponding theorem provers. 
+%%
+%The above-mentioned research work  is based on axiomatic approach, thus, limits  verification capabilities of Solidity smart contracts. 
+%%
+%To overcome this issue, correct by construction approach has also been employed to formally specify and verify smart contracts.
+%%
+%Particularly, deep \cite{marmsoler2022isabelle} and shallow embedding \cite{marmsoler2024secure} of Solidity in Isabelle/HOL facilitate formal specification and verification of Solidity smart contracts.
+%%
 %Also we follow a definitional approach meaning that we generate lower level definitions from higher level domain constructs which ensures consistency by construction.
+% %Particularly, deep embedding of Solidity statements as a datatype in Isabelle/HOL \cite{marmsoler2022isabelle} facilitates deductive reasoning about the language itself which in turn allows to formally specify and verify complex properties of Solidity smart contracts. 
+%%
+%%
+%%
+%%On the other hand, Isabelle/Solidity \cite{marmsoler2024secure} leverages upon the shallow embedding of Solidity in Isabelle/HOL in order to reduce the signification effort for verifying smart contracts with deep embedding approach.
+%%
 %
+%%
+% Isabelle/Solidity tool, proposed in this paper, is based on the shallow embedding approach \cite{marmsoler2024secure}. 
+%% 
+% Although, deep embedding furnishes deductive reasoning about the Solidity language itself but results in a significant effort to develop full support for the purpose.  
+%%
+%On the other hand, shallow embedding approach  offers  
+%%
+%%Also we follow a definitional approach meaning that we generate lower level definitions from higher level domain constructs which ensures consistency by construction.
+%%
 
 \section{Conclusion}
 %%
