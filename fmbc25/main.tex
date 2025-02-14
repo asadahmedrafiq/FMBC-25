@@ -28,6 +28,15 @@
 \usepackage{upquote}
 \bibliographystyle{plainurl}% the mandatory bibstyle
 
+\definecolor{blue}{rgb}{0.38, 0.51, 0.71} %glaucous, 97,130,181, #6182B5
+\definecolor{darkblue}{RGB}{17, 42, 60} % 112A3C
+\definecolor{red}{RGB}{175, 49, 39} % AF3127
+\definecolor{orange}{RGB}{217, 156, 55} % D99C37
+\definecolor{green}{RGB}{144, 169, 84} % 90A954
+\definecolor{palegreen}{RGB}{197, 184, 104} % C5B868
+\definecolor{yellow}{RGB}{250, 199, 100} % FAC764
+\definecolor{brokenwhite}{RGB}{218, 192, 166} % DAC0A6
+\definecolor{brokengrey}{rgb}{0.77, 0.76, 0.82} % {196,194,209}, C4C2D1
 \title{Isabelle/Solidity: A Tool  for the Verification of Solidity Smart Contracts} %TODO Please add
 
 %\titlerunning{Dummy short title} %TODO optional, please use if title is longer than one line
@@ -40,7 +49,19 @@
 \authorrunning{J. Open Access and J.\,R. Public} %TODO mandatory. First: Use abbreviated first/middle names. Second (only in severe cases): Use first author plus 'et al.'
 
 \Copyright{Jane Open Access and Joan R. Public} %TODO mandatory, please use full first names. LIPIcs license is "CC-BY";  http://creativecommons.org/licenses/by/3.0/
-\ccsdesc[100]{\textcolor{red}{Replace ccsdesc macro with valid one}} %TODO mandatory: Please choose ACM 2012 classifications from https://dl.acm.org/ccs/ccs_flat.cfm 
+%\ccsdesc[100]{\textcolor{red}{Replace ccsdesc macro with valid one}} %TODO mandatory: Please choose ACM 2012 classifications from https://dl.acm.org/ccs/ccs_flat.cfm 
+
+\begin{CCSXML}
+	<ccs2012>
+	   <concept>
+		   <concept_id>10002978.10002986.10002990</concept_id>
+		   <concept_desc>Security and privacy~Logic and verification</concept_desc>
+		   <concept_significance>500</concept_significance>
+		   </concept>
+	 </ccs2012>
+\end{CCSXML}
+
+\ccsdesc{Security and privacy~Logic and verification}
 
 \keywords{Program Verification, Smart Contracts, Isabelle, Solidity} %TODO mandatory; please add comma-separated list of keywords
 
@@ -53,6 +74,7 @@
 %\supplementdetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93, subcategory={Description, Subcategory}, swhid={Software Heritage Identifier}]{General Classification (e.g. Software, Dataset, Model, ...)}{URL to related version} %linktext, cite, and subcategory are optional
 
 %\funding{(Optional) general funding statement \dots}%optional, to capture a funding statement, which applies to all authors. Please enter author specific funding statements as fifth argument of the \author macro.
+\funding{This work was supported by the Engineering and Physical Sciences Research Council [grant number EP/X027619/1]}
 
 \acknowledgements{I want to thank \dots}%optional
 
@@ -78,89 +100,80 @@
 
 %TODO mandatory: add short abstract of the document
 \begin{abstract}
-
+Recently, formal verification of Solidity smart contracts has drawn a significant attention due to high-risk of financial losses in case of potential vulnerabilities. Most of the formal methods tools are based on the axiomatic approach to ensure bug-free smart contracts. However, the approach does not allow to, directly, address the implementation details of the programming language thus may lead to miss corner cases. Therefore, in this paper we propose a tool, Isabelle/Solidity, that is based on the correct-by-construction approach in Isabelle for Solidity smart contracts. The tool supports formal specification of Solidity smart contracts, invariants, post-conditions and automatic verification of the contracts. A case study, Casino, from the VerifyThis long-term challenge has been presented to showcase the salient features of the proposed tool.
 \end{abstract}
 
 \section{Introduction}
 \label{sec-intro}
+One important innovation which comes with blockchain are so-called \emph{smart contracts}.
+These are digital contracts which are automatically executed once certain conditions are met and which are used to automate transactions on the blockchain.
+For instance, a payment for an item might be released instantly once the buyer and seller have met all specified parameters for a deal.
+Every day, hundreds of thousands of new contracts are deployed~\cite{etherscan:contracts} managing millions of dollars' worth of transactions~\cite{ycharts:transactions}.\looseness-1
+%Smart contracts are often used to automate financial transactions and thus they play a central role in the development of \emph{FinTech}, a technological revolution of the financial services sector.
+%Therefore, they are of particular importance to the UK, where financial services are one of the largest industries contributing up to 9\% of the total economic output~\cite{Hutton2021}.
+Technically, a smart contract is code which is deployed to a blockchain and which can be executed by sending special transactions to it.
+Thus, as for every computer program, smart contracts may contain bugs which can be exploited.
+However, since smart contracts are often used to automate financial transactions, such exploits may result in huge economic losses.
+%For example, in 2016 a vulnerability in an Ethereum smart contract was exploited resulting in a loss of approximately \$60M~\cite{Bahrynovska2017}.
+%More recently, hackers had exploited a vulnerability in the DeFi-platform Poly Network to steal \$600M~\cite{BBC2021}.
+%As another example, an incorrectly initialised contract was the root cause of the Parity Wallet bug that froze \$280M~\cite{perez.ea:smart:2021}.
+In general, it is estimated that since 2019, more than \$5B was stolen due to vulnerabilities in smart contracts~\cite{CipherTrace2021}.
+%In the healthcare sector, the impact of such vulnerabilities may be even worse since it may threaten the patients lifes.
+The high impact of vulnerabilities in smart contracts together with the fact that once deployed to the blockchain, they cannot be updated or removed easily, makes it important to ``get them right'' before they are deployed.
+%Thus, companies have specialised to provide dedicated auditing services in which experts analyse smart contracts for vulnerabilities.
+%Unfortunately, however, \highlight{even rigorous security audits cannot guarantee correctness of smart contracts} as shown in a more recent attack in which \$31M was stolen from a smart contract which had received already three security audits throughout the year~\cite{Goodin2021}.
+To address this problem we developed Isabelle/Solidity, a framework for the verification of Solidity smart contracts.
+The main aim of this paper is to introduce the Isabelle/Solidity tool for the verification of Solidity Smart Contracts.
+To this end its contribution is two-fold:
+\begin{itemize}
+	\item We describe the architecture of Isabelle/Solidity
+	\item We demonstrate it by verifying the Casino Contract from the long term verification challenge.
+\end{itemize}
 
 \section{Overview}
+\label{sec-overview}
+
+\autoref{fig:approach} depicts an overview of our approach to verify Solidity smart contract.
 \begin{figure}[!h]
-\centering
-%\begin{tikzpicture}[show background grid]
-\begin{tikzpicture}[]
-%PICTURE SCOPE or REFERENCEs
-\node at (0, 0) (topleft) [circle] {};
-%\node at (11.75, 0) (topright) [circle, draw=red, fill=red] {};
-\node (topright) [circle, xshift = 10.5cm, right of = topleft] {};
-\node (bottomleft) [circle, yshift = -7.25cm, below of = topleft] {};
-\node (bottomright) [circle, xshift = 11.5cm, yshift = -7.25cm, below of = topleft] {};
-%\draw (0,-3) [draw=red, fill=red]  -- (5, -4); % CHECK once of the grid is affecting the placement of the objects
-%GRID
-
- \draw (2, -0.45 ) [rounded corners = 4pt, draw=black, fill=blue!4]  -- ++(8.15cm, 0) node[below left] {\textcolor{blue}{\scriptsize{Isabelle/Soildity}}}  --++(0, -5.5cm) --++(-8.15, 0)--cycle;
-\draw (2, -0.35 ) [rounded corners = 4pt, draw=black, fill=red!4]  -- ++(8.18cm, 0)  --++(0, 1.3cm) --++(-8.15, 0)node[below right, xshift=2.8cm] {\textcolor{red}{\scriptsize Solidity (v 0.8.25)}}-- cycle;
-%\draw (2.5, -0.65) [rounded corners = 4pt, draw=black, fill=blue!4]  -- ++(5cm, 0) --++(0, -2.65cm)--++(-5, 0)--cycle;
-%\draw (2.65, -0.85) [rounded corners = 4pt, draw=black, fill=blue!4]  -- ++(3.1cm, 0) --++(0, -2.3cm)--++(-3.1, 0)--cycle;
-%INPUTS
-%\node (solidity) [thin, draw=black, fill=red!4,  rectangle, rounded corners= 2pt, xshift = 4.40cm, right of = topleft, inner sep = 4pt] {\scriptsize Solidity (v 0.8.25)};
-\node (model) [thin, draw=black, fill=red!4,  minimum height= 0.6cm, rectangle, rounded corners= 2pt, xshift = 1.65cm, yshift = 0.10cm, right of = topleft, inner sep = 4pt] {\scriptsize Model};
-\node (spec) [thin, draw=black, fill=red!4,  minimum height= 0.6cm, rectangle, rounded corners= 2pt, xshift = 3.40cm, yshift = 0.10cm, right of = topleft, inner sep = 4pt] {\scriptsize Specifications};
-\node (ver) [thin, draw=black, fill=red!4,  minimum height= 0.6cm, rectangle, rounded corners= 2pt, xshift = 6.850cm, yshift = 0.10cm, right of = topleft, inner sep = 4pt] {\scriptsize{ Verification Condition Generator}};
-\node (sm) [thin, draw=black, fill=blue!4,  rectangle, minimum width=2.3cm, rounded corners= 2pt, xshift = 2.85cm, yshift = -1.25cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize Isabelle/HOL};
-\node (sm1) [thin, draw=black, fill=blue!4,  rectangle, minimum width=2.3cm,  xshift = 2.85cm, yshift = -2.10cm, right of = topleft, inner sep = 2pt, align = center] {\scriptsize{ State.thy,} \\[0.15] \scriptsize{State\_monad.thy,} \\[0.15] \scriptsize{Solidity.thy}};
-%
-%MODEL TO SM
-%\draw  [draw=black, line width = 1.5pt, ->] (model.south)  to [out=270, in=90] (sm.north);; ;;
-\draw  [draw=black, line width = 1.5pt, ->] (model.south)  --++(0, -0.35cm) |- (3.25cm, -0.65cm) -| (sm.north);; ;;
-%%SM TO HOL CORE
-\draw  [draw=black, line width = 1.5pt, <->] (sm.east)  -- ++(3.35cm, 0);;;; ;;
-%
-\node (dtl) [thin, draw=black, fill=blue!4,  rectangle, minimum width=4.9cm, rounded corners= 2pt, xshift = 7.90cm, yshift = -3.35cm, right of = topleft, inner sep = 4pt, align = center, rotate=90] { {\scriptsize \textcolor{white}{Isabelle/HOL}}\\[0.15] {\scriptsize \textcolor{white}{ Definitions/Theorems/Lemmas}}};
-\node (dtl) [thin, draw=black, fill=blue!4,  rectangle, minimum width=4.9cm, rounded corners= 2pt, xshift = 8cm, yshift = -3.45cm, right of = topleft, inner sep = 4pt, align = center, rotate=90] { {\scriptsize Isabelle/HOL}\\[0.15] {\scriptsize  Definitions/Thoerems/Lemmas}};
-\node (isac) [thin, draw=black, fill=blue!4,  rectangle, rounded corners= 2pt, minimum width= 5.5cm, xshift = 9.75cm,  yshift= -3.2cm, right of = topleft,  inner sep = 4pt,   align = center, rotate=90] { {\scriptsize Isabelle/HOL Core}};
-\draw  [draw=black, line width = 1.5pt, <->] (9.52, -3) -- ++(0.95cm, 0) ;;
-%%THEORIES-step02
-
-\node (isasol) [thin, draw=black, fill=blue!4,  rectangle, minimum width=2.3cm, rounded corners= 2pt, xshift = 4.550cm, yshift = -3.55cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize Isabelle/ML};
-\node (isasol1) [thin, draw=black, fill=blue!4,  rectangle, minimum width=2.3cm,  xshift = 4.550cm, yshift = -4.05cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize{ Contract.thy}};
-%SPECIFICATION TO CONTRACT
-\draw  [draw=black, line width = 1.5pt, ->] (spec.south)  --++(0, -0.35cm) |- (5.25cm, -0.65cm) -| (isasol.north);; ;;
-%%Contract to Modeling
-\draw  [draw=black, line width = 1.5pt, <->]  (sm1.south east) --++ (0, -0.5);;
-\draw  [draw=black, line width = 1.5pt, ->] (isasol.east) -- ++(1.65cm, 0);;
-%
-%
-%
-\node (sc) [thin, draw=black, fill=red!4,  rectangle, rounded corners= 2pt, xshift= -0.75cm, yshift = -3.55cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize Smart Contract  \&\\[0.05pt] \scriptsize Property Specification };
-\draw  [draw=black, line width = 1.5pt, ->] (sc.east) to [ out=360, in=180] (isasol.west);;
-\node (vsc) [thin, draw=black, fill=green!10,  rectangle, rounded corners= 2pt, minimum width= 5.5cm, xshift = 10.75cm,  yshift= -3.2cm, right of = topleft,  inner sep = 4pt,   align = center, rotate=90] { {\scriptsize Verified Smart Contract}};
-\draw  [draw=black, line width = 1.5pt, ->] (11.01, -3) -- ++(0.5cm, 0) ;;
-\node (vcg) [thin, draw=black, fill=blue!4,  rectangle, minimum width=2.3cm, rounded corners= 2pt, xshift = 5.90cm, yshift = -5.10cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize \scriptsize Isabelle/HOL};
-
-\node (vcg1) [thin, draw=black, fill=blue!4,  rectangle, minimum width=2.3cm, xshift = 5.90cm, yshift = -5.60cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize{ WP.thy}};
-
-
-%%CONNECTIONS
-%
-
-\node (scp) [thin, draw=black, fill=red!4,  rectangle, rounded corners= 2pt, xshift = -0.80cm, yshift = -5.50cm, right of = topleft, inner sep = 4pt, align = center] {\scriptsize Automatic  Verification};
-%
-%scp to verification generator
-\draw  [draw=black, line width = 1.5pt, <-]  (vcg1.west) --++ (-4.0cm, 0);;
-%vcg to modeling
-\draw  [draw=black, line width = 1.5pt, <->]  (vcg.west) --++(-1.8cm, 0) -| (sm1.south);;
-%Contract to verification generator
-\draw  [draw=black, line width = 1.5pt, <->]  (vcg.north west) --++ (0, 0.5);;
-%
-
-%WP to VCG
-\draw  [draw=black, line width = 1.5pt, <-] (vcg.north)  --++(0, 4.63cm) ;; ;;
-
-\end{tikzpicture}
-
+    \centering
+    \begin{tikzpicture}[%
+        thick,scale=0.75, every node/.style={scale=0.75},
+        basic/.style ={rounded corners=3pt, draw, minimum width=3cm, minimum height=1cm, align=center},
+        theory/.style={basic, fill=blue!95!black!30},
+        temp/.style={basic, fill=green!95!black!30},
+        feature/.style={basic, fill=red!95!black!30},
+        dep/.style={-latex},
+        gen/.style={-latex,dashed}
+        ]
+        \node[feature] (ver) at (0,0) {Verification};
+        \node[temp] (obl) at (0,-2) {Proof \\ obligations};
+        \node[temp] (usr) at (-4,-2) {User \\ proofs};
+        \node[temp] (cor) at (4,0) {Correctness \\ proof};
+        \node[temp] (cnt) at (4,-2) {Contract \\ definition};
+        \node[feature] (spc) at (8,-2) {Contract};
+        \node[theory] (wpc) at (-4,-4) {WP \\ calculus};
+        \node[theory] (lan) at (4,-4) {Solidity \\ embedding};
+        \node[feature] (isc) at (-6,-6) {Invariant};
+        \node[temp] (idf) at (-2,-6) {Invariant \\ definition};
+        \node[theory] (fmm) at (2,-6) {Formalization \\ memory model};
+        \node[theory] (fsm) at (6,-6) {Formalization \\ state monad};
+        \draw[dep] (ver.west) -- (usr.north);
+        \draw[gen] (ver.south) -- (obl.north);
+        \draw[gen] (ver.east) -- (cor.west);
+        \draw[dep] (cor.south) -- (cnt.north);
+        \draw[gen] (spc.west) -- (cnt.east);
+        \draw[dep] (usr.south) -- (wpc.north);
+        \draw[dep] (usr.east) -- (obl.west);
+        \draw[dep] (obl.east) -- (cnt.west);
+        \draw[dep] (cnt.south) -- (lan.north);
+        \draw[dep] (wpc.east) -- (lan.west);
+        \draw[dep] (lan.south) -- (fsm.north);
+        \draw[dep] (lan.south) -- (fmm.north);
+        \draw[dep] (idf.east) -- (fmm.west);
+        \draw[gen] (isc.east) -- (idf.west);
+    \end{tikzpicture}
+    \caption{Isabelle/Solidity: Overview of theories (blue), commands (red), and generated artefacts (green). \label{fig:approach}}
 \end{figure}
-\label{sec-ov}
 %
 \section{Case Study}
 We use  a case study, Casino, from VerifyThis long-term challenge. 
@@ -192,11 +205,11 @@ It also changes the state of the game to \texttt{IDLE} state.
 %%THIS CAN MOVE UP IN THE INTRODUCTION
 The Casino smart contract is selected for two accounts: One, it has been implemented using sophisticated and advanced features of Solidity syntax including data types, global and local variables, functions, modifiers and precondition specifiers. 
 %
-Thus, requires to develop powerful equivalent syntax support in the proposed tool to embed the program logic. Two, from verification aspect, Casino has been employed as a case study in literature and hence allows to compare and report the result to gauge the performance of the proposed tool, comparatively.
+Thus, requires to develop powerful equivalent syntax support for the tools to embed the program logic. Two, from verification aspect, Casino has been employed as a case study in literature and hence allows to compare and report the result to gauge the performance of the proposed tool, comparatively.
 %
 %
 \section{Specification}
-In this section, we present a Solidity equivalent specification of smart contracts in Isabelle/Solidity. 
+In this section, we present a Solidity equivalent specification of smart contracts in Isabelle/Solidity tool. 
 %
 We primarily focused on specifications of state or local variables, data types, functions, modifiers, precondition specifiers and statements in Isabelle/Solidity.
 %\vspace{-1cm}
@@ -344,8 +357,8 @@ verification pot_balance:
   "removeFromPot" "K (K (K (K True)))"
   for "casino"
 \end{code}
-\vskip
-\paragraph*{Discussions}
+%\vskip
+%\paragraph*{Discussions}
 Verification of the Casino smart contract using Isabelle/Solidity resulted in the exploration of a major vulnerability, i.e., Reenetrancy.
 %
 While verifying the invariant in Example \autoref{ex:invariant},  it was not possible to verify unless changing the order of the Line 32 and 33 (see Appendix \ref{sec:app1}) which enabled the completion of the verification task. 
@@ -357,7 +370,7 @@ It is due to possibility of calling the function \texttt{decideBet} without sett
 %
 Considering the mission-critical nature of the smart contracts in blockchain technology, formal methods techniques, e.g., Model Checking \cite{antonino2020formalising}, theorem proving \cite{bhargavan2016formal}, have been employed to formally specify and verify Solidity smart contracts. Model checking \cite{clarke1997model}is a push-button automatic formal methods technique, however, has limited expressiveness due to finite-state machine modelling and is prone to state-space explosion. On the other hand, theorem proving is highly-expressive and has also been utilized for the verification of Solidity smart contracts. 
 
-In theorem proving literature, deep and shallow embedding are two common approaches for the verification of Solidity language. A deep embedding of operational semantic of Solidity in SolidiKeY \cite{ahrendt2020functional} allows to formally specify and verify smart contracts using KeY theorem prover. Similarly,Jakab \cite{zakrzewski2018towards} formalizes a Coq interpreter, utilizing deep embedding of operational semantic of Solidity, for the smart contract verification. However, aforementioned works rely on the axiomatic verification approach therefore may lead to miss corner cases in verifying smart contracts. In this direction, Diego et al. \cite{marmsoler2022isabelle}  developed a deep embedding framework for denotational semantic of Solidity in Isabelle/HOL which support correct-by-construction approach for the formal verification of smart contracts. On the other hand, there are two notable efforts for shallow embedding of Solidity in Isabelle theorem prover. Ribeiro et al. \cite{ribeiro2020formal} utilize mix of deep and shallow embedding to develop an intermediary low-level specification language, \texttt{SOLI}, for the specification and verification of Solidity smart contracts in Isabelle/HOL. Whereas \cite{marmsoler2024secure} provides a shallow embedding of operational semantic of Solidity in Isabelle/HOL. The framework is equipped with complex data types, such as mappings and arrays and verification of invariants as compared to SOLI.
+In theorem proving literature, deep and shallow embedding are two common approaches for the verification of Solidity language. A deep embedding of operational semantic of Solidity in SolidiKeY \cite{ahrendt2020functional} allows to formally specify and verify smart contracts using KeY theorem prover. Similarly, Jakab \cite{zakrzewski2018towards} formalizes a Coq interpreter, utilizing deep embedding of operational semantic of Solidity, for the smart contract verification. However, aforementioned works rely on the axiomatic verification approach therefore may lead to miss corner cases in verifying smart contracts. In this direction, Diego et al. \cite{marmsoler2022isabelle}  developed a deep embedding framework for denotational semantic of Solidity in Isabelle/HOL which support correct-by-construction approach for the formal verification of smart contracts. On the other hand, there are two notable efforts for shallow embedding of Solidity in Isabelle theorem prover. Ribeiro et al. \cite{ribeiro2020formal} utilize mix of deep and shallow embedding to develop an intermediary low-level specification language, \texttt{SOLI}, for the specification and verification of Solidity smart contracts in Isabelle/HOL. Whereas \cite{marmsoler2024secure} provides a shallow embedding of operational semantic of Solidity in Isabelle/HOL. The framework is equipped with complex data types, such as mappings and arrays and verification of invariants as compared to SOLI.
 
 Isabelle/Solidity tool, proposed in this paper, is based on the shallow embedding approach \cite{marmsoler2024secure}. 
 This is mainly due to the scope of the proposed tool.
