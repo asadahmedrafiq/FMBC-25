@@ -212,7 +212,7 @@ Each of the commands generates lower-level definitions and theorems for Isabelle
     \item[Invariant]
     This command supports a user in the specification of an invariant for the contract.
     An invariant is specified as a HOL formula over the store and balance of the contract.
-    The command then uses the typing information of member variables to generates a corresponding \emph{invariant definition}.
+    The command then uses the typing information of member variables to generate+ a corresponding \emph{invariant definition}.
     \item[Verification]
     This command triggers the verification of a contract.
     It requires a user to provide an invariant as well as postconditions for the methods.
@@ -337,7 +337,7 @@ For assignment operators, Isabelle/Solidity distinguishes between stack (\texttt
 Isabelle/Solidity facilitates the specification of invariants using the \texttt{\color{isarblue}invariant} command.
 This command requires a user to provide the name of the invariant, followed by the invariant as predicates formulated over the contract's store and balance.
 It then generates a definition for the invariant which, in addition to the predicate specified by the user, also requires the value of member variables to adhere to their types.
-The command also proves corresponding a introduction and elimination rules which can be invoked for automated verification of the invariants.
+The command also proves corresponding  introduction and elimination rules which can be invoked for automated verification of the invariants.
 
 \begin{Example}{Invariant}{invariant}
 	Assume that we want to ensure our contract has always enough funds to cover the payout of players.
