@@ -77,7 +77,7 @@
 %\funding{(Optional) general funding statement \dots}%optional, to capture a funding statement, which applies to all authors. Please enter author specific funding statements as fifth argument of the \author macro.
 \funding{This work was supported by the Engineering and Physical Sciences Research Council [grant number EP/X027619/1]}
 
-\acknowledgements{I want to thank \dots}%optional
+%\acknowledgements{I want to thank \dots}%optional
 
 %\nolinenumbers %uncomment to disable line numbering
 
@@ -104,21 +104,21 @@
 	Smart contracts are an important innovation in Blockchain which allow to automate financial transactions.
 	Every day, hundreds of thousands of new contracts are deployed managing millions of dollars' worth of transactions.
 	Thus, bugs in smart contracts may lead to high financial losses and it is important to get them right before deploying them to the Blockchain.
-	To address this problem we developed Isabelle/Solidity, a tool for the deductive verification of smart contracts in Isabelle.
+	To address this problem we developed Isabelle/Solidity, a tool for the verification of smart contracts in Isabelle.
 	The tool is implemented as a definitional extension for the Isabelle proof assistant and thus complements existing tools in this area which are mostly based on axiomatic approaches.
 	In this paper we describe Isabelle/Solidity and demonstrate it by verifying a casino contract from the VerifyThis long term verification challenge.
 \end{abstract}
 
 \section{Introduction}
 \label{sec-intro}
-One important innovation which comes with blockchain are so-called \emph{smart contracts}.
-These are digital contracts which are automatically executed once certain conditions are met and which are used to automate transactions on the blockchain.
+One important innovation which comes with Blockchain are so-called \emph{smart contracts}.
+These are digital contracts which are automatically executed once certain conditions are met and which are used to automate transactions on the Blockchain.
 For instance, a payment for an item might be released instantly once the buyer and seller have met all specified parameters for a deal.
 Every day, hundreds of thousands of new contracts are deployed~\cite{etherscan:contracts} managing millions of dollars' worth of transactions~\cite{ycharts:transactions}.\looseness-1
 %Smart contracts are often used to automate financial transactions and thus they play a central role in the development of \emph{FinTech}, a technological revolution of the financial services sector.
 %Therefore, they are of particular importance to the UK, where financial services are one of the largest industries contributing up to 9\% of the total economic output~\cite{Hutton2021}.
 
-Technically, a smart contract is \emph{code which is deployed to a blockchain} and which can be executed by sending special transactions to it.
+Technically, a smart contract is \emph{code which is deployed to a Blockchain} and which can be executed by sending special transactions to it.
 Thus, as for every computer program, smart contracts may contain bugs which can be exploited.
 However, since smart contracts are often used to automate financial transactions, such exploits may result in huge economic losses.
 %For example, in 2016 a vulnerability in an Ethereum smart contract was exploited resulting in a loss of approximately \$60M~\cite{Bahrynovska2017}.
@@ -127,22 +127,25 @@ However, since smart contracts are often used to automate financial transactions
 In general, it is estimated that since 2019, more than \$5B was stolen due to vulnerabilities in smart contracts~\cite{CipherTrace2021}.
 %In the healthcare sector, the impact of such vulnerabilities may be even worse since it may threaten the patients lifes.
 
-The high impact of vulnerabilities in smart contracts together with the fact that once deployed to the blockchain, they cannot be updated or removed easily, makes it important to ``\emph{get them right}'' before they are deployed.
+The high impact of vulnerabilities in smart contracts together with the fact that once deployed to the Blockchain, they cannot be updated or removed easily, makes it important to ``\emph{get them right}'' before they are deployed.
 %Thus, companies have specialised to provide dedicated auditing services in which experts analyse smart contracts for vulnerabilities.
 %Unfortunately, however, \highlight{even rigorous security audits cannot guarantee correctness of smart contracts} as shown in a more recent attack in which \$31M was stolen from a smart contract which had received already three security audits throughout the year~\cite{Goodin2021}.
-To this end, we developed Isabelle/Solidity, a tool for the verification of Solidity smart contracts.
-The main aim of this paper is to introduce the tool and demonstrate it in terms of an example.
+To address this problem, we developed Isabelle/Solidity, a tool for the deductive verification of Solidity smart contracts implemented as a definitional extension for the Isabelle~\cite{Nipkow2002} proof assistant.
+The main aim of this paper is to describe the tool and demonstrate it in terms of an example.
 To this end its contribution is two-fold:
 \begin{itemize}
 	\item We provide an overview of the technical architecture of Isabelle/Solidity.
 	\item We use it to verify the casino contract from the VerifyThis verification challenge.
 \end{itemize}
 
-\section{Overview}
+\section{Isabelle/Solidity}
 \label{sec-overview}
 
-\autoref{fig:approach} depicts an overview of our approach to verify Solidity smart contract.
-\begin{figure}[!h]
+Isabelle/Solidity is available as a definitional package for the Isabelle proof assistant.
+It is available online and can be downloaded from \url{www.marmsoler.com/assets/isabelle-solidity.zip}
+
+\autoref{fig:approach} shows the architecture of Isabelle/Solidity.
+\begin{figure}[t]
     \centering
     \begin{tikzpicture}[%
         thick,scale=0.75, every node/.style={scale=0.75},
@@ -193,18 +196,19 @@ Isabelle/Solidity is based on four Isabelle theories which are represented by th
     It also defines the notion of a Solidity state as a collection of different stores.
     \item[Solidity embedding]
     A Solidity statement is defined as a particular state monad manipulating a Solidity state.
-    This theory contains definitions for all our Solidity statements.
+    This theory contains definitions for all of our Solidity statements.
     \item[WP calculus]
-    To support a user in the verification of properties for our Solidity programms we provide a weakest precondition calculus~\cite{Dijkstra1975} for our Solidity statements.
-    This theory formalizes the calculus.
+    To support a user in the verification of Solidity programms, Isabelle/Solidity comes with a verification condition generator (VCG).
+    The VCG is based on a weakest precondition calculus~\cite{Dijkstra1975} for our Solidity statements and which is formalized in this theory.\looseness-1
 \end{description}
 
+\noindent
 In addition to the theories described above, Isabelle/Solidity extends the Isabelle proof assistant by means of three new definitional commands represented by the {\color{red}red rectangles} in \autoref{fig:approach}.
 Each of the commands generates lower-level definitions and theorems for Isabelle/HOL which are represented as {\color{green}green rectangles}.
 \begin{description}
     \item[Contract]
     This command allows a user to specify a new contract.
-    It requires a user to specify a list of member variables, a constructor, and a list of methods.
+    It requires a them to specify a list of member variables, a constructor, and a list of methods.
     For each method the user can specify a list of parameters as well as a method body.
     The body is provided as a state monad using the monads defined in the corresponding Isabelle theory.
     The command then generates definitions for the \emph{contract's methods}.
@@ -212,18 +216,18 @@ Each of the commands generates lower-level definitions and theorems for Isabelle
     \item[Invariant]
     This command supports a user in the specification of an invariant for the contract.
     An invariant is specified as a HOL formula over the store and balance of the contract.
-    The command then uses the typing information of member variables to generate+ a corresponding \emph{invariant definition}.
+    The command then uses the typing information of member variables to generate a corresponding \emph{invariant definition}.
     \item[Verification]
     This command triggers the verification of a contract.
     It requires a user to provide an invariant as well as postconditions for the methods.
     Then it presents the user with a list of \emph{proof obligations} for each of the contract's methods.
     The users then need to discharge these proof obligations by providing a corresponding \emph{proof}.
     To this end they can use the WP calculus provided by our framework.
-    After discharging these obligations Isabelle/Solidity proves an overall \emph{correctness theorem} which guarantees that the invariant as well as postconditions are not violated.
+    After discharging these obligations, Isabelle/Solidity proves an overall \emph{correctness theorem} which guarantees that the invariant as well as postconditions are not violated.
 \end{description}
 
 \section{Case Study}
-To demonstrate Isabelle/Solidity we use it to verify the casino contract from the VerifyThis long-term verification challenge~\cite{verifythis:casino}.
+To demonstrate Isabelle/Solidity in action, we use it to verify the casino contract from the VerifyThis long-term verification challenge~\cite{verifythis:casino}.
 The version of the contract used here is provided in Appendix \ref{sec:app1}.
 %
 The casino contract implements a betting game based on guessing the outcome of coin-tossing.
@@ -232,7 +236,7 @@ At any time, the game is characterized by three states, i.e., \texttt{IDLE}, \te
 %
 Initially, the game is in the \texttt{IDLE} state.
 %
-The game has been implemented in Solidity using the following functions:
+The game has been implemented in Solidity using the following functions.
 %
 \begin{itemize}
 \item The operator can create a new game by calling the \texttt{creatGame} function and provide the hash value of a secret number.
@@ -262,8 +266,11 @@ To this end Isabelle/Solidity provides the \texttt{\color{isacom}contract} comma
 The command requires a user to specify a list of member variables and corresponding types, followed by a specification of the constructor and the contract's methods.
 
 \paragraph*{Storage Variables}
-Listing \ref{fig:isadt} shows the specification of storage variables for the casino smart in Isabelle/Solidity.
-\begin{code}{label={fig:isadt}}{isabelle}{Isabelle/Solidity data types for Casino}
+Listing \ref{fig:isadt} shows the specification of storage variables for the casino contract in Isabelle/Solidity.
+\enlargethispage{.2cm}\vspace{.1cm}
+\begin{code}{label={fig:isadt}}{isabelle}{Isabelle/Solidity data types for Casino%
+  \hfill\smash{\raisebox{0pt}{\includegraphics[width=1cm,height=1cm]{isabelle_solidity.pdf}}}%
+}
 contract Casino
   for state: StateT
   and operator: AddressT
@@ -273,7 +280,7 @@ contract Casino
   and bet: IntT
   and guess: CoinT
 \end{code}
-Isabelle/Solidity supports most of the basic Solidity data types, such as bit-sized integers, bytes, and addresses.
+In general, Isabelle/Solidity supports most of the basic Solidity data types, such as bit-sized integers, bytes, and addresses.
 Enums can be encoded as integers with corresponding abbreviations.
 %
 \paragraph*{Methods}
@@ -286,33 +293,6 @@ What follows is a specification of stack (\texttt{\color{isargreen}param}), memo
 Finally, one can provide the body of the function using the \texttt{\color{isargreen}where} keyword followed by a corresponding monad specification (using \texttt{"\texttt{\color{isarlight}do} \{\dots\}",} notation).
 
 Listing \ref{fig:isamethod} shows the specification of the function \texttt{decideBet}.
-\begin{code}{label={fig:isamethod}}{isabelle}{Isabelle/Solidity method for Casino}
-emethod decideBet payable
-  param secretNumber: IntT
-where
-  do {
-    byOperator;
-    inState (Sint BET_PLACED);
-    $\langle$assert$\rangle$ (hashedNumber $\sim\textsubscript{s}$ [] $\langle$=$\rangle$ ($\langle$keccak256$\rangle$ (secretNumber $\sim$ [])));
-    decl TSint secret;
-    secret [] ::= IF ((secretNumber $\sim$ []) $\langle\%\rangle$ $\langle$sint$\rangle$ 2) $\langle$=$\rangle$ ($\langle$sint$\rangle$ 0) 
-    				        THEN $\langle$sint$\rangle$ HEADS ELSE $\langle$sint$\rangle$ TAILS;
-    IF (secret $\sim$ []) $\langle$=$\rangle$(guess $\sim\textsubscript{s}$ []) THEN
-    do {
-      decl TSint bet_old;
-      bet_old [] ::= bet $\sim\textsubscript{s}$ [];
-      bet [] ::=$\textsubscript{s}$ $\langle$sint$\rangle$ 0;
-      pot [] ::=$\textsubscript{s}$ ((pot $\sim\textsubscript{s}$ []) $\langle$-$\rangle$ (bet_old $\sim$ []));
-      $\langle$transfer$\rangle$ (player $\sim\textsubscript{s}$ []) ((bet $\sim\textsubscript{s}$ []) $\langle$*$\rangle$ ($\langle$sint$\rangle$ 2))
-    }
-    ELSE
-    do {
-      pot [] ::=$\textsubscript{s}$ pot $\sim\textsubscript{s}$ [] $\langle$+$\rangle$ bet $\sim\textsubscript{s}$ [];
-      bet [] ::=$\textsubscript{s}$ $\langle$sint$\rangle$ 0
-    };
-    state [] ::=$\textsubscript{s}$ $\langle$sint$\rangle$ IDLE
-  },
-\end{code}
 It is declared to be payable and accepts one parameter \texttt{secretNumber}, of integer type.
 Lines 5-7, implement preconditions for deciding a bet, i.e., only the operator can call the function, the game should be in state \texttt{BET\_PLACED} and \texttt{secretNumber} should be equal to the \texttt{hashedNumber}. 
 For this purpose, Isabelle/Solidity employs \texttt{\color{isarblue}{assert}} which models the Solidity \texttt{\color{blue}{require}} command. 
@@ -320,6 +300,35 @@ For this purpose, Isabelle/Solidity employs \texttt{\color{isarblue}{assert}} wh
 Isabelle/Solidity also supports other Solidity statements, such as control structures and assignment operators.
 For example, in Line 9, \texttt{\color{isarblue}{IF}}\dots \texttt{\color{isarblue}{THEN}}\dots \texttt{\color{isarblue}{ELSE}} reveals \texttt{HEADS} or \texttt{TAILS} by taking the modulus (\texttt{$\langle\%\rangle$}) of \texttt{secretNumber}. 
 For assignment operators, Isabelle/Solidity distinguishes between stack (\texttt{::=}) and storage (\texttt{::=}$\textsubscript{s}$) assignments along with corresponding lookup operators ($\sim$ and $\sim\textsubscript{s}$). 
+
+\begin{code}{label={fig:isamethod}}{isabelle}{%
+  Isabelle/Solidity method for Casino%
+  \hfill\smash{\raisebox{0pt}{\includegraphics[width=1cm,height=1cm]{isabelle_solidity.pdf}}}%
+}
+emethod decideBet payable
+  param secretNumber: IntT
+where
+  do {
+    byOperator;
+    inState (Sint BET_PLACED);
+    \<massert> (hashedNumber \<mslookup> [] $\langle$=$\rangle$ (\<mkeccak256> (secretNumber \<mlookup> [])));
+    decl TSint secret;
+    secret [] \<massign> \<mIF> ((secretNumber \<mlookup> []) \<mmod> \<msint> 2) \<meq> (\<msint> 0) 
+    				        \<mTHEN> \<msint> HEADS \<mELSE> \<msint> TAILS;
+    \<mIF> (secret \<mlookup> []) \<meq> (guess \<mslookup> []) \<mTHEN>
+      do {
+        pot [] \<msassign> ((pot \<mslookup> []) \<mminus> (bet \<mslookup> []));
+        bet [] \<msassign> \<msint> 0;
+        \<mtransfer> (player \<mslookup> []) ((bet \<mslookup> []) \<mmult> (\<msint> 2))
+      }
+    \<mELSE>
+      do {
+        pot [] \<msassign> pot \<mslookup> [] \<mpluss> bet \<mslookup> [];
+        bet [] \<msassign> \<msint> 0
+      };
+    state [] \<msassign> \<msint> IDLE
+  },
+\end{code}
 %
 
 %
@@ -335,9 +344,9 @@ For assignment operators, Isabelle/Solidity distinguishes between stack (\texttt
 %
 %
 Isabelle/Solidity facilitates the specification of invariants using the \texttt{\color{isarblue}invariant} command.
-This command requires a user to provide the name of the invariant, followed by the invariant as predicates formulated over the contract's store and balance.
+This command requires a user to provide the name of the invariant, followed by its specification in terms of a predicate formulated over the contract's store and balance.
 It then generates a definition for the invariant which, in addition to the predicate specified by the user, also requires the value of member variables to adhere to their types.
-The command also proves corresponding  introduction and elimination rules which can be invoked for automated verification of the invariants.
+The command also proves corresponding  introduction and elimination rules which can be invoked during verification.
 
 \begin{Example}{Invariant}{invariant}
 	Assume that we want to ensure our contract has always enough funds to cover the payout of players.
@@ -351,14 +360,17 @@ The command also proves corresponding  introduction and elimination rules which 
   \end{equation}\label{eq:inv1}
 %
 The corresponding specification in Isabelle/Solidity is given in Listing \ref{def:inv}.
-\begin{code}{label={def:inv}}{isabelle}{Invariant in Isabelle/Solidity}
-invariant pot_balance sb where
-  (fst sb state = sdata.Value (Sint BET_PLACED)
-    $\longrightarrow$ snd sb $\geq$ unat (valtype.sint (sdata.vt pot)) 
-	                + unat (valtype.sint (sdata.vt bet))
-        $\wedge$ valtype.sint (sdata.vt bet) $\leq$ valtype.sint (sdata.vt pot)) $\wedge$
-  (fst sb state $\neq$ sdata.Value (Sint BET_PLACED)
-    $\longrightarrow$  snd sb $\geq$ unat (valtype.sint (sdata.vt pot)))
+\begin{code}{label={def:inv}}{isabelle}{Invariant in Isabelle/Solidity
+  %
+  \hfill\smash{\raisebox{0pt}{\includegraphics[width=1cm,height=1cm]{isabelle_solidity.pdf}}}%
+}
+invariant pot_balance &\isarfvar{sb}& where
+  (fst &\isarfvar{sb}& state = Value (Sint BET_PLACED)
+    $\longrightarrow$ snd &\isarfvar{sb}& $\geq$ unat (sint (vt (fst &\isarfvar{sb}& pot))) 
+	               + unat (sint (vt (fst &\isarfvar{sb}& bet)))
+        $\wedge$ sint (vt (fst &\isarfvar{sb}& bet)) $\leq$ sint (vt (fst &\isarfvar{sb}& pot))) $\wedge$
+  (fst &\isarfvar{sb}& state $\neq$ Value (Sint BET_PLACED)
+    $\longrightarrow$  snd &\isarfvar{sb}& $\geq$ unat (sint (vt (fst &\isarfvar{sb}& pot))))
   for "casino"
 \end{code}
 \end{Example}
@@ -371,8 +383,10 @@ It requires the user to provide a name followed by an invariant specified using 
 Moreover, a user can provide postconditions for the constructor and each of the contract's methods.
 The corresponding specification for our casino contract is shown in Listing \ref{def:ver}.
 The postconditions require a method to update the corresponding state of the game properly.
-
-\begin{code}{label={def:ver}}{isabelle}{Verification in Isabelle/Solidity}
+\begin{code}{label={def:ver}}{isabelle}{Verification in Isabelle/Solidity
+  %
+  \hfill\smash{\raisebox{0pt}{\includegraphics[width=1cm,height=1cm]{isabelle_solidity.pdf}}}%
+}
 verification pot_balance:
    pot_balance
   "K (K (K True))"
@@ -384,27 +398,44 @@ verification pot_balance:
   for "casino"
 \end{code}
 %\vskip
-%\paragraph*{Discussions}
-In order to automate the verification task, Isabelle/Solidity provides proof automation support in terms of a weakest precondition calculus.
-Verification of the Casino smart contract using Isabelle/Solidity resulted in the exploration of a major vulnerability, i.e., Reenetrancy.
-%
-While verifying the invariant in Example \autoref{ex:invariant},  it was not possible to verify unless changing the order of the Line 32 and 33 (see Appendix \ref{sec:app1}) which enabled the completion of the verification task. 
-%
-It is due to possibility of calling the function \texttt{decideBet} without setting \texttt{bet}=\texttt{0} which may lead to unintended behaviour.  
-%
+
+The verification command tries to proof a general correctness theorem for our contract.
+To this end, it provides the user with a set of proof obligations which are required to be discharged to verify the contract.
+For our example, the verification command provides us with six different proof obligations (one for each of the contract's functions).
+The one for \texttt{decideBet} is shown in Listing~\ref{lst:decideBet}.
+\begin{code}{label={lst:decideBet}}{isabelle}{Verifying casino contract in Isabelle/Solidity
+  %
+  \hfill\smash{\raisebox{0pt}{\includegraphics[width=1cm,height=1cm]{isabelle_solidity.pdf}}}%
+}
+  show \<And>&{\color{isarbound}call}& &{\color{isarbound}secretNumber}&. (\<And>&{\color{isarbound}x}& &{\color{isarbound}h}& &{\color{isarbound}r}&. effect (&{\color{isarbound}call}& &{\color{isarbound}x}&) &{\color{isarbound}h}& &{\color{isarbound}r}& \<Longrightarrow> vcond &{\color{isarbound}x}&) &{\color{isarbound}h}& &{\color{isarbound}r}&)
+  \<Longrightarrow> effect (decideBet &{\color{isarbound}call}& &{\color{isarbound}secretNumber}&) &{\color{isarfree}s}& &{\color{isarfree}r}&
+  \<Longrightarrow> inv_state pot_balance &{\color{isarfree}s}&
+  \<Longrightarrow> post &{\color{isarfree}s}& &{\color{isarfree}r}& pot_balance (K True) (decideBet_post &{\color{isarbound}secretNumber}&)
+unfolding decideBet_def
+apply (erule post_exc_true, erule_tac post_wp)
+unfolding  inv_state_def
+apply (vcg | solve<auto &{\color{isarpink}simp}& &{\color{isarpink}add}&: &{\color{isarlightgreen}wpsimps}&>)+
+...
+\end{code}
+The goal basically requires to show that the invariant is preserved by the function.
+To discharge it, a user can use our verification condition generator and general Isabelle reasoning infrastructure.
 
 \section{Related Work}
-%
-Considering the mission-critical nature of the smart contracts in blockchain technology, formal methods techniques, e.g., Model Checking \cite{antonino2020formalising}, theorem proving \cite{bhargavan2016formal}, have been employed to formally specify and verify Solidity smart contracts. Model checking \cite{clarke1997model} is a push-button automatic formal methods technique, however, has limited expressiveness due to finite-state machine modelling and is prone to state-space explosion. On the other hand, theorem proving is highly-expressive and has also been utilized for the verification of Solidity smart contracts. 
+Early approaches to the verification of smart contracts are mostly based on automatic verification techniques.
+A popular example of research in this area is solc-verify~\cite{hajdu2020solc} which is based on the boogie verifier~\cite{DeLine2005}.
+While tools in this category are fully automated, they are often limited in expressiveness compared to interactive verification approaches.
 
-In theorem proving literature, deep and shallow embedding are two common approaches for the verification of Solidity language. A deep embedding of operational semantic of Solidity in SolidiKeY \cite{ahrendt2020functional} allows to formally specify and verify smart contracts using KeY theorem prover. Similarly, Jakab \cite{zakrzewski2018towards} formalizes a Coq interpreter, utilizing deep embedding of operational semantic of Solidity, for the smart contract verification. However, aforementioned works rely on the axiomatic verification approach therefore may lead to miss corner cases in verifying smart contracts. In this direction, Diego et al. \cite{marmsoler2022isabelle}  developed a deep embedding framework for denotational semantic of Solidity in Isabelle/HOL which support correct-by-construction approach for the formal verification of smart contracts. On the other hand, there are two notable efforts for shallow embedding of Solidity in Isabelle theorem prover. Ribeiro et al. \cite{ribeiro2020formal} utilize mix of deep and shallow embedding to develop an intermediary low-level specification language, \texttt{SOLI}, for the specification and verification of Solidity smart contracts in Isabelle/HOL. Whereas \cite{marmsoler2024secure} provides a shallow embedding of operational semantic of Solidity in Isabelle/HOL. The framework is equipped with complex data types, such as mappings and arrays, and verification of invariants as compared to SOLI.
+One line of research in this area focusses on the development of tools to verify smart contracts independent of the programming language.
+One example in this area is the work of Cassez et al.~\cite{cassez22,cassez24} about deductive verification of smart contracts with Dafny.
+While these tools can also be used to verify Solidity smart contracts, they may reach their limits when it comes to contracts involving more specialized language features.
 
-Isabelle/Solidity tool, proposed in this paper, is based on the shallow embedding approach \cite{marmsoler2024secure}. 
-This is mainly due to the scope of the proposed tool.
+Other tools focus on the verification of contracts written in a particular language, such as Solidity.
+One example here is SolidiKeY~\cite{ahrendt2020functional} which allows to formally specify and verify Solidity smart contracts using the KeY prover.
+SolidiKeY is based on an axiomatic semantics of Solidity which is the main difference to Isabelle/Solidity, which is based on a denotational semantics~\cite{marmsoler2022isabelle} and implemented in a definitional approach.
 % 
  %
-The objective of the proposed tool is to formally specify and verify the correctness of the Solidity smart contracts which is best served, in terms of effort and time, by shallow embedding as compare to deep embedding. This has been empirically shown in \cite{marmsoler2024secure}.
-%Considering the mission-critical nature of the smart contracts in blockchain technology, various formal methods techniques, such as Model Checking, theorem proving and SMT solvers, have been employed to formally specify and verify Solidity smart contracts. 
+%The objective of the proposed tool is to formally specify and verify the correctness of the Solidity smart contracts which is best served, in terms of effort and time, by shallow embedding as compare to deep embedding. This has been empirically shown in \cite{marmsoler2024secure}.
+%Considering the mission-critical nature of the smart contracts in Blockchain technology, various formal methods techniques, such as Model Checking, theorem proving and SMT solvers, have been employed to formally specify and verify Solidity smart contracts. 
 %%
 %Solidifier \cite{antonino2020formalising}, VeriSol\footnote{\url{https://github.com/Microsoft/verisol}} and solc-verify \cite{hajdu2020solc} translates a given smart contract into equivalent Boogie script, an intermediate verification language, which is then employed for formal verification using bounded model checking and SMT solvers.
 %%
@@ -450,31 +481,20 @@ The objective of the proposed tool is to formally specify and verify the correct
 %% Bibliography
 %%
 %
-In this paper, we present Isabelle/Solidity tool for the formal specification and verification of Solidity smart contracts. 
-%
-The tool facilitates Solidity data-types, functions, modifiers, statements, expressions and post/pre-condition specifiers in Isabelle/HOL.
-%
-%
-The formal specification relies upon the underlying shallow embedding of Solidity expressions and statements as state-monads and storage models for different types of stores in Solidity.
-%
-For the verification purpose, tool supports invariant specification for the contract that in turn is supported by verification condition generator to automate the verification process.
-%
-Finally, we evaluated the approach by means of the Casino case study.
-%
-The use of the Isabelle/Solidity resulted in the exploration of re-entrancy vulnerability in the original version of Casino smart contract.
-%
-However, there are few  challenges in order to  fully cover the advanced features of Solidity. 
-%
+In this paper, we present Isabelle/Solidity, a tool for the formal specification and verification of Solidity smart contracts. 
+The tool is implemented as a definitional extension of the Isabelle proof assistant and provides features for the specification of contracts and invariants, and the verification of invariants and postconditions.
+To support the user in the verification it also provides a verification condition generator based on a weakest precondition calculus.
 
-%
-In this regard, inheritance is one of the most notable Solidity feature which can be introduced in the proposed tool for verifying interesting properties of the smart contracts.
-%
-Moreover, from the verification point-of-view, automation can be further improved by providing specialized rules w.r.t the context of the smart contracts.
+Isabelle/Solidity currently supports many features of Solidity, including domain specific expressions and advanced data types such as maps and arrays and their representation in different types of stores (storage, memory, calldata).
+There are, however, more advanced features of the language, such as inheritance, which is currently not supported and a task for future work.
 
-
+Another limitation is the lack of a verified compiler for Isabelle/Solidity.
+Thus, it cannot be guaranteed that the verified properties hold on the level of EVM bytecode.
+Thus, another direction for future work is the development of a verified compiler for Isabelle/Solidity.
 %
 %% Please use bibtex, 
 %\nocite{*}
+\newpage
 \bibliography{oasics-v2021-sample-article}
 
 \appendix
@@ -514,19 +534,24 @@ Moreover, from the verification point-of-view, automation can be further improve
 			Coin secret = (secretNumber % 2 == 0)? HEADS : TAILS;
 			if (secret == guess) {
 				pot = pot - bet;  
-				player.transfer(bet*2);  
-				bet = 0;} 
-			else {
+				bet = 0;
+        player.transfer(bet*2);
+      }	else {
 				pot = pot + bet; 
 				bet = 0;
-				}
-			state = IDLE;}
-		function addToPot() public payable byOperator { pot = pot + msg.value;}
+			}
+			state = IDLE;
+    }
+		
+    function addToPot() public payable byOperator {
+      pot = pot + msg.value;
+    }
 
 		function removeFromPot(uint amount) public byOperator, noActiveBet { 
 			operator.transfer(amount);  
-			pot = pot - amount;}
-		}
+			pot = pot - amount;
+    }
+	}
 \end{code}
 
 
