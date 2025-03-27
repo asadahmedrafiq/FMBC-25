@@ -67,13 +67,13 @@
     style = solidity,
     language=Isabelle,
     literate =
-        {\\<Longrightarrow>}{$\Longrightarrow$}{2}
+        {\\<Longrightarrow>}{$\Longrightarrow$}{4}
         {\\<longrightarrow>}{$\longrightarrow$}{3}
         {\\<Rightarrow>}{$\Rightarrow{}$}{1}
         {\\<circ>}{$\circ$}{1}
         {\\<lambda>}{$\lambda$}{1}
         {\\<and>}{$\wedge$}{2}
-        {\\<And>}{$\bigwedge$}{1}
+        {\\<And>}{$\bigwedge$}{3}
         {\\<or>}{$\vee$}{1}
         {\\<forall>}{$\forall$}{2}
         {\\<exists>}{$\exists$}{2}
@@ -88,17 +88,27 @@
         {\\<not>}{$\neg$}{1}
         {\\<Sum>}{$\sum$}{3}
         {\\<equiv>}{$\equiv$}{2}
+        {\\<meq>}{{\color{isarverylight}$\langle \texttt{=} \rangle$}}{4}
+        {\\<mIF>}{{\color{isarverylight}$\texttt{IF}$}}{3}
+        {\\<mTHEN>}{{\color{isarverylight}$\texttt{THEN}$}}{5}
+        {\\<mELSE>}{{\color{isarverylight}$\texttt{ELSE}$}}{5}
         {\\<mpluss>}{{\color{isarverylight}$\langle + \rangle$}}{4}
+        {\\<mminus>}{{\color{isarverylight}$\langle - \rangle$}}{4}
+        {\\<mmod>}{{\color{isarverylight}$\langle \% \rangle$}}{4}
+        {\\<mmult>}{{\color{isarverylight}$\langle * \rangle$}}{4}
         {\\<msender>}{{\color{isarverylight}$\langle \texttt{sender} \rangle$}}{9}
         {\\<mvalue>}{{\color{isarverylight}$\langle \texttt{value} \rangle$}}{8}
         {\\<msint>}{{\color{isarverylight}$\langle \texttt{sint} \rangle$}}{7}
+        {\\<mkeccak256>}{{\color{isarverylight}$\langle \texttt{keccak256} \rangle$}}{12}
+        {\\<massert>}{{\color{isarverylight}$\langle \texttt{assert} \rangle$}}{9}
         {\\<mskip>}{{\color{isarverylight}$\langle \texttt{skip} \rangle$}}{7}
         {\\<mtransfer>}{{\color{isarverylight}$\langle \texttt{transfer} \rangle$}}{11}
-        {\\<mslookup>}{{\color{isarverylight}$\sim_\texttt{s}$}}{3}
+        {\\<mslookup>}{{\color{isarverylight}$\sim_\texttt{s}$}}{4}
         {\\<mlookup>}{{\color{isarverylight}$\sim{}$}}{2}
-        {\\<massign>}{{\color{isarverylight}::=}}{4}
-        {\\<msassign>}{{\color{isarverylight}{$\texttt{::=}_\texttt{s}$}}}{5}
+        {\\<massign>}{{\color{isarverylight}::=}}{5}
+        {\\<msassign>}{{\color{isarverylight}{$\texttt{::=}_\texttt{s}$}}}{6}
 }%
+\newcommand{\isarfvar}[1]{{\color{isarfree} \texttt{#1}}}
 
 \definecolor{isacom}{RGB}{0,102,153}
 \definecolor{isakey}{RGB}{31,159,102}
