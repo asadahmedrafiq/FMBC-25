@@ -39,12 +39,54 @@
   Year                     = {2002},
 }
 
+@InProceedings{marmsoler2021,
+author="Marmsoler, Diego
+and Brucker, Achim D.",
+editor="Calinescu, Radu
+and P{\u{a}}s{\u{a}}reanu, Corina S.",
+title="{A} {D}enotational {S}emantics of {S}olidity in {I}sabelle/{HOL}",
+booktitle="Software Engineering and Formal Methods",
+year="2021",
+publisher="Springer International Publishing",
+address="Cham",
+pages="403--422",
+abstract="Smart contracts are programs, usually automating legal agreements such as financial transactions. Thus, bugs in smart contracts can lead to large financial losses. For example, an incorrectly initialized contract was the root cause of the Parity Wallet bug that made USD 280mil worth of Ether inaccessible. Ether is the cryptocurrency of the Ethereum blockchain that uses Solidity for expressing smart contracts.",
+isbn="978-3-030-92124-8"
+}
+
+@InProceedings{marmsoler2023,
+author="Marmsoler, Diego
+and Thornton, Billy",
+editor="Ferreira, Carla
+and Willemse, Tim A. C.",
+title="{SSC}alc: {A} {C}alculus for {S}olidity {S}mart {C}ontracts",
+booktitle="Software Engineering and Formal Methods",
+year="2023",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="184--204",
+abstract="Smart contracts are programs stored on the blockchain, often developed in a high-level programming language, the most popular of which is Solidity. Smart contracts are used to automate financial transactions and thus bugs can lead to large financial losses. With this paper, we address this problem by describing a verification environment for Solidity in Isabelle/HOL. To this end, we first describe a calculus to reason about Solidity smart contracts. The calculus is formalized in Isabelle/HOL and its soundness is mechanically verified. Then, we describe a Verification Condition Generator to automate the use of the calculus. Our approach can be used to verify the functional correctness of Solidity smart contracts. To demonstrate this, we use it to verify a simple token implemented in Solidity. Our results show that the framework has the potential to significantly reduce the verification effort compared to verifying directly from the semantics.",
+isbn="978-3-031-47115-5"
+}
+
 @article{marmsoler2022isabelle,
-  title={Isabelle/Solidity: {A} {D}eep {E}mbedding of {S}olidity in {I}sabelle/{H}{O}{L}},
-  author={Marmsoler, Diego and Brucker, Achim D},
-  journal={Formal Aspects of Computing},
-  year={2022},
-  publisher={ACM New York, NY}
+author = {Marmsoler, Diego and Brucker, Achim D.},
+title = {{I}sabelle/{S}olidity: {A} deep embedding of {S}olidity in {I}sabelle/{HOL}},
+year = {2025},
+issue_date = {June 2025},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {37},
+number = {2},
+issn = {0934-5043},
+url = {https://doi.org/10.1145/3700601},
+doi = {10.1145/3700601},
+abstract = {Smart contracts are computer programs designed to automate legal agreements. They are usually developed in a high-level programming language, the most popular of which is Solidity. Every day, hundreds of thousands of new contracts are deployed managing millions of dollars’ worth of transactions. As for every computer program, smart contracts may contain bugs which can be exploited. However, since smart contracts are often used to automate financial transactions, such exploits may result in huge economic losses. In general, it is estimated that since 2019, more than $5B was stolen due to vulnerabilities in smart contracts.This article addresses the issue of smart contract vulnerabilities by introducing an executable denotational semantics for Solidity within the Isabelle/HOL interactive theorem prover. This formal semantics serves as the basis for an interactive program verification environment for Solidity smart contracts. To evaluate our semantics, we integrate grammar-based fuzzing with symbolic execution to automatically test it against the Solidity reference implementation. The article concludes by showcasing the formal verification of Solidity programs, exemplified through the verification of a basic Solidity token.},
+journal = {Form. Asp. Comput.},
+month = mar,
+articleno = {15},
+numpages = {56},
+keywords = {Solidity, denotational semantics, Isabelle/HOL}
 }
 
 @book{DBLP:books/mk/GrayR93,
