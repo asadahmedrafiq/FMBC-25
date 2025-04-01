@@ -1,0 +1,130 @@
+\documentclass[a4paper, 12pt] {article}
+\usepackage{xcolor, soul}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{epsfig}
+ \usepackage{url}
+
+\setlength{\textwidth}{6.5in} \setlength{\textheight}{8.5in}
+\setlength{\evensidemargin}{0in} \setlength{\oddsidemargin}{0in}
+\setlength{\topmargin}{0in}
+
+\setlength{\parindent}{0pt} \setlength{\parskip}{0.1in}
+
+% 1.5 line-spaced document.
+\renewcommand{\baselinestretch}{1.2}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+
+\newcommand{\lyxaddress}[1]{
+  \par {\raggedright #1
+  \vspace{0.4em}
+  \noindent\par}
+}
+\begin{document}
+\begin {center}
+
+\LARGE{\textbf{Manuscript ID:}\\
+\large{\textbf{(Answers to Referee's Recommendations)}}}
+
+\end {center}
+
+\vspace {8 mm}
+
+\small {We would first like to thank the reviewers for their
+valuable comments, which helped us in improving the paper at several
+places. We took each comment into consideration and did the
+necessary modifications in the revised version. In this document, 
+we
+include pointers (as Section, Page and line(s) number(s)) to the modifications in the modified version of paper PDF  in response to the comments for easy traceability. }\\
+
+
+
+%
+%
+%
+%\newpage
+\section{Referee's Recommendations}
+
+\subsection{Reviewer 1}
+\begin{itemize}
+  
+\item \emph{Isabelle/Solidity has also been the focus of the recent work in \cite{try}, which provided more details for the verification framework. The paper could cite this work and clarify its contribution/content on top of \cite{try} (e.g., offering a practical, user-friendly tool for verification).
+}
+
+
+\textbf{Reply:} Introduced and clarify the contributions in Introduction section (Page 1, Lines 39-42) and also reference is added in the Related Work section (Page 7, Lines 190-193).
+
+\end{itemize}
+
+
+\newpage
+\subsection{Reviewer 2}
+\begin{itemize}
+	\item \emph{There are at least two earlier publications by the same authors regarding Isabelle/Solidity ("Secure Smart Contracts with Isabelle/Solidity", 2024, and "Isabelle/Solidity, a deep embedding", 2025), and a third about a related but distinct semantics for Solidity, also with Isabelle ("A Denotational Semantics of Solidity in Isabelle/HOL", 2021). }
+	
+	
+	\textbf{Reply:} Introduced and clarify the contributions in Introduction section (Page 1, Lines 39-42) and also reference is added in the Related Work section (Page 7, Lines 190-193).
+	
+	\item \emph{several titles in the reference section are written in all-lowercase }
+	
+	
+	\textbf{Reply:} Fixed
+	
+  \item \emph{some instances of "proof" instead of "prove" (e.g line 150) }
+
+
+\textbf{Reply:} Fixed
+
+
+\item \emph{ the invariant of the case study is given as example 5.1 in a box, breaking the flow of the text, although it is integrally part of of the main text and referred in the listing 4 afterwards, which is not part of the example 
+}
+
+\textbf{Reply:}  Fixed, Verification section (Page 5, Lines 147-154)
+
+\end{itemize}
+
+\newpage
+\subsection{Reviewer 3}
+\begin{itemize}
+	\item \emph{The specification of the example is slightly confusing because while a secret number is generated, only the mod 2 of that number is relevant, modeled as HEADS and TAILS. I might have missed something but why not have a secret Boolean instead of a secret number?  }
+	
+	
+	\textbf{Reply:} Explained the reason for using secrete number rather bool in Case Study Section (Page 3, Lines 104-108).
+	
+	\item \emph{Page 4 mentions that "What follows is a specification of stack (param), memory (memory), and calldata (calldata) parameters and corresponding types." I didn't get where these three components were described. Could that be clarified?  }
+	
+	
+	\textbf{Reply:} Added Table 1 in Section 2 (Isabelle/Solidity, Page 2, Line 69) to explain the different types of stores in Solidity and their properties.
+	
+  \item \emph{Page 5 mentions that "The postconditions require a method to update the corresponding state of the lle game properly." I'm not sure I understood that point. Are you saying that for example "decideBet\_post" is a postcondition that requires "decideBet" from listing 2 to update its state appropriately? Could this be explained in more detail? For example by providing (part of) "decideBet\_post" and explaining how it requires "decideBet" to update its state? "decideBet\_post" seems to be presented in listing 5, but this is not explicitly said. The name of the listing could potentially mention "decideBet\_post". Also, what's K in figure 4? }
+
+
+\textbf{Reply:} Isabelle/HOL definition of Post-condition (PlaceBet\_post) has been included and explained in Verification section (Page 6, Lines 162-164).
+
+
+\item \emph{ typo line 59: "programms"
+}
+
+\textbf{Reply:}  Fixed
+
+\item \emph{ typo line 66: "requires a them" }\\
+\textbf{Reply:}  Fixed
+ 
+ \item \emph{typo line 102: "is in not in"  }\\
+\textbf{Reply:}  Fixed
+ 
+  \item \emph{typo line 150: "tries to proof"  }\\
+\textbf{Reply:}  Fixed
+\end{itemize}
+
+
+%
+%
+\bibliographystyle{plain}
+\bibliography{comments}
+
+\end{document}
