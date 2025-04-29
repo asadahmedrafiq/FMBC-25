@@ -1,0 +1,11 @@
+\begin{soliditybox}
+uint256 x = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2.balance;
+uint256 y = address(this).balance; (*@\pause@*)
+
+0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2.transfer(1000); (*@\pause@*)
+
+assert(0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2.balance == x+1000);
+//true  (*@\pause@*)
+
+assert(address(this).balance == y-1000); //true
+\end{soliditybox}

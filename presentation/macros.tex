@@ -1,0 +1,18 @@
+\DeclareMathOperator{\dsum}{+}
+\newcommand{\fromString}[1]{\ensuremath{\left\lceil#1\right\rceil}}
+\newcommand{\toString}[1]{\ensuremath{\left\lfloor#1\right\rfloor}}
+\newcommand{\update}[3]{
+	\ensuremath{#1[#2\mapsto #3]}
+}
+\newcommand{\option}[1]{
+	\ensuremath{#1}_\bot
+}
+\newcommand{\astack}[1]{\ensuremath{\mathit{sck}(#1)}}
+\newcommand{\amemory}[1]{\ensuremath{\mathit{mem}(#1)}}
+\newcommand{\astorage}[1]{\ensuremath{\mathit{sto}(#1)}}
+\newcommand{\aaccount}[1]{\ensuremath{\mathit{acc}(#1)}}
+\newcommand{\ustack}[2]{\ensuremath{\mathit{upSck}(#1,#2)}}
+\newcommand{\umemory}[2]{\ensuremath{\mathit{upMem}(#1,#2)}}
+\newcommand{\ustorage}[2]{\ensuremath{\mathit{upSto}(#1,#2)}}
+\newcommand{\uaccount}[2]{\ensuremath{\mathit{upAcc}(#1,#2)}}
+\newcommand{\Mod}[2]{#1~\mathrm{mod}~#2}

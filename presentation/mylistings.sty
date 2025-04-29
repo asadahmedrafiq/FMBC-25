@@ -1,0 +1,90 @@
+\usepackage{tcolorbox}
+
+\tcbuselibrary{listings}
+\tcbuselibrary{skins}
+
+\lstdefinestyle{java_style}
+{literate=
+	{>=}{{$\geq$}}2
+	{<=}{{$\leq$}}2
+}
+\newtcblisting{javabox}[1][]{%
+listing only,
+listing options={language=Java, style=java_style, tabsize=2,escapeinside={(*@}{@*)}},
+enhanced,
+title=Java,
+arc=1mm,
+attach boxed title to top right = {xshift=-.5mm,yshift=-5.18mm},
+boxed title style={size=small,arc=1mm, boxrule=0pt, sharp corners=downhill},
+#1
+}
+\def\javainline{\lstinline[language=Java, style=java_style]}
+
+\lstdefinestyle{haskell_style}
+{literate=
+    {->}{{$\rightarrow\;$}}2
+	{<-}{{$\leftarrow\;$}}2
+    {=>}{{$\Rightarrow\;$}}2
+	{>=}{{$\geq$}}2
+	{<=}{{$\leq\;$}}2
+	{==}{{$==$}}2
+	{/=}{{$\neq$}}2
+    {~}{{\ }}1
+	{\\bs}{{\textbackslash}}1
+	{\\}{{$\lambda$\;}}1
+    {\\dollar}{{$\$$\;}}1
+	{\\oplus}{{$\oplus$\;}}1
+	{\\bs}{{\textbackslash}}0
+}
+
+\newtcblisting{hsbox}[1][]{%
+listing only,
+listing options={language=haskell,style=haskell_style,tabsize=2,escapeinside={(*@}{@*)}},
+enhanced,
+title=Haskell,
+arc=1mm,
+attach boxed title to top right = {xshift=-.5mm,yshift=-5.2mm},
+boxed title style={size=small,arc=1mm, boxrule=0pt, sharp corners=downhill},
+#1
+}
+\def\hsinline{\lstinline[language=haskell, style=haskell_style]}
+
+\newtcblisting{shellbox}[1][]{%
+colback=black,
+colupper=white,
+listing only,
+listing options={language=sh,escapeinside={(*@}{@*)}},
+top=0mm,
+bottom=0mm,
+every listing line={\small\ttfamily\bfseries > },
+#1
+}
+
+\lstdefinestyle{prolog_style}
+{literate=
+	{>=}{{$\geq$}}2
+	{=<}{{$\leq$}}2
+}
+
+\newtcblisting{prologbox}[1][]{%
+listing only,
+listing options={language=Prolog, style=prolog_style, tabsize=2,escapeinside={(*@}{@*)}},
+enhanced,
+title=Prolog,
+arc=1mm,
+attach boxed title to top right = {xshift=-.5mm,yshift=-5.9mm},
+boxed title style={size=small,arc=1mm, boxrule=0pt, sharp corners=downhill},
+#1
+}
+\def\plinline{\lstinline[language=Prolog, style=prolog_style]}
+
+\newtcblisting{abbox}[1][]{%
+listing only,
+listing options={tabsize=2,escapeinside={(*@}{@*)}},
+enhanced,
+title=A\&B,
+arc=1mm,
+attach boxed title to top right = {xshift=-.5mm,yshift=-5.18mm},
+boxed title style={size=small,arc=1mm, boxrule=0pt, sharp corners=downhill},
+#1
+}

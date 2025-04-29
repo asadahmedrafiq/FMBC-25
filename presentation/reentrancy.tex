@@ -1,0 +1,17 @@
+\begin{soliditybox}
+pragma solidity >=0.5.1 <0.5.2;
+
+contract Bank {
+    mapping(address => uint256) balances;
+
+    function deposit() public payable {
+        balances[msg.sender] = balances[msg.sender] + msg.value;
+    }
+
+    function withdraw() public {
+        uint256 bal = balances[msg.sender];
+        balance[msg.sender] = 0;
+        msg.sender.transfer(bal);
+    }
+}
+\end{soliditybox}

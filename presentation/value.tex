@@ -1,0 +1,9 @@
+\begin{soliditybox}
+assert(int8(200) == int8(-56)); (*@\pause@*) //true (*@\pause@*)
+
+assert(uint8(200) == uint8(-56)); (*@\pause@*) //true (*@\pause@*)
+
+assert(uint8(200) + int16(32600) == int16(-32736)); (*@\pause@*) //true (*@\pause@*)
+
+assert(uint16(100) + int16(32700)); (*@\pause@*) //compiler error
+\end{soliditybox}

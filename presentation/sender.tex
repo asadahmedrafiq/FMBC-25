@@ -1,0 +1,13 @@
+\begin{soliditybox}[left=0pt,right=0pt,bottom=0pt]
+contract S {
+  R rec;
+
+  constructor(R r) public payable {
+    rec = r;
+  }
+    
+  function snd(uint256 v) public {
+    rec.rcv.value(v)();
+  }
+}
+\end{soliditybox}

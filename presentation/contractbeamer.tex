@@ -1,0 +1,35 @@
+\begin{lstlisting}[style=solidity_style, escapechar=!, basicstyle=\tiny, mathescape]
+contract TestContract0 {
+    uint8 v_u8_s8;!\tikzmark{bgnSVar}!
+    mapping(uint16 => uint8) v_m_u16_u8_9;
+    bool[1][2] a_b_12_s5;
+    ...!\tikzmark{trmSVar}!
+    function test() public {
+        uint104 v_u104_m2;!\tikzmark{bgnMVar}!
+        uint104[1][1] memory a_u104_11_m2;
+        ...!\tikzmark{trmMVar}!
+        v_u104_m2=14622709355569675963178665339646;!\tikzmark{bgnState}!
+        v_m_u16_u8_9[59381]=79;
+        ...!\tikzmark{trmState}!
+        int8 counter1=int8(0);!\tikzmark{bgnCode}!
+        while((v_m_u224_s240_1[uint224(444)]==(v_u216_s1-v_u104_m2)) && counter1<int8(10)){
+            0xf7218C33533a3F22e3296F8b1DC0074B399355Eb.transfer(v_m_u16_u8_9[uint16(0)]);
+            counter1=counter1+int8(1);
+        }
+        ...!\tikzmark{trmCode}!
+        Assert.equal(v_m_u16_u8_9[59381]==79, true);!\tikzmark{bgnAss}!
+        Assert.equal(a_u104_11_m2[0][0]==8130097819054169632795960896007, true);
+        Assert.equal(0xf7218C33533a3F22e3296F8b1DC0074B399355Eb
+            .balance==100000000000000000000, true);
+        ...!\tikzmark{trmAss}!
+    }
+}!\mbox{%
+\begin{tikzpicture}[overlay, remember picture]
+    \drawBrace[3cm]{bgnSVar}{trmSVar}{Extracted\\ storage variables};
+    \drawBrace[3cm]{bgnMVar}{trmMVar}{Extracted\\ memory/stack variables};
+    \drawBrace[1cm]{bgnState}{trmState}{Generated\\ input state};
+    \drawBrace[7cm]{bgnCode}{trmCode}{Generated\\ program};
+    \drawBrace[4cm]{bgnAss}{trmAss}{Computed \\ result state};
+  \end{tikzpicture}}!
+\end{lstlisting}
+  

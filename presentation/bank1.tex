@@ -1,0 +1,28 @@
+\begin{lstlisting}[style=solidity_style, escapechar=!, basicstyle=\tiny, mathescape]
+
+contract Bank{	!\tikzmark{bgnIBVar}!
+    	  mapping(uint16 => uint8) balances; !\tikzmark{trmIBVar}!
+        function deposit() public payable { !\tikzmark{bgnIBUVar}!
+        balances[msg.sender] = balances[msg.sender] + msg.value;!\tikzmark{trmIBUVar}!
+             }
+   function withdraw() public payable { 
+	...!\tikzmark{bgnTR}!      
+	uint256 bal = balances[msg.sender];
+	balances[msg.sender] = 0;
+	msg.sender.transfer(bal);
+	...!\tikzmark{trmTR}!
+                  }
+         }
+}!\mbox{%
+\begin{tikzpicture}[overlay, remember picture]
+    \drawBrace[1cm]{bgnIBVar}{trmIBVar}{Initializing \\balance variable};
+    \drawBrace[1cm]{bgnIBUVar}{trmIBUVar}{Transfering money\\ in account};
+    \drawBrace[4cm]{bgnTR}{trmTR}{Transfering money \\out of account};
+%    \drawBrace[8cm]{bgnWF}{trmWF}{Withdraw function};
+%   \drawBrace[8cm]{bgnDF}{trmDF}{Deposit function};
+% %   \drawBrace[1cm]{bgnState}{trmState}{Generated\\ input state};
+  %  \drawBrace[7cm]{bgnCode}{trmCode}{Generated\\ program};
+   % \drawBrace[4cm]{bgnAss}{trmAss}{Computed \\ result state};
+  \end{tikzpicture}}!
+\end{lstlisting}
+  

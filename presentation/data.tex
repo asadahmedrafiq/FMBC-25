@@ -1,0 +1,14 @@
+\begin{soliditybox}
+contract Example {
+  mapping(address => uint256) myMapping; //storage map
+    
+  uint8[2][3] myStorageArray; //storage array
+
+  //calldata array
+  function example(uint8[2] calldata myCDArray) external {
+    uint8[2] storage myPointer = myStorageArray[1]; //storage pointer
+    
+    uint8[2] memory myMemoryArray; //memory array
+  }
+}
+\end{soliditybox}
