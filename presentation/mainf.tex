@@ -96,27 +96,6 @@
 \section{Introduction}
 \frame{\tableofcontents[currentsection]}
 %
-%\subsection{Blockchain Technology}
-%
-%\begin{frame}{Blockchain Technology}
-%\begin{itemize}
-%\item A \textcolor{red}{database concept} which relies upon \textcolor{red}{decentralization }
-%\end{itemize}
-% \tikz \node at (0, 3) [font=\large,   minimum height=2.5em, minimum width = 3.25cm, inner sep=0pt, fill=blue!30] {Application Layer};
-%\tikz \node [font=\normalsize, minimum height=2.5em, align = left] {Business logic for:\\[0.5pt]  Finance, Medical, Business, Agriculture etc.};\\
-%\tikz \node [font=\large,  minimum height=2.5em, minimum width = 3.25cm, inner sep=0pt, fill=green!30 ] {Contract Layer};
-%\tikz \node [font=\normalsize, minimum height=2.5em, align = left] {Programs in high-level languages to\\[0.5pt]  implement the business logic};\\
-%\tikz \node [font=\large,  minimum height=2.5em, minimum width = 3.25cm, inner sep=0pt, fill=blue!30] {Consensus layer};
-%\tikz \node [font=\normalsize, minimum height=2.5em, align = left] {Set of rules agreed upon to add a new block,\\[0.5pt] such as  Proof of Work (PoW)};\\
-%\tikz \node [font=\large,  minimum height=2.5em, minimum width = 3.25cm, inner sep=0pt, fill=blue!30] {Network Layer};
-%\tikz \node [font=\normalsize, minimum height=2.5em, align = left] {Handles the communication between nodes};\\
-%\tikz \node [font=\large,  minimum height=2.5em, minimum width = 3.25cm, inner sep=0pt, fill=blue!30] {Data Layer};
-%\tikz \node [font=\normalsize, minimum height=2.5em, align = left] {Data transactions, Blocks, Cryptography};\\
-%\begin{exampleblock}{}
-%  {\large \begin{center}Smart contracts provide an interface to real-world applications\end{center}}
-%\end{exampleblock}
-%\end{frame}
-%
 \subsection{Smart Contracts}
 \begin{frame}{Smart Contracts}
 
@@ -147,7 +126,7 @@
         basic/.style ={rounded corners=3pt, draw, minimum width=3cm, minimum height=1cm, align=center},
         theory/.style={basic, fill=blue!95!black!30},
         temp/.style={basic, fill=green!95!black!30},
-        feature/.style={basic, fill=red!95!black!30},
+        feature/.style={basic, fill=red!50!white},
         dep/.style={-latex},
         gen/.style={-latex,dashed}
         ]
@@ -199,12 +178,13 @@
 \begin{frame}{Casino}
 \begin{itemize}
 
-\item The casino contract implements a betting game based on guessing  the outcome of coin-tossing.
+\item The casino contract implements a \textcolor{red}{betting game} based on \textcolor{red}{guessing  the outcome of coin-tossing}.
 \begin{itemize}
 \item[--] \textcolor{red}{Operator} creates a game by placing \textcolor{red}{HEAD/TAIL} as a \textcolor{red}{ secret} against an \textcolor{red}{ amount} \textcolor{blue}{ (pot)}
 \item[--] \textcolor{red}{Player} places a \textcolor{blue}{ bet} by \textcolor{red}{guessing} the secret 
 \item[--] \textcolor{red}{Operator} decides the bet using \textcolor{red}{guess} and \textcolor{red}{secret}
 \item[--] If player wins \textcolor{blue}{ bet} is doubled else \textcolor{blue}{bet} is transferred to \textcolor{blue}{pot}
+\item Program uses \texttt{\textcolor{blue}{IDLE}}, \texttt{\textcolor{blue}{GAME\_AVAILABLE}} and \texttt{\textcolor{blue}{BET\_PLACED}} to trace the progress of the game
 \end{itemize}
 \item \textcolor{red}{Solidity  implementation} utilizes many advanced features of Solidity Language, e.g.,:
 \begin{itemize}
@@ -317,8 +297,8 @@ The corresponding specification in Isabelle/Solidity is:
 %%
 \begin{frame}{Automatic Verification}
 \begin{itemize}
-\item To automatically discharge the proof obligations, tool has verification condition generator based on weakest precondition calculus
-\item Automatic verification using \texttt{vcg} has been shown for \texttt{creatGame} method
+\item To \textcolor{green}{automatically} discharge the proof obligations, tool has verification condition generator based on \textcolor{green}{weakest precondition calculus}
+\item Automatic verification using \textcolor{green}{\texttt{vcg}} has been shown for \textcolor{green}{\texttt{creatGame}} method
 \begin{center}\vspace{2mm}
 		\includegraphics[width=.95\textwidth]{inv_contract.png}
 	\end{center}\vspace{2mm}
@@ -331,19 +311,19 @@ The corresponding specification in Isabelle/Solidity is:
 \begin{frame}{Conclusion}
 Summary
 \begin{itemize}
-	\item Proposed \textcolor{red}{Isabelle/Solidity}, a tool for the \textcolor{red}{formal specification and verification
-	of Solidity smart contracts} within \textcolor{red}{Isabelle theorem prover}
-	\item Tool facilitates \textcolor{red}{Solidity types, types of stores, functions, modifiers, expressions and statements} to facilitate formal specification of smart contracts
-	\item Tool supports verification of smart contract \textcolor{red}{invariants and postconditions}
-		\item Tool facilitates automatic  verification using \textcolor{red}{verification condition generator}
-	\item  \textcolor{red}{casino smart contract} and \textcolor{red}{corresponding invariant} is formally specified and verified as a case study.
+	\item Proposed \textcolor{green}{Isabelle/Solidity}, a tool for the \textcolor{green}{formal specification and verification
+	of Solidity smart contracts} within \textcolor{green}{Isabelle theorem prover}
+	\item Tool facilitates \textcolor{green}{Solidity types, types of stores, functions, modifiers, expressions and statements} to facilitate formal specification of smart contracts
+	\item Tool supports verification of smart contract \textcolor{green}{invariants and postconditions}
+		\item Tool facilitates automatic  verification using \textcolor{green}{verification condition generator}
+	\item  \textcolor{green}{casino smart contract} and \textcolor{green}{corresponding invariant} is formally specified and verified as a case study.
 
 \end{itemize}
 \bigskip
 
 Future Work: 
 \begin{itemize}
-	\item Some advanced features such as \textcolor{red}{inheritance}
+	\item Some advanced features such as \textcolor{red}{inheritance and internal functions}
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%
