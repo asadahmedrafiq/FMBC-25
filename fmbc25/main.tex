@@ -19,9 +19,7 @@
 \usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage{wrapstuff}
 \usepackage{numprint}
-\usepackage{wrapfig}
 \usepackage{amsfonts}
 \usepackage{mathpartir}
 \usepackage{tikz}
@@ -67,13 +65,13 @@
 
 \keywords{Program Verification, Smart Contracts, Isabelle, Solidity} %TODO mandatory; please add comma-separated list of keywords
 
-\category{} %optional, e.g. invited paper
+\category{Tool Paper}
 
 \relatedversion{} %optional, e.g. full version hosted on arXiv, HAL, or other respository/website
 %\relatedversiondetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93]{Classification (e.g. Full Version, Extended Version, Previous Version}{URL to related version} %linktext and cite are optional
 
-%\supplement{}%optional, e.g. related research data, source code, ... hosted on a repository like zenodo, figshare, GitHub, ...
-%\supplementdetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93, subcategory={Description, Subcategory}, swhid={Software Heritage Identifier}]{General Classification (e.g. Software, Dataset, Model, ...)}{URL to related version} %linktext, cite, and subcategory are optional
+\supplement{Isabelle theory files}
+\supplementdetails[subcategory={}, cite={}, swhid={}]{Software}{https://doi.org/10.5281/zenodo.15121526}
 
 %\funding{(Optional) general funding statement \dots}%optional, to capture a funding statement, which applies to all authors. Please enter author specific funding statements as fifth argument of the \author macro.
 \funding{This work was supported by the Engineering and Physical Sciences Research Council [grant number EP/X027619/1]}
@@ -146,10 +144,8 @@ In particular the contributions of this paper are as follows:
 \label{sec-overview}
 
 Isabelle/Solidity is based on the formal semantics of Solidity described in~\cite{marmsoler2021,marmsoler2022isabelle}
-and the verification method described in~\cite{ahrendt2020functional} and verified in \cite{marmsoler2023}.
-
-The version of Isabelle/Solidity described in this paper is available online \fxfatal{Add link}.
-\autoref{fig:approach} shows its architecture.
+and the verification methodology described in~\cite{ahrendt2020functional} and verified in~\cite{marmsoler2023}.
+Its architecture is depicted in \autoref{fig:approach}.
 \begin{figure}[t]
     \centering
     \begin{tikzpicture}[%
@@ -206,7 +202,7 @@ Isabelle/Solidity is based on four Isabelle theories which are represented by th
     To support a user in the verification of Solidity programs, Isabelle/Solidity comes with a verification condition generator (VCG).
     The VCG is based on a weakest precondition calculus~\cite{Dijkstra1975} for our Solidity statements and which is formalized in this theory.\looseness-1
 \end{description}
-\begin{table}[b]\footnotesize
+\begin{table}[h]\footnotesize
 	\centering
 	\caption{Types of stores and corresponding properties.}\label{tab:stores}
 	\small\vspace{-0.2cm}
@@ -510,7 +506,6 @@ Thus, another direction for future work is the development of a verified compile
 \appendix
 
 \section{Casino: Solidity Smart Contract}\label{sec:app1}
-
 
 \begin{code}{label={fig:casino}}{solidity}{Solidity source code for the Casino}
 	contract Casino {
